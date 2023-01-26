@@ -2,6 +2,7 @@ import React from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <div className="header">
@@ -30,7 +31,10 @@ function Header() {
           <span className="header__optionLineTwo">Prime</span>
         </div>
         <div className="header__optionBasket">
-          <ShoppingBasketIcon />
+          <Link to="/account">
+            <ShoppingBasketIcon />
+          </Link>
+
           <div className="header__basketCount">5</div>
         </div>
       </div>

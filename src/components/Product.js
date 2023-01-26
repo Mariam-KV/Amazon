@@ -5,16 +5,16 @@ function Product({ id, title, image, price, rating }) {
   return (
     <div className="product">
       <div className="product__info">
-        <p>{title}</p>
+        <p>{title}fdfdfgfd</p>
         <p className="product__price">
           <small>$</small>
-          <strong>{price}</strong>
+          <strong>{price}3232</strong>
         </p>
         <div className="product__rating">
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <p>🌟</p>
+              <p>🌟🌟🌟🌟🌟</p>
             ))}
         </div>
       </div>
