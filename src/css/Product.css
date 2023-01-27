@@ -28,8 +28,14 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+  transition: 0.6s;
+}
+.product > button:hover {
+  cursor: pointer;
+  background: #e9b123;
 }
 .product__info > p {
+ 
   margin: 5px;
   font-size: 18px;
 }

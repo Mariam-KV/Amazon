@@ -12,9 +12,9 @@ function HomePage() {
         />
       </div>
       <div className="home__row">
-        <Product />
-        <Product />
-        <Product />
+        <Product id="1" title="dsdf" image="dfdf" price="2" rating="fgfg" />
+        <Product id="2" price="2" />
+        <Product id="3" price="2" />
 
         <Product />
         <Product />
