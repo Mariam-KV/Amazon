@@ -1,11 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { initialState, reducer } from "./reducer";
+import { Context } from "./Context";
 import { BrowserRouter } from "react-router-dom";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <App />
+    <Context initialState={initialState} reducer={reducer}>
+      <App />
+    </Context>
   </BrowserRouter>
 );
 

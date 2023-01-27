@@ -1,6 +1,8 @@
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
-import Account from "./components/Account";
+// import Account from "./components/Account";
+
+import Checkout from "./components/Checkout";
 import "./css/App.css";
 import { Route, Switch } from "react-router-dom";
 function App() {
@@ -12,8 +14,8 @@ function App() {
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/account">
-          <Account />
+        <Route path="/checkout">
+          <Checkout />
         </Route>
       </Switch>
     </div>
