@@ -4,7 +4,7 @@ import "../css/Product.css";
 
 function Product({ id, title, image, price, rating }) {
   let [state, dispatch] = useStateValue();
-  console.log(state.basket);
+
   function addingToBasket() {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -35,10 +35,7 @@ function Product({ id, title, image, price, rating }) {
         </div>
       </div>
 
-      <img
-        src="https://m.media-amazon.com/images/I/91931AxlUPL._AC_SR175,263_QL70_.jpg"
-        alt=""
-      />
+      <img src={image} alt="" />
 
       <button onClick={addingToBasket}>Add to Basket</button>
     </div>
