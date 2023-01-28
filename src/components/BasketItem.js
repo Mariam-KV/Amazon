@@ -1,9 +1,14 @@
-import React from "react";
 import "../css/BasketItem.css";
+import { useState } from "react";
+import { useStateValue } from "../Context";
 function BasketItem({ item }) {
-  console.log(item);
+  let [dispatch] = useStateValue();
   let { id, title, image, price, rating } = item;
-  console.log(id);
+  let [hideButton, setHideButton] = useState(false);
+  function removeFromBasket() {
+    dispatch({ type: "REMOVE_FROM_BASKET", passedId: id });
+  }
+
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} alt="basketItem" />
@@ -14,16 +19,10 @@ function BasketItem({ item }) {
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className="checkoutProduct__rating">
-          {Array(rating)
-            .fill()
-            .map((_, i) => (
-              <p>🌟</p>
-            ))}
-        </div>
-        {/* {!hideButton && (
+        <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
+        {!hideButton && (
           <button onClick={removeFromBasket}>Remove from Basket</button>
-        )} */}
+        )}
       </div>
     </div>
   );

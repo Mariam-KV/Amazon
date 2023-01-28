@@ -15,7 +15,10 @@
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
 }
-
+.checkoutProduct__info > button:hover {
+  cursor: pointer;
+  background: #e9b123;
+}
 .checkoutProduct__image {
   object-fit: contain;
   width: 180px;

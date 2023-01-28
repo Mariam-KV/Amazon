@@ -3,7 +3,7 @@ import "../css/Subtotal.css";
 import { useStateValue } from "../Context";
 import CurrencyFormat from "react-currency-format";
 export default function Subtotal() {
-  let [state, dispatch] = useStateValue();
+  let [state] = useStateValue();
   let totalPrice = state.basket?.reduce((acc, item) => +item.price + acc, 0);
 
   return (

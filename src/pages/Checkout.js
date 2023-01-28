@@ -1,10 +1,10 @@
 import React from "react";
 import "../css/Checkout.css";
-import BasketItem from "./BasketItem";
+import BasketItem from "../components/BasketItem";
 import { useStateValue } from "../Context";
-import Subtotal from "./Subtotal";
+import Subtotal from "../components/Subtotal";
 function Checkout() {
-  let [state, dispatch] = useStateValue();
+  let [state] = useStateValue();
 
   return (
     <div className="checkout">
@@ -15,15 +15,14 @@ function Checkout() {
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
         />
         <div>
-          <h2 className="checkout__title">shoppun </h2>
+          <h2 className="checkout__title">shopping </h2>
           {state?.basket.map((item) => {
-            return <BasketItem item={item} key={item.id} />;
+            return <BasketItem item={item} />;
           })}
         </div>
       </div>
       <div className="checkout__right">
         <Subtotal />
-        <h2>gff</h2>
       </div>
     </div>
   );
