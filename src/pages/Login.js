@@ -1,7 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useRef } from "react";
 import "../css/Login.css";
+import { auth, db } from "../FireBaseApp";
 function Login() {
+  let history = useHistory();
+  let emailRef = useRef();
+  let passwordRef = useRef();
+  let [sign, setSign] = useState(false);
+  let handleForm = (e) => {
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
+    e.preventDefault();
+    console.log(sign);
+    if (sign) {
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((data) => history.push("/"))
+        .catch((error) => alert(error.message));
+      email = "";
+      password = "";
+    } else {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((data) => history.push("/"))
+        .catch((error) => alert(error.message));
+    }
+  };
+  let handleChanging = () => {
+    setSign(true);
+  };
+
   return (
     <div className="login">
       <Link to="/">
@@ -13,18 +42,27 @@ function Login() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-in</h1>
-
-        <form>
+        <h1>{!sign ? "Sign-in" : "Sign-up"}</h1>
+        <form onClick={handleForm}>
           <h5>E-mail</h5>
-          <input type="text" />
+          <input type="text" ref={emailRef} />
 
           <h5>Password</h5>
-          <input type="password" />
+          <input
+            type="password"
+            ref={passwordRef}
+            placeholder="At least 6 characters"
+          />
 
-          <button type="submit" className="login__signInButton">
-            Sign In
-          </button>
+          {!sign ? (
+            <button type="submit" className="login__signInButton">
+              Sign-in
+            </button>
+          ) : (
+            <button type="submit" className="login__signInButton">
+              Sign-up
+            </button>
+          )}
         </form>
 
         <p>
@@ -32,10 +70,11 @@ function Login() {
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest-Based Ads Notice.
         </p>
-
-        <button className="login__registerButton">
-          Create your Amazon Account
-        </button>
+        {sign ? null : (
+          <button className="login__registerButton" onClick={handleChanging}>
+            Create your Amazon Account
+          </button>
+        )}
       </div>
     </div>
   );
