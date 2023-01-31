@@ -20,6 +20,12 @@ export let reducer = (state, action) => {
         ...state,
         basket: [...state?.basket],
       };
+
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.user,
+      };
     default:
       return 334;
   }
