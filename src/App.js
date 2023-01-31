@@ -9,7 +9,7 @@ import { auth } from "./FireBaseApp";
 import { useStateValue } from "./Context";
 function App() {
   let [state, dispatch] = useStateValue();
-  console.log(state.basket);
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {

@@ -4,9 +4,27 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../Context";
-
+import { auth } from "../FireBaseApp";
 function Header() {
-  let [state] = useStateValue();
+  let [{ user, basket }, dispatch] = useStateValue();
+  if (user) {
+    var nameOfUser = user.email;
+  }
+
+  let handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    } else {
+      auth.onAuthStateChanged((authUser) => {
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+          //item: state.basket,
+        });
+      });
+    }
+  };
+
   return (
     <div className="header">
       <Link to="/">
@@ -25,10 +43,14 @@ function Header() {
         </div>
       </div>
       <div className="header__nav">
-        <Link to="/login">
-          <div className="header__option">
-            <span className="header__optionLineOne">Hello Guest</span>
-            <span className="header__optionLineTwo">Sign In</span>
+        <Link to={user ? "/" : "/login"}>
+          <div className="header__option" onClick={handleAuthentication}>
+            <span className="header__optionLineOne">
+              Hello , {user ? nameOfUser : "Guest"}
+            </span>
+            <span className="header__optionLineTwo">
+              {!user ? "Sign In" : "Sign out"}
+            </span>
           </div>
         </Link>
         <div className="header__option">
@@ -45,7 +67,7 @@ function Header() {
             <ShoppingBasketIcon />
           </Link>
 
-          <div className="header__basketCount">{state.basket?.length}</div>
+          <div className="header__basketCount">{basket?.length}</div>
         </div>
       </div>
     </div>

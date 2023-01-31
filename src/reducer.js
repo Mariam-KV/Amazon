@@ -2,7 +2,6 @@ export let initialState = {
   basket: [],
 };
 export let reducer = (state, action) => {
-  console.log(state, action);
   switch (action.type) {
     case "ADD_TO_BASKET":
       return {
