@@ -2,6 +2,7 @@ export let initialState = {
   basket: [],
 };
 export let reducer = (state, action) => {
+  console.log(state, action);
   switch (action.type) {
     case "ADD_TO_BASKET":
       return {
@@ -15,7 +16,6 @@ export let reducer = (state, action) => {
       if (index >= 0) {
         state?.basket.splice(index, 1);
       }
-
       return {
         ...state,
         basket: [...state?.basket],
@@ -25,6 +25,7 @@ export let reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+        basket: [...state.basket],
       };
     default:
       return 334;

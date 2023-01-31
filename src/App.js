@@ -9,7 +9,7 @@ import { auth } from "./FireBaseApp";
 import { useStateValue } from "./Context";
 function App() {
   let [state, dispatch] = useStateValue();
-  console.log(state, dispatch);
+  console.log(state.basket);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -17,12 +17,14 @@ function App() {
         dispatch({
           type: "SET_USER",
           user: authUser,
+          //item: state.basket,
         });
       } else {
         // logged out
         dispatch({
           type: "SET_USER",
           user: null,
+          //  item: state.basket,
         });
       }
     });

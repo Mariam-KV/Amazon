@@ -16,8 +16,8 @@ function Checkout() {
         />
         <div>
           <h2 className="checkout__title">shopping </h2>
-          {state?.basket.map((item) => {
-            return <BasketItem item={item} />;
+          {state?.basket.map((item, i) => {
+            return <BasketItem item={item} key={i} />;
           })}
         </div>
       </div>

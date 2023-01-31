@@ -1,8 +1,8 @@
 import "../css/BasketItem.css";
 import { useState } from "react";
-import { useStateValue } from "../Context";
+import { useStateValue } from "../Context.js";
 function BasketItem({ item }) {
-  let [dispatch] = useStateValue();
+  let [state, dispatch] = useStateValue();
   let { id, title, image, price, rating } = item;
   let [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
