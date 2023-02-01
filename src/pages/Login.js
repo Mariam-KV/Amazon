@@ -12,7 +12,6 @@ function Login() {
     let email = emailRef.current.value;
     let password = passwordRef.current.value;
     e.preventDefault();
-    console.log(sign);
     if (sign) {
       auth
         .createUserWithEmailAndPassword(email, password)

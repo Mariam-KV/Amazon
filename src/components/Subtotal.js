@@ -10,7 +10,11 @@ export default function Subtotal() {
 
   return (
     <div className="subtotal">
-      <CurrencyFormatC value={234.131} amount={3} />
+      <CurrencyFormatC
+        title={"subtotal"}
+        value={totalPrice}
+        amount={state.basket?.length}
+      />
       <button onClick={() => history.push("/payment")}>
         Proceed to Checkout
       </button>

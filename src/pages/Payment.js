@@ -53,7 +53,7 @@ function Payment() {
               {error ? <h4 className="error">{error}</h4> : null}
               <CardElement onChange={handleChange} />
               <div>
-                <CurrencyFormatC value={34.131} amount={45} />
+                <CurrencyFormatC title="payment" value={34.131} amount={45} />
               </div>
               <div>
                 <button>Submit</button>

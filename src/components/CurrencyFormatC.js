@@ -1,13 +1,16 @@
 import React from "react";
 import CurrencyFormat from "react-currency-format";
-function CurrencyFormatC({ value, amount }) {
+function CurrencyFormatC({ title, value, amount }) {
+  console.log(amount);
   return (
     <CurrencyFormat
       renderText={(value) => (
         <>
           <p>
-            {/* Part of the homework */}
-            Subtotal ({amount} items): <strong>{value}</strong>
+            {title === "payment"
+              ? "Order total "
+              : `Subtotal (${amount ? amount : 0}) items `}
+            :<strong> {value}</strong>
           </p>
           <small className="subtotal__gift">
             <input type="checkbox" /> This order contains a gift
