@@ -10,8 +10,12 @@
   min-width: 200px;
 
   z-index: 1;
+  transition: 0.6s;
 }
-
+.product:hover {
+  transform: translateY(-10px);
+  box-shadow: 10px 20px 20px rgb(143, 143, 143);
+}
 .product__rating {
   display: flex;
 }
@@ -35,7 +39,6 @@
   background: #e9b123;
 }
 .product__info > p {
- 
   margin: 5px;
   font-size: 18px;
 }
