@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Subtotal.css";
 import { useStateValue } from "../Context";
-import CurrencyFormat from "react-currency-format";
+import CurrencyFormatC from "./CurrencyFormatC";
 import { Link, useHistory } from "react-router-dom";
 export default function Subtotal() {
   let [state] = useStateValue();
@@ -10,24 +10,7 @@ export default function Subtotal() {
 
   return (
     <div className="subtotal">
-      <CurrencyFormat
-        renderText={(value) => (
-          <>
-            <p>
-              {/* Part of the homework */}
-              Subtotal ({state.basket.length} items): <strong>{value}</strong>
-            </p>
-            <small className="subtotal__gift">
-              <input type="checkbox" /> This order contains a gift
-            </small>
-          </>
-        )}
-        decimalScale={2}
-        value={totalPrice} // Part of the homework
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
+      <CurrencyFormatC value={234.131} amount={3} />
       <button onClick={() => history.push("/payment")}>
         Proceed to Checkout
       </button>

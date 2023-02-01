@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { useStateValue } from "./Context";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { publishableKey, secretKey } from "./stripe";
+let promise = loadStripe(publishableKey);
 function App() {
   let [state, dispatch] = useStateValue();
 
@@ -46,7 +50,9 @@ function App() {
         </Route>
         <Route path="/payment">
           <Header />
-          <Payment />
+          <Elements stripe={promise}>
+            <Payment />
+          </Elements>
         </Route>
       </Switch>
     </div>
