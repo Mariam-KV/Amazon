@@ -7,7 +7,6 @@ export default function Subtotal() {
   let [state] = useStateValue();
   let history = useHistory();
   let totalPrice = state.basket?.reduce((acc, item) => +item.price + acc, 0);
-
   return (
     <div className="subtotal">
       <CurrencyFormatC

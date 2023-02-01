@@ -55,6 +55,9 @@
   cursor: pointer;
   background: #e9b123;
 }
+.payment__details > form > div > button:disabled {
+  cursor: not-allowed;
+}
 .error {
   color: red;
 }
