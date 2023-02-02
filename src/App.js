@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
+import Orders from "./pages/Orders";
 import "./css/App.css";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
@@ -47,6 +48,10 @@ function App() {
         <Route path="/checkout">
           <Header />
           <Checkout />
+        </Route>
+        <Route path="/orders">
+          <Header />
+          <Orders />
         </Route>
         <Route path="/payment">
           <Header />

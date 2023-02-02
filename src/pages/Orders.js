@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import "../css/Orders.css";
 function Orders() {
   return (
-    <div>Orders</div>
-  )
+    <div className="orders">
+      <h3>Your Orders</h3>
+    </div>
+  );
 }
 
-export default Orders
+export default Orders;

@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import CurrencyFormatC from "../components/CurrencyFormatC";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "../axios";
+import { db } from "../FireBaseApp";
 function Payment() {
   let [{ user, basket }, dispatch] = useStateValue();
   let stripe = useStripe();
@@ -16,13 +17,13 @@ function Payment() {
   let [succeeded, setSucceeded] = useState(false);
   let [clientSecret, setClientSecret] = useState(true);
   let history = useHistory();
-  let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0) * 100;
+  let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0);
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
     let getClientSecret = async () => {
       let response = await axios({
         method: "post",
-        url: `/payments/create/?total=100`,
+        url: `/payments/create/?total=${totalPrice * 100}`,
       });
       //from backend (functions)
       setClientSecret(response.data.clientSecret);
@@ -41,10 +42,24 @@ function Payment() {
       })
       .then(({ paymentIntent }) => {
         //paymentIntent === payment confirmation
+        //when we complete the payment
+        db.collection("users")
+          .doc(user?.id)
+          .collection("orders")
+          .doc(paymentIntent.id).set({
+            basket,
+            amount:paymentIntent.amount,
+            created:paymentIntent.created
+          });
+
+
         setSucceeded(true);
         setProcessing(false);
         setError(false);
-        history.replaceState("/orders");
+        dispatch({
+          type: "EMPTY_BASKET",
+        });
+        history.replace("/orders");
       });
     console.log(payload);
   };
@@ -87,7 +102,11 @@ function Payment() {
               {error ? <h4 className="error">{error}</h4> : null}
               <CardElement onChange={handleChange} />
               <div>
-                <CurrencyFormatC title="payment" value={34.131} amount={45} />
+                <CurrencyFormatC
+                  title="payment"
+                  value={totalPrice}
+                  amount={basket.length}
+                />
               </div>
               <div>
                 <button disabled={disable || processing || succeeded}>

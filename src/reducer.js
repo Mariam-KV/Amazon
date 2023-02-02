@@ -26,6 +26,11 @@ export let reducer = (state, action) => {
         user: action.user,
         basket: [...state.basket],
       };
+    case "EMPTY_BASKET":
+      return {
+        ...state,
+        basket: [],
+      };
     default:
       return 334;
   }
