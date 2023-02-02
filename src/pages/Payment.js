@@ -17,17 +17,18 @@ function Payment() {
   useEffect(() => {
     let getClientSecret = async () => {
       let response = await fetch(
-        "https://fir-214b5-default-rtdb.firebaseio.com/items.json",
+        "http://127.0.0.1:5001/fir-214b5/us-central1/api",
         {
-          method: "PUT",
+          method: "POST",
           body: JSON.stringify({ totalPrice }),
         }
       );
       //from backend
-      //setClientSecret(response.data.clientSecret);
+      setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
   }, [totalPrice]);
+  console.log(clientSecret);
   let stripe = useStripe();
   let elements = useElements();
   let handleSubmit = async (e) => {
