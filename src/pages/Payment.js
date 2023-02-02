@@ -5,32 +5,32 @@ import { useStateValue } from "../Context";
 import { Link, useHistory } from "react-router-dom";
 import CurrencyFormatC from "../components/CurrencyFormatC";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "../axios";
 function Payment() {
   let [{ user, basket }, dispatch] = useStateValue();
+  let stripe = useStripe();
+  let elements = useElements();
   let [error, setError] = useState(null);
-  let [disable, setDisable] = useState(false);
-  let [processing, setProcessing] = useState(false);
+  let [disable, setDisable] = useState(true);
+  let [processing, setProcessing] = useState("");
   let [succeeded, setSucceeded] = useState(false);
-  let [clientSecret, setClientSecret] = useState("");
+  let [clientSecret, setClientSecret] = useState(true);
   let history = useHistory();
   let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0) * 100;
   useEffect(() => {
+    //generate the special stripe secret which allows us to charge  a customer
     let getClientSecret = async () => {
-      let response = await fetch(
-        "http://127.0.0.1:5001/fir-214b5/us-central1/api",
-        {
-          method: "POST",
-          body: JSON.stringify({ totalPrice }),
-        }
-      );
-      //from backend
+      let response = await axios({
+        method: "post",
+        url: `/payments/create/?total=100`,
+      });
+      //from backend (functions)
       setClientSecret(response.data.clientSecret);
     };
     getClientSecret();
   }, [totalPrice]);
-  console.log(clientSecret);
-  let stripe = useStripe();
-  let elements = useElements();
+  console.log("secret", clientSecret);
+
   let handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);

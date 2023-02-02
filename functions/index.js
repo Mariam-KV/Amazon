@@ -17,14 +17,19 @@ app.use(express.json());
 
 // - API routes
 app.get("/", (request, response) => response.status(200).send("hello world"));
-app.post(
-  "https:/fir-214b5-default-rtdb.firebaseio.com/items.json",
-  (request, response) => {
-    let total = request.query.total;
-    console.log("boom", total);
-    response.status(201).send(34543);
-  }
-);
+
+app.post("/payments/create", async (request, response) => {
+  let total = request.query.total;
+  console.log("boom", total);
+  let paymentIntent = await stripe.paymentIntents.create({
+    amount: total,
+    currency: "usd",
+  });
+  // ok - created paymentIntent
+  response.status(201).send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
 // -Listen command
 exports.api = functions.https.onRequest(app);
