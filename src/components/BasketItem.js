@@ -1,14 +1,20 @@
 import "../css/BasketItem.css";
 import { useState } from "react";
 import { useStateValue } from "../Context.js";
-function BasketItem({ item }) {
+function BasketItem({ item, order = 0 }) {
   let [state, dispatch] = useStateValue();
   let { id, title, image, price, rating } = item;
   let [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
     dispatch({ type: "REMOVE_FROM_BASKET", passedId: id });
   }
-
+  let button = (
+    <>
+      {!hideButton && (
+        <button onClick={removeFromBasket}>Remove from Basket</button>
+      )}{" "}
+    </>
+  );
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} alt="basketItem" />
@@ -20,9 +26,7 @@ function BasketItem({ item }) {
           <strong>{price}</strong>
         </p>
         <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
-        {!hideButton && (
-          <button onClick={removeFromBasket}>Remove from Basket</button>
-        )}
+        {order === 0 ? button : null}
       </div>
     </div>
   );

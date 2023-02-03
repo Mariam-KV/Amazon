@@ -44,14 +44,14 @@ function Payment() {
         //paymentIntent === payment confirmation
         //when we complete the payment
         db.collection("users")
-          .doc(user?.id)
+          .doc(user?.uid)
           .collection("orders")
-          .doc(paymentIntent.id).set({
+          .doc(paymentIntent.id)
+          .set({
             basket,
-            amount:paymentIntent.amount,
-            created:paymentIntent.created
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
           });
-
 
         setSucceeded(true);
         setProcessing(false);
@@ -61,7 +61,7 @@ function Payment() {
         });
         history.replace("/orders");
       });
-    console.log(payload);
+    console.log(user);
   };
   let handleChange = (e) => {
     setDisable(e.empty);
