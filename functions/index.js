@@ -1,5 +1,5 @@
 // Node.js
-/* eslint max-len: ["error", { "code": 180 }]*/
+
 const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");

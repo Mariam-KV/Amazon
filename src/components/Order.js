@@ -13,10 +13,12 @@ function Order({ order }) {
       <p className="order__id">
         <small>{order.id}</small>
       </p>
-      <div className="order__total">
+      <div className="oder__allItems">
         {order.data.basket.map((item, i) => {
           return <BasketItem item={item} hide="true" key={item.id + i} />;
         })}
+      </div>
+      <div className="order__total">
         <CurrencyFormatC
           value={order.data.amount / 100}
           amount={order.data.basket.length}
