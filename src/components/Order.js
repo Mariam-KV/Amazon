@@ -1,15 +1,27 @@
 import React from "react";
 import "../css/Order.css";
 import BasketItem from "./BasketItem";
-
+import moment from "moment";
+import CurrencyFormatC from "./CurrencyFormatC";
 function Order({ order }) {
+  let timestamp = order.data.created;
+
   return (
     <div className="order">
-      <div className="order__id">{order.id}</div>
+      <h2>Order</h2>
+      <p>{moment.unix(timestamp).format("MMMM Do YYYY, h:mma")}</p>
+      <p className="order__id">
+        <small>{order.id}</small>
+      </p>
       <div className="order__total">
         {order.data.basket.map((item, i) => {
-          return <BasketItem item={item} order={1} key={item.id + i} />;
+          return <BasketItem item={item} hide="true" key={item.id + i} />;
         })}
+        <CurrencyFormatC
+          value={order.data.amount / 100}
+          amount={order.data.basket.length}
+          title="payment"
+        />
       </div>
     </div>
   );

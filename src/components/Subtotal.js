@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Subtotal.css";
 import { useStateValue } from "../Context";
 import CurrencyFormatC from "./CurrencyFormatC";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 export default function Subtotal() {
   let [state] = useStateValue();
   let history = useHistory();

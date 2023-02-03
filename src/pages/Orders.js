@@ -4,10 +4,9 @@ import { db } from "../FireBaseApp";
 import { useStateValue } from "../Context";
 import Order from "../components/Order";
 function Orders() {
-  let [{ user, basket }, dispatch] = useStateValue();
+  let [{ user }] = useStateValue();
   let [orders, setOrders] = useState([]);
   useEffect(() => {
-    console.log(22);
     if (user) {
       db.collection("users")
         .doc(user?.uid)

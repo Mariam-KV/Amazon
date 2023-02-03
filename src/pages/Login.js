@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRef } from "react";
 import "../css/Login.css";
-import { auth, db } from "../FireBaseApp";
+import { auth } from "../FireBaseApp";
 function Login() {
   let history = useHistory();
   let emailRef = useRef();

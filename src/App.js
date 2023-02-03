@@ -11,7 +11,7 @@ import { auth } from "./FireBaseApp";
 import { useStateValue } from "./Context";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { publishableKey, secretKey } from "./stripe";
+import { publishableKey } from "./stripe";
 let promise = loadStripe(publishableKey);
 function App() {
   let [state, dispatch] = useStateValue();

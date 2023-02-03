@@ -30,13 +30,12 @@ function Payment() {
     };
     getClientSecret();
   }, [totalPrice]);
-  console.log("secret", clientSecret);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
     //WOW
-    let payload = await stripe
+    await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
       })
@@ -61,7 +60,6 @@ function Payment() {
         });
         history.replace("/orders");
       });
-    console.log(user);
   };
   let handleChange = (e) => {
     setDisable(e.empty);
