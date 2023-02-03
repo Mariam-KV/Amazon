@@ -27,21 +27,22 @@ function Header() {
 
   return (
     <div className="header">
-      <Link to="/">
-        <img
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-          alt="logo"
-        />
-      </Link>
-
-      <div className="header__search">
+      <div className="header__1">
+        <Link to="/">
+          <img
+            src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+            alt="logo"
+          />
+        </Link>
+      </div>
+      <div className="header__search header__2">
         <input type="text" className="header__searchInput" />
 
         <div className="header__searchIcon">
           <SearchIcon />
         </div>
       </div>
-      <div className="header__nav">
+      <div className="header__nav header__3">
         <Link to={user ? "/" : "/login"}>
           <div className="header__option" onClick={handleAuthentication}>
             <span className="header__optionLineOne">
@@ -59,10 +60,6 @@ function Header() {
           </div>
         </Link>
 
-        <div className="header__option">
-          <span className="header__optionLineOne">Your</span>
-          <span className="header__optionLineTwo">Prime</span>
-        </div>
         <div className="header__optionBasket">
           <Link to="/checkout">
             <ShoppingBasketIcon />

@@ -1,6 +1,6 @@
 import axios from "axios";
 let instance = axios.create({
-  baseURL: "http://127.0.0.1:5001/fir-214b5/us-central1/api", //api (cloud function) url
+  baseURL: "https://us-central1-fir-214b5.cloudfunctions.net/api", //api (cloud function) url
 });
 
 export default instance;
