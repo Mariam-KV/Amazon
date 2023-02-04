@@ -16,12 +16,11 @@ function Checkout() {
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
         />
         <div className="checkout__title">
-          <h3>Hello,{state.user?.email}</h3>
-          <h2>shopping </h2>
-          {state?.basket.map((item, i) => {
-            return <BasketItem item={item} key={i} />;
-          })}
+          <h2>Shopping Basket</h2>
         </div>
+        {state?.basket.map((item, i) => {
+          return <BasketItem item={item} key={i} hide={true} />;
+        })}
       </div>
       <div className="checkout__right">
         <Subtotal />

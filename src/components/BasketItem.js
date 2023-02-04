@@ -1,29 +1,30 @@
-import "../css/BasketItem.css";
+import "../css/Checkout.css";
 import { useState } from "react";
 import { useStateValue } from "../Context.js";
 function BasketItem({ item, hide }) {
-  let [dispatch] = useStateValue();
-  let { id, title, image, price, rating } = item;
+  let [state, dispatch] = useStateValue();
+  let { id, title, image, price, rating, description } = item;
   let [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
     dispatch({ type: "REMOVE_FROM_BASKET", passedId: id });
   }
-
-  if (hide === true) {
+  if (hide === true && hideButton !== true) {
     setHideButton(true);
   }
-
+  console.log(rating);
   return (
     <div className="checkoutProduct">
       <img className="checkoutProduct__image" src={image} alt="basketItem" />
 
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>
+        <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
+        <p>{description}</p>
         <p className="checkoutProduct__price">
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
+
         {hideButton && (
           <button onClick={removeFromBasket}>Remove from Basket</button>
         )}

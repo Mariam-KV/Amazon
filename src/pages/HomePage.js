@@ -12,23 +12,41 @@ function HomePage() {
     };
     FakeStoreAPI();
   }, []);
-  console.log(products);
+  let productsBefore = products.slice(0, 6);
+  let productsAfter = products.slice(6);
+
   return (
     <>
       <div className="home">
         <Banner />
       </div>
       <div className="home__row">
-        {products?.map((product) => {
+        {productsBefore?.map((product) => {
           return (
             <Product
+              key={"product" + product.id}
               category={product.category}
               description={product.description}
               image={product.image}
-              rating={product.rating}
+              rating={Math.round(product.rating.rate)}
               id={product.id}
               title={product.title}
-              price={product.prcie}
+              price={product.price}
+            />
+          );
+        })}
+        <img src="https://links.papareact.com/dyz" alt="banner" />
+        {productsAfter?.map((product) => {
+          return (
+            <Product
+              key={"product" + product.id}
+              category={product.category}
+              description={product.description}
+              image={product.image}
+              rating={Math.round(product.rating.rate)}
+              id={product.id}
+              title={product.title}
+              price={product.price}
             />
           );
         })}
