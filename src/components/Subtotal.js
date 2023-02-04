@@ -4,17 +4,25 @@ import { useStateValue } from "../Context";
 import CurrencyFormatC from "./CurrencyFormatC";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {
-  let [state] = useStateValue();
+  let [{ basket, user }] = useStateValue();
   let history = useHistory();
-  let totalPrice = state.basket?.reduce((acc, item) => +item.price + acc, 0);
+  let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0);
   return (
     <div className="subtotal">
       <CurrencyFormatC
         title={"subtotal"}
         value={totalPrice}
-        amount={state.basket?.length}
+        amount={basket?.length}
       />
-      <button onClick={() => history.push("/payment")}>
+      <button
+        onClick={() => {
+          if (user) {
+            history.push("/payment");
+          } else {
+            history.push("/login");
+          }
+        }}
+      >
         Proceed to Checkout
       </button>
     </div>

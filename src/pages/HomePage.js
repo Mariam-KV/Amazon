@@ -1,44 +1,37 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "../css/Home.css";
+import Banner from "../components/Banner";
 import Product from "../components/Product";
 function HomePage() {
+  let [products, setProducts] = useState([]);
+  useEffect(() => {
+    let FakeStoreAPI = async () => {
+      await fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((data) => setProducts(data));
+    };
+    FakeStoreAPI();
+  }, []);
+  console.log(products);
   return (
     <>
       <div className="home">
-        <img
-          src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-          alt="background"
-          className="home__image "
-        />
+        <Banner />
       </div>
       <div className="home__row">
-        <Product
-          id="1"
-          title="first"
-          image="https://m.media-amazon.com/images/I/91931AxlUPL._AC_SR175,263_QL70_.jpg"
-          price="2"
-          rating="5"
-        />
-        <Product
-          id="2"
-          title="second"
-          image="https://m.media-amazon.com/images/I/91931AxlUPL._AC_SR175,263_QL70_.jpg"
-          price="2"
-          rating="5"
-        />
-        <Product
-          id="3"
-          title="third"
-          image="https://m.media-amazon.com/images/I/91931AxlUPL._AC_SR175,263_QL70_.jpg"
-          price="2"
-          rating="3"
-        />
-
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products?.map((product) => {
+          return (
+            <Product
+              category={product.category}
+              description={product.description}
+              image={product.image}
+              rating={product.rating}
+              id={product.id}
+              title={product.title}
+              price={product.prcie}
+            />
+          );
+        })}
       </div>
     </>
   );

@@ -1,8 +1,7 @@
-import React from "react";
 import { useStateValue } from "../Context";
 import "../css/Product.css";
 
-function Product({ id, title, image, price, rating }) {
+function Product({ id, category,title,description, image, price, rating }) {
   let [state, dispatch] = useStateValue();
 
   function addingToBasket() {
@@ -10,6 +9,8 @@ function Product({ id, title, image, price, rating }) {
       type: "ADD_TO_BASKET",
       item: {
         id,
+        category,
+        description,
         title,
         image,
         price,
@@ -17,6 +18,7 @@ function Product({ id, title, image, price, rating }) {
       },
     });
   }
+
   return (
     <div className="product">
       <div className="product__info">

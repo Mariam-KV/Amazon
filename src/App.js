@@ -36,7 +36,7 @@ function App() {
     });
   }, []);
   return (
-    <div>
+    <div className="app">
       <Switch>
         <Route path="/" exact>
           <Header />
