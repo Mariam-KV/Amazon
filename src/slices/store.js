@@ -1,26 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 let busketSlice = createSlice({
   name: "basket",
   initialState: [],
   reducers: {
     addToBasket: (state, action) => {
-      return {
-        ...state,
-        basket: [...state?.basket, action.item],
-      };
+      state.basket = [...state?.basket, action.payload];
     },
     removeFromBasket: (state, action) => {
-      let index = state?.basket.findIndex(
-        (item) => item.id === action.passedId
-      );
+      let index = state?.basket.findIndex((item) => item.id === action.payload);
       if (index >= 0) {
         state?.basket.splice(index, 1);
       }
-      return {
-        ...state,
-        basket: [...state?.basket],
-      };
+      state.basket = [...state?.basket];
     },
     emptyBasket: (state) => {
       return {
@@ -31,7 +23,7 @@ let busketSlice = createSlice({
     setUser: (state, action) => {
       return {
         ...state,
-        user: action.user,
+        user: action.payload,
         basket: [...state.basket],
       };
     },
@@ -43,4 +35,9 @@ export let basketActions = busketSlice.actions;
 //     basket: busketSlice.reducer,
 //   },
 // });
-export let store = busketSlice.reducer;
+
+export const store = configureStore({
+  reducer: {
+    basket: busketSlice.reducer,
+  },
+});

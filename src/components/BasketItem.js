@@ -1,7 +1,7 @@
 import "../css/Checkout.css";
 import { useState } from "react";
 import { basketActions } from "../slices/store";
-import { useSelector, useDispatch } from "rea";
+import { useSelector, useDispatch } from "react-redux";
 function BasketItem({ item, hide }) {
   let basket = useSelector((state) => state.basket);
 
@@ -10,9 +10,7 @@ function BasketItem({ item, hide }) {
   let { id, title, image, price, rating, description } = item;
   let [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
-    dispatch(
-      basketActions.addToBasket({ type: "REMOVE_FROM_BASKET", passedId: id })
-    );
+    dispatch(basketActions.addToBasket({ passedId: id }));
   }
   if (hide === true && hideButton !== true) {
     setHideButton(true);

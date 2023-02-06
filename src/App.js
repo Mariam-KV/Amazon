@@ -12,26 +12,21 @@ import { useStateValue } from "./Context";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
+import { basketActions } from "./slices/store";
+import { useDispatch } from "react-redux";
 let promise = loadStripe(publishableKey);
+
 function App() {
-  let [state, dispatch] = useStateValue();
+  let dispatch = useDispatch();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // logged in
-        dispatch({
-          type: "SET_USER",
-          user: authUser,
-          //item: state.basket,
-        });
+        dispatch(basketActions.setUser({ user: authUser }));
       } else {
         // logged out
-        dispatch({
-          type: "SET_USER",
-          user: null,
-          //  item: state.basket,
-        });
+        dispatch(basketActions.setUser({ user: null }));
       }
     });
   }, []);

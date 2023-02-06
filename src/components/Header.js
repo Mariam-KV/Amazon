@@ -1,13 +1,16 @@
 import React from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-
+import { basketActions } from "../slices/store";
+import { useSelector, useDispatch } from "react-redux";
 import { Menu, Search } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../Context";
 import { auth } from "../FireBaseApp";
 function Header() {
-  let [{ user, basket }, dispatch] = useStateValue();
+  let user = useSelector((state) => state.user);
+  let basket = useSelector((state) => state.basket);
+  let dispatch = useDispatch();
   if (user) {
     var nameOfUser = user.email;
   }
@@ -17,11 +20,7 @@ function Header() {
       auth.signOut();
     } else {
       auth.onAuthStateChanged((authUser) => {
-        dispatch({
-          type: "SET_USER",
-          user: authUser,
-          //item: state.basket,
-        });
+        dispatch(basketActions.setUser({ user: authUser }));
       });
     }
   };
