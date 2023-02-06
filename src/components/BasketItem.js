@@ -1,12 +1,18 @@
 import "../css/Checkout.css";
 import { useState } from "react";
-import { useStateValue } from "../Context.js";
+import { basketActions } from "../slices/store";
+import { useSelector, useDispatch } from "rea";
 function BasketItem({ item, hide }) {
-  let [state, dispatch] = useStateValue();
+  let basket = useSelector((state) => state.basket);
+
+  let dispatch = useDispatch();
+  // [state, dispatch] = useStateValue();
   let { id, title, image, price, rating, description } = item;
   let [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
-    dispatch({ type: "REMOVE_FROM_BASKET", passedId: id });
+    dispatch(
+      basketActions.addToBasket({ type: "REMOVE_FROM_BASKET", passedId: id })
+    );
   }
   if (hide === true && hideButton !== true) {
     setHideButton(true);

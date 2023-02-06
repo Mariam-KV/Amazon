@@ -4,13 +4,14 @@ import App from "./App";
 import { initialState, reducer } from "./reducer";
 import { Context } from "./Context";
 import { BrowserRouter } from "react-router-dom";
-
+import { store } from "./slices/store";
+import { Provider } from "react-redux'";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <Context initialState={initialState} reducer={reducer}>
+    <Provider store={store}>
       <App />
-    </Context>
+    </Provider>
   </BrowserRouter>
 );
 
