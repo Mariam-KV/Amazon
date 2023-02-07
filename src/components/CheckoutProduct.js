@@ -1,12 +1,13 @@
 import React from "react";
 import "../css/CheckoutProduct.css";
 import { useState } from "react";
-import { basketActions } from "../slices/store";
+import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 
 function CheckoutProduct({ item, hide }) {
   let dispatch = useDispatch();
-  let { id, title, image, price, rating, description } = item;
+  let { id, title, image, price, rating, description, amount } = item;
+
   function removeFromBasket() {
     dispatch(basketActions.removeFromBasket(id));
   }
@@ -19,6 +20,7 @@ function CheckoutProduct({ item, hide }) {
         price,
         rating,
         description,
+        amount,
       })
     );
   }
@@ -30,6 +32,7 @@ function CheckoutProduct({ item, hide }) {
         <p className="checkoutProduct__title">{title}</p>
         <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
         <p className="checkoutProduct__description">{description}</p>
+        <h3>{amount}</h3>
         <p className="checkoutProduct__price">
           <small>$</small>
           <strong>{price}</strong>

@@ -8,11 +8,10 @@ import "./css/App.css";
 import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
-import { useStateValue } from "./Context";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
-import { basketActions } from "./slices/store";
+import { basketActions } from "./store";
 import { useDispatch } from "react-redux";
 let promise = loadStripe(publishableKey);
 
@@ -21,7 +20,6 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-    
       if (authUser?.email) {
         // logged in
         dispatch(

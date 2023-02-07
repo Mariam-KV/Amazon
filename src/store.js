@@ -5,14 +5,27 @@ let busketSlice = createSlice({
   initialState: { basket: [], user: [] },
   reducers: {
     addToBasket: (state, action) => {
-      state.basket = [...state.basket, action.payload];
+      let newItem = state.basket.filter((item) => item.id == action.payload.id);
+
+      if (newItem[0]?.id) {
+        console.log(newItem[0].amount);
+        newItem[0].amount = +newItem[0].amount + 1;
+
+        state.basket = [...state.basket];
+      } else {
+        state.basket = [...state.basket, action.payload];
+      }
     },
     removeFromBasket: (state, action) => {
-      let index = state?.basket.findIndex((item) => item.id === action.payload);
-      if (index >= 0) {
+      let index = state.basket.findIndex((item) => item.id === action.payload);
+
+      let oldItem = state.basket[index];
+      if (oldItem && oldItem.amount > 1) {
+        state.basket[index].amount--;
+      } else {
         state?.basket.splice(index, 1);
       }
-      state.basket = [...state?.basket];
+      //state.basket = [...state?.basket];
     },
     emptyBasket: (state) => {
       state.basket = [];

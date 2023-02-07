@@ -1,11 +1,10 @@
 import React from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { basketActions } from "../slices/store";
+import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import { Menu, Search } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../Context";
 import { auth } from "../FireBaseApp";
 function Header() {
   let user = useSelector((state) => state.basket.user);

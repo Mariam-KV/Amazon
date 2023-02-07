@@ -1,7 +1,16 @@
 import "../css/Product.css";
-import { basketActions } from "../slices/store";
+import { basketActions } from "../store";
 import { useDispatch } from "react-redux";
-function Product({ id, category, title, description, image, price, rating }) {
+function Product({
+  id,
+  category,
+  title,
+  description,
+  image,
+  price,
+  rating,
+  amount,
+}) {
   let dispatch = useDispatch();
 
   function addingToBasket() {
@@ -14,6 +23,7 @@ function Product({ id, category, title, description, image, price, rating }) {
         image,
         price,
         rating,
+        amount,
       })
     );
   }

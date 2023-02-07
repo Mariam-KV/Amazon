@@ -1,8 +1,7 @@
 import React from "react";
 import "../css/Checkout.css";
-import BasketItem from "../components/BasketItem";
 import Subtotal from "../components/Subtotal";
-import { basketActions } from "../slices/store";
+import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import CheckoutProduct from "../components/CheckoutProduct";
 function Checkout() {
