@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import "../css/Payment.css";
 import BasketItem from "../components/BasketItem";
-import { useStateValue } from "../Context";
 import { Link, useHistory } from "react-router-dom";
 import CurrencyFormatC from "../components/CurrencyFormatC";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "../axios";
 import { db } from "../FireBaseApp";
+import { basketActions } from "../slices/store";
+import { useSelector, useDispatch } from "react-redux";
 function Payment() {
-  let [{ user, basket }, dispatch] = useStateValue();
+  let user = useSelector((state) => state.basket.user);
+  let basket = useSelector((state) => state.basket.basket);
+  let dispatch = useDispatch();
   let stripe = useStripe();
   let elements = useElements();
   let [error, setError] = useState(null);
@@ -55,9 +58,8 @@ function Payment() {
         setSucceeded(true);
         setProcessing(false);
         setError(false);
-        dispatch({
-          type: "EMPTY_BASKET",
-        });
+        dispatch(basketActions.emptyBasket());
+
         history.replace("/orders");
       });
   };

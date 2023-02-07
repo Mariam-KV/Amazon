@@ -1,4 +1,4 @@
-import "../css/Checkout.css";
+import "../css/BasketItem.css";
 import { useState } from "react";
 import { basketActions } from "../slices/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,14 +16,14 @@ function BasketItem({ item, hide }) {
   }
 
   return (
-    <div className="checkoutProduct">
-      <img className="checkoutProduct__image" src={image} alt="basketItem" />
+    <div className="basketItem">
+      <img className="basketItem__image" src={image} alt="basketItem" />
 
-      <div className="checkoutProduct__info">
-        <p className="checkoutProduct__title">{title}</p>
-        <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
+      <div className="basketItem__info">
+        <p className="basketItem__title">{title}</p>
+        <div className="basketItem__rating">{"🌟".repeat(rating)}</div>
         <p>{description}</p>
-        <p className="checkoutProduct__price">
+        <p className="basketItem__price">
           <small>$</small>
           <strong>{price}</strong>
         </p>

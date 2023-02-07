@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import "../css/Orders.css";
 import { db } from "../FireBaseApp";
-import { useStateValue } from "../Context";
+
+import { useSelector, useDispatch } from "react-redux";
 import Order from "../components/Order";
 function Orders() {
-  let [{ user }] = useStateValue();
+  let user = useSelector((state) => state.basket.user);
   let [orders, setOrders] = useState([]);
   useEffect(() => {
     if (user) {

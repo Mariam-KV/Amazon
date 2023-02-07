@@ -22,7 +22,7 @@ function Header() {
     } else {
       auth.onAuthStateChanged((authUser) => {
         dispatch(
-          basketActions.setUser({ email: authUser.email, uid: authUser.uid })
+          basketActions.setUser({ email: authUser?.email, uid: authUser?.uid })
         );
       });
     }
