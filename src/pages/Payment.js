@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../css/Payment.css";
-import BasketItem from "../components/BasketItem";
+import CheckoutProduct from "../components/CheckoutProduct";
 import { Link, useHistory } from "react-router-dom";
 import CurrencyFormatC from "../components/CurrencyFormatC";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -75,12 +75,10 @@ function Payment() {
         </h1>
         <div className="payment__section">
           <div className="payment__title">
-            <h3>deeeeeeee</h3>
+            <h3>Account</h3>
           </div>
           <div className="payment__address">
             <p>{user?.email}</p>
-            <p>tbilisi</p>
-            <p>dfsfs</p>
           </div>
         </div>
         <div className="payment__section">
@@ -89,7 +87,7 @@ function Payment() {
           </div>
           <div className="payment__items">
             {basket.map((item, i) => {
-              return <BasketItem item={item} key={"p-item" + i} />;
+              return <CheckoutProduct item={item} key={"p-item" + i} />;
             })}
           </div>
         </div>

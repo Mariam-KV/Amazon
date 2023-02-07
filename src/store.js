@@ -13,6 +13,7 @@ let busketSlice = createSlice({
 
         state.basket = [...state.basket];
       } else {
+        action.payload.amount = 1;
         state.basket = [...state.basket, action.payload];
       }
     },

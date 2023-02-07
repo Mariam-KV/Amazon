@@ -9,13 +9,17 @@ export default function Subtotal() {
   let user = useSelector((state) => state.basket?.user);
   let history = useHistory();
 
-  let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0);
+  let totalPrice = basket?.reduce(
+    (acc, item) => +item.price * item.amount + acc,
+    0
+  );
+  let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
   return (
     <div className="subtotal">
       <CurrencyFormatC
         title={"subtotal"}
         value={totalPrice}
-        amount={basket?.length}
+        amount={totalAmount}
       />
       <button
         onClick={() => {

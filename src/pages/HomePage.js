@@ -32,7 +32,7 @@ function HomePage() {
               id={product.id}
               title={product.title}
               price={product.price}
-              amount={1}
+              amount={0}
             />
           );
         })}
@@ -48,7 +48,7 @@ function HomePage() {
               id={product.id}
               title={product.title}
               price={product.price}
-              amount={1}
+              amount={0}
             />
           );
         })}

@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header() {
   let user = useSelector((state) => state.basket.user);
-  let basket = useSelector((state) => state.basket.basket);
+  
+let basket = useSelector((state) => state.basket.basket);
+  let totalAmount = basket.reduce((acc, item) => item.amount + acc, 0);
   let dispatch = useDispatch();
 
   if (user.email) {
@@ -68,7 +70,7 @@ function Header() {
               <ShoppingBasketIcon />
             </Link>
 
-            <div className="header__basketCount">{basket?.length}</div>
+            <div className="header__basketCount">{totalAmount}</div>
           </div>
         </div>
       </div>
