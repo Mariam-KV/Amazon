@@ -1,11 +1,11 @@
 import React from "react";
 import "../css/Checkout.css";
 import BasketItem from "../components/BasketItem";
-import { useStateValue } from "../Context";
 import Subtotal from "../components/Subtotal";
-
+import { basketActions } from "../slices/store";
+import { useSelector, useDispatch } from "react-redux";
 function Checkout() {
-  let [state] = useStateValue();
+  let basket = useSelector((state) => state.basket?.basket);
 
   return (
     <div className="checkout">
@@ -16,9 +16,12 @@ function Checkout() {
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
         />
         <div className="checkout__title">
-          <h2>Shopping Basket</h2>
+          <h2>
+            Your shopping basket
+            {basket.length === 0 ? " is empty" : ` (${basket.length} items)`}
+          </h2>
         </div>
-        {state?.basket.map((item, i) => {
+        {basket.map((item, i) => {
           return <BasketItem item={item} key={i} hide={true} />;
         })}
       </div>

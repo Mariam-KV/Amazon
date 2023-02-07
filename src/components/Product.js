@@ -7,15 +7,13 @@ function Product({ id, category, title, description, image, price, rating }) {
   function addingToBasket() {
     dispatch(
       basketActions.addToBasket({
-        item: {
-          id,
-          category,
-          description,
-          title,
-          image,
-          price,
-          rating,
-        },
+        id,
+        category,
+        description,
+        title,
+        image,
+        price,
+        rating,
       })
     );
   }

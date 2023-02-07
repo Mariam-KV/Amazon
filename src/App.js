@@ -21,12 +21,15 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
+    
+      if (authUser?.email) {
         // logged in
-        dispatch(basketActions.setUser({ user: authUser }));
+        dispatch(
+          basketActions.setUser({ email: authUser.email, uid: authUser.uid })
+        );
       } else {
         // logged out
-        dispatch(basketActions.setUser({ user: null }));
+        dispatch(basketActions.setUser(null));
       }
     });
   }, []);

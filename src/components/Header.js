@@ -8,19 +8,22 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../Context";
 import { auth } from "../FireBaseApp";
 function Header() {
-  let user = useSelector((state) => state.user);
-  let basket = useSelector((state) => state.basket);
+  let user = useSelector((state) => state.basket.user);
+  let basket = useSelector((state) => state.basket.basket);
   let dispatch = useDispatch();
-  if (user) {
+
+  if (user.email) {
     var nameOfUser = user.email;
   }
 
   let handleAuthentication = () => {
-    if (user) {
+    if (user?.email) {
       auth.signOut();
     } else {
       auth.onAuthStateChanged((authUser) => {
-        dispatch(basketActions.setUser({ user: authUser }));
+        dispatch(
+          basketActions.setUser({ email: authUser.email, uid: authUser.uid })
+        );
       });
     }
   };
@@ -44,17 +47,17 @@ function Header() {
           </div>
         </div>
         <div className="header__nav header__3">
-          <Link to={user ? "/" : "/login"}>
+          <Link to={user?.email ? "/" : "/login"}>
             <div className="header__option" onClick={handleAuthentication}>
               <span className="header__optionLineOne">
-                Hello , {user ? nameOfUser : "Guest"}
+                Hello , {user?.email ? nameOfUser : "Guest"}
               </span>
               <span className="header__optionLineTwo">
-                {!user ? "Sign In" : "Sign out"}
+                {!user?.email ? "Sign In" : "Sign out"}
               </span>
             </div>
           </Link>
-          <Link to={user ? "/orders" : "/"}>
+          <Link to={user?.email ? "/orders" : "/"}>
             <div className="header__option">
               <span className="header__optionLineOne">Returns</span>
               <span className="header__optionLineTwo">& Orders</span>
