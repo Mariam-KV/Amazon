@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
 }
-.banner img {
+.home__image {
   width: 100%;
-  min-height: 300px;
+  min-height: 400px;
 }

@@ -12,26 +12,27 @@ function Banner() {
         showIndicators={true}
         showThumbs={false}
         interval={5000}
+        className="carousel"
       >
         <img
           loading="lazy"
           src="https://links.papareact.com/6ff"
           alt="background1"
-          className="home__image "
+          className="home__image"
         />
 
         <img
           loading="lazy"
           src="https://links.papareact.com/gi1"
           alt="background2"
-          className="home__image "
+          className="home__image"
         />
 
         <img
           loading="lazy"
           src="https://links.papareact.com/7ma"
           alt="background3"
-          className="home__image "
+          className="home__image"
         />
       </Carousel>
     </div>

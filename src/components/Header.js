@@ -56,8 +56,7 @@ function Header() {
           </Link>
           <Link to={user?.email ? "/orders" : "/"}>
             <div className="header__option">
-              <span className="header__optionLineOne">Returns</span>
-              <span className="header__optionLineTwo">& Orders</span>
+              <span className="header__optionLineTwo">Orders</span>
             </div>
           </Link>
 

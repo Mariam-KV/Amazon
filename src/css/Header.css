@@ -27,16 +27,17 @@
 @media (max-width: 800px) {
   .header__top {
     grid-template-rows: min-content min-content;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     padding: 10px;
   }
+
   .header__2 {
     grid-column: 1/-1;
     grid-row: 2/3;
   }
   .header__3 {
-    grid-column: 2/3;
+    grid-column: 2/4;
   }
   .header__search {
     width: 70% !important;
@@ -92,6 +93,7 @@
 
 .header__nav {
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
 }
 

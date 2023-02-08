@@ -6,6 +6,9 @@
   max-width: 1500px;
   min-height: 250px;
 }
+.banner {
+  width: 100%;
+}
 .home__image {
   width: 100%;
   object-fit: cover;

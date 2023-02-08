@@ -41,7 +41,11 @@ function HomePage() {
               />
             );
           })}
-          <img src="https://links.papareact.com/dyz" alt="banner" />
+          <img
+            src="https://links.papareact.com/dyz"
+            alt="banner"
+            className="banner"
+          />
           {productsAfter?.map((product) => {
             return (
               <Product
