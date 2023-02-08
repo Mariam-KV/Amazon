@@ -20,7 +20,12 @@ function Payment() {
   let [succeeded, setSucceeded] = useState(false);
   let [clientSecret, setClientSecret] = useState(true);
   let history = useHistory();
-  let totalPrice = basket?.reduce((acc, item) => +item.price + acc, 0);
+  let totalPrice = basket?.reduce(
+    (acc, item) => +item.price * item.amount + acc,
+    0
+  );
+  let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
+
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
     let getClientSecret = async () => {
@@ -71,7 +76,7 @@ function Payment() {
     <div className="payment">
       <div className="payment__container">
         <h1>
-          Checkout <Link to="/checkout">({basket?.length} items)</Link>
+          Checkout <Link to="/checkout">({totalAmount} items)</Link>
         </h1>
         <div className="payment__section">
           <div className="payment__title">
@@ -87,7 +92,9 @@ function Payment() {
           </div>
           <div className="payment__items">
             {basket.map((item, i) => {
-              return <CheckoutProduct item={item} key={"p-item" + i} />;
+              return (
+                <CheckoutProduct item={item} key={"p-item" + i} hide={true} />
+              );
             })}
           </div>
         </div>
@@ -103,7 +110,7 @@ function Payment() {
                 <CurrencyFormatC
                   title="payment"
                   value={totalPrice}
-                  amount={basket.length}
+                  amount={totalAmount}
                 />
               </div>
               <div>

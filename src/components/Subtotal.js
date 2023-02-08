@@ -14,6 +14,7 @@ export default function Subtotal() {
     0
   );
   let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
+  
   return (
     <div className="subtotal">
       <CurrencyFormatC

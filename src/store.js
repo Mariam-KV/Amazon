@@ -5,7 +5,9 @@ let busketSlice = createSlice({
   initialState: { basket: [], user: [] },
   reducers: {
     addToBasket: (state, action) => {
-      let newItem = state.basket.filter((item) => item.id == action.payload.id);
+      let newItem = state.basket.filter(
+        (item) => item.id === action.payload.id
+      );
 
       if (newItem[0]?.id) {
         console.log(newItem[0].amount);

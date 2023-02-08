@@ -4,7 +4,7 @@ import { useState } from "react";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 
-function CheckoutProduct({ item, hide }) {
+function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, image, price, rating, description, amount } = item;
 
@@ -38,10 +38,14 @@ function CheckoutProduct({ item, hide }) {
           <strong>{price}</strong>
         </p>
       </div>
-      <div className="checkoutProduct__buttons">
-        <button onClick={removeFromBasket}>Remove from Basket</button>
-        <button onClick={addingToBasket}>Add to Basket</button>
-      </div>
+      {hide ? (
+        ""
+      ) : (
+        <div className="checkoutProduct__buttons">
+          <button onClick={removeFromBasket}>Remove from Basket</button>
+          <button onClick={addingToBasket}>Add to Basket</button>
+        </div>
+      )}
     </div>
   );
 }

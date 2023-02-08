@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../css/Orders.css";
 import { db } from "../FireBaseApp";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Order from "../components/Order";
 function Orders() {
   let user = useSelector((state) => state.basket.user);
@@ -28,7 +28,7 @@ function Orders() {
   }, [user]);
   return (
     <div className="orders">
-      <h1>Your Orders</h1>
+      <h1>Your Orders {!orders.length && "is empty"}</h1>
       <div className="">
         {orders.map((order, i) => {
           return <Order order={order} key={"order" + i} />;

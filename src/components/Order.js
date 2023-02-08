@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/Order.css";
-import BasketItem from "./BasketItem";
+import CheckoutProduct from "../components/CheckoutProduct";
 import moment from "moment";
 import CurrencyFormatC from "./CurrencyFormatC";
 function Order({ order }) {
@@ -15,7 +15,7 @@ function Order({ order }) {
       </p>
       <div className="oder__allItems">
         {order.data.basket.map((item, i) => {
-          return <BasketItem item={item} hide="true" key={item.id + i} />;
+          return <CheckoutProduct item={item} hide="true" key={item.id + i} />;
         })}
       </div>
       <div className="order__total">

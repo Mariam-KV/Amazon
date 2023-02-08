@@ -22,7 +22,7 @@ function Checkout() {
           </h2>
         </div>
         {basket.map((item, i) => {
-          return <CheckoutProduct item={item} key={i} hide={true} />;
+          return <CheckoutProduct item={item} key={i} />;
         })}
       </div>
       <div className="checkout__right">
