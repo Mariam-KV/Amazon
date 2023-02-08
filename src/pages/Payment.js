@@ -28,16 +28,18 @@ function Payment() {
 
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
-    let getClientSecret = async () => {
-      let response = await axios({
-        method: "post",
-        url: `/payments/create/?total=${totalPrice * 100}`,
-      });
-      //from backend (functions)
-      setClientSecret(response.data.clientSecret);
-    };
-    getClientSecret();
-  }, [totalPrice]);
+    if (totalAmount) {
+      let getClientSecret = async () => {
+        let response = await axios({
+          method: "post",
+          url: `/payments/create/?total=${totalPrice * 100}`,
+        });
+        //from backend (functions)
+        setClientSecret(response.data.clientSecret);
+      };
+      getClientSecret();
+    }
+  }, [totalAmount, totalPrice]);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +68,8 @@ function Payment() {
         dispatch(basketActions.emptyBasket());
 
         history.replace("/orders");
-      });
+      })
+      .catch((err) => setError(true));
   };
   let handleChange = (e) => {
     setDisable(e.empty);

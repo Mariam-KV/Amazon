@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../css/Orders.css";
 import { db } from "../FireBaseApp";
-
+import LoadingSpinner from "../components/LoadingSpinner";
 import { useSelector } from "react-redux";
 import Order from "../components/Order";
 function Orders() {
@@ -27,14 +27,20 @@ function Orders() {
     }
   }, [user]);
   return (
-    <div className="orders">
-      <h1>Your Orders {!orders.length && "is empty"}</h1>
-      <div className="">
-        {orders.map((order, i) => {
-          return <Order order={order} key={"order" + i} />;
-        })}
-      </div>
-    </div>
+    <>
+      {!orders.length ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="orders">
+          <h1>Your Orders {!orders.length && "is empty"}</h1>
+          <div>
+            {orders.map((order, i) => {
+              return <Order order={order} key={"order" + i} />;
+            })}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

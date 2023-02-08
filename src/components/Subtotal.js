@@ -14,7 +14,7 @@ export default function Subtotal() {
     0
   );
   let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
-  
+
   return (
     <div className="subtotal">
       <CurrencyFormatC
@@ -23,6 +23,7 @@ export default function Subtotal() {
         amount={totalAmount}
       />
       <button
+        disabled={totalAmount === 0}
         onClick={() => {
           if (user?.email) {
             history.push("/payment");
@@ -31,7 +32,7 @@ export default function Subtotal() {
           }
         }}
       >
-        {user?.email ? "Proceed to Checkout" : "Sign in to Checkout"}
+        Proceed to Checkout
       </button>
     </div>
   );

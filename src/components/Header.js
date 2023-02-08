@@ -8,14 +8,10 @@ import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header() {
   let user = useSelector((state) => state.basket.user);
-  
-let basket = useSelector((state) => state.basket.basket);
+
+  let basket = useSelector((state) => state.basket.basket);
   let totalAmount = basket.reduce((acc, item) => item.amount + acc, 0);
   let dispatch = useDispatch();
-
-  if (user.email) {
-    var nameOfUser = user.email;
-  }
 
   let handleAuthentication = () => {
     if (user?.email) {
@@ -51,7 +47,7 @@ let basket = useSelector((state) => state.basket.basket);
           <Link to={user?.email ? "/" : "/login"}>
             <div className="header__option" onClick={handleAuthentication}>
               <span className="header__optionLineOne">
-                Hello , {user?.email ? nameOfUser : "Guest"}
+                Hello , {user?.email ? user.email : "Guest"}
               </span>
               <span className="header__optionLineTwo">
                 {!user?.email ? "Sign In" : "Sign out"}
@@ -73,14 +69,6 @@ let basket = useSelector((state) => state.basket.basket);
             <div className="header__basketCount">{totalAmount}</div>
           </div>
         </div>
-      </div>
-      <div className="header__bottom">
-        <Menu className="menu__icon" />
-        <p className="link ">All</p>
-        <p className="link">Prime Video</p>
-        <p className="link">Amazon Business</p>
-        <p className="link">Today's Deals</p>
-        <p className="link">Electronics</p>
       </div>
     </div>
   );

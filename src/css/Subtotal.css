@@ -34,3 +34,6 @@
   cursor: pointer;
   background: #e9b123;
 }
+.subtotal > button:disabled {
+  cursor: not-allowed;
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../css/Home.css";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
+import LoadingSpinner from "../components/LoadingSpinner";
 function HomePage() {
   let [products, setProducts] = useState([]);
   useEffect(() => {
@@ -12,47 +13,52 @@ function HomePage() {
     };
     FakeStoreAPI();
   }, []);
-  let productsBefore = products.slice(0, 6);
-  let productsAfter = products.slice(6);
+  let productsBefore = products.slice(0, 8);
+  let productsAfter = products.slice(8);
 
   return (
     <>
       <div className="home">
         <Banner />
       </div>
-      <div className="home__row">
-        {productsBefore?.map((product) => {
-          return (
-            <Product
-              key={"product" + product.id}
-              category={product.category}
-              description={product.description}
-              image={product.image}
-              rating={Math.round(product.rating.rate)}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              amount={0}
-            />
-          );
-        })}
-        <img src="https://links.papareact.com/dyz" alt="banner" />
-        {productsAfter?.map((product) => {
-          return (
-            <Product
-              key={"product" + product.id}
-              category={product.category}
-              description={product.description}
-              image={product.image}
-              rating={Math.round(product.rating.rate)}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              amount={0}
-            />
-          );
-        })}
-      </div>
+
+      {!products.length ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="home__row">
+          {productsBefore?.map((product) => {
+            return (
+              <Product
+                key={"product" + product.id}
+                category={product.category}
+                description={product.description}
+                image={product.image}
+                rating={Math.round(product.rating.rate)}
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                amount={0}
+              />
+            );
+          })}
+          <img src="https://links.papareact.com/dyz" alt="banner" />
+          {productsAfter?.map((product) => {
+            return (
+              <Product
+                key={"product" + product.id}
+                category={product.category}
+                description={product.description}
+                image={product.image}
+                rating={Math.round(product.rating.rate)}
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                amount={0}
+              />
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }
