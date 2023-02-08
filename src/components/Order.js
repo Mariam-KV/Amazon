@@ -9,7 +9,7 @@ function Order({ order }) {
   return (
     <div className="order">
       <h2>Order</h2>
-      <p>{moment.unix(timestamp).format("MMMM Do YYYY, h:mma")}</p>
+      <p className="order__data">{moment.unix(timestamp).format("MMMM Do YYYY, h:mma")}</p>
       <p className="order__id">
         <small>{order.id}</small>
       </p>

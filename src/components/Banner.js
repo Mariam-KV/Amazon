@@ -17,21 +17,21 @@ function Banner() {
         <img
           loading="lazy"
           src="https://links.papareact.com/6ff"
-          alt="background1"
+          alt="background-carousel"
           className="home__image"
         />
 
         <img
           loading="lazy"
           src="https://links.papareact.com/gi1"
-          alt="background2"
+          alt="background-carousel"
           className="home__image"
         />
 
         <img
           loading="lazy"
           src="https://links.papareact.com/7ma"
-          alt="background3"
+          alt="background-carousel"
           className="home__image"
         />
       </Carousel>

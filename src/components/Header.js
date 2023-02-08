@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store";
@@ -7,6 +7,7 @@ import { Menu, Search } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header() {
+  let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
 
   let basket = useSelector((state) => state.basket.basket);
@@ -24,7 +25,15 @@ function Header() {
       });
     }
   };
-
+  useEffect(() => {
+    if (totalAmount !== 0) {
+      setChangeBasket(true);
+      
+    }
+    setTimeout(() => {
+      setChangeBasket(false);
+    }, 300);
+  }, [totalAmount]);
   return (
     <div className="header">
       <div className="header__logo">
@@ -55,7 +64,9 @@ function Header() {
 
         <div className="header__optionBasket">
           <Link to="/checkout">
-            <ShoppingBasketIcon />
+            <ShoppingBasketIcon
+              className={changeBasket ? "header__optionBasket-basket" : ""}
+            />
           </Link>
 
           <div className="header__basketCount">{totalAmount}</div>

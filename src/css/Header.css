@@ -23,26 +23,6 @@
   margin-top: 10px;
 }
 
-.header__search {
-  display: flex;
-  width: 90%;
-  align-items: center;
-  border-radius: 24px;
-}
-
-.header__searchInput {
-  height: 12px;
-  padding: 10px;
-  border: none;
-  width: 100%;
-}
-
-.header__searchIcon {
-  padding: 5px;
-  height: 22px !important;
-  background-color: #cd9042;
-}
-
 .header__optionLineOne {
   font-size: 15px;
   color: aliceblue;
@@ -57,6 +37,10 @@
   display: flex;
   align-items: center;
   color: white;
+}
+.header__optionBasket-basket{
+  transform: scale(1.4);
+  color: red;
 }
 
 .header__basketCount {

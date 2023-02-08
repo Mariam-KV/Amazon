@@ -7,6 +7,7 @@ import Order from "../components/Order";
 function Orders() {
   let user = useSelector((state) => state.basket.user);
   let [orders, setOrders] = useState([]);
+  let [doc, setDoc] = useState(false);
   useEffect(() => {
     if (user) {
       db.collection("users")
@@ -21,6 +22,7 @@ function Orders() {
               data: doc.data(),
             }))
           );
+          setDoc(true);
         });
     } else {
       setOrders([]);
@@ -28,14 +30,20 @@ function Orders() {
   }, [user]);
 
   return (
-    <div className="orders">
-      <h1>Your Orders {!orders.length && "is empty"}</h1>
-      <div>
-        {orders.map((order, i) => {
-          return <Order order={order} key={"order" + i} />;
-        })}
-      </div>
-    </div>
+    <>
+      {!doc ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="orders">
+          <h1>Your Orders {!orders.length && "is empty"}</h1>
+          <div>
+            {orders.map((order, i) => {
+              return <Order order={order} key={"order" + i} />;
+            })}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

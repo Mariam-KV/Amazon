@@ -5,10 +5,17 @@
   background-color: white;
   position: relative;
 }
-
+.order__data {
+  color: #1a98ff;
+  font-size: 18px;
+  font-weight: 700;
+}
 .order__id {
   position: absolute;
   top: 0px;
+  color: #1a98ff;
+  font-size: 18px;
+  font-weight: 700;
   right: 20px;
 }
 .oder__allItems {
