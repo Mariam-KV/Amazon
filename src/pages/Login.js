@@ -42,7 +42,7 @@ function Login() {
 
       <div className="login__container">
         <h1>{!sign ? "Sign-in" : "Sign-up"}</h1>
-        <form onClick={handleForm}>
+        <form onSubmit={handleForm}>
           <h5>E-mail</h5>
           <input type="text" ref={emailRef} />
 
