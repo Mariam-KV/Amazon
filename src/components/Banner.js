@@ -9,7 +9,7 @@ function Banner() {
         autoPlay
         infiniteLoop
         showStatus={false}
-        showIndicators={true}
+        showIndicators={false}
         showThumbs={false}
         interval={5000}
         className="carousel"

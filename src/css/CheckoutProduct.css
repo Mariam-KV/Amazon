@@ -15,6 +15,9 @@
     max-width: 300px;
     margin: 10px auto;
   }
+  .checkoutProduct__buttons {
+    flex-direction: row !important;
+  }
 }
 .checkoutProduct img {
   width: 200px;
@@ -23,6 +26,7 @@
 }
 .checkoutProduct__info {
   grid-column: 2/5;
+
 }
 /*.checkoutProduct__description {
   line-clamp: 3;

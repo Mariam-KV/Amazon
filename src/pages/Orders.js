@@ -26,21 +26,16 @@ function Orders() {
       setOrders([]);
     }
   }, [user]);
+
   return (
-    <>
-      {!orders.length ? (
-        <LoadingSpinner />
-      ) : (
-        <div className="orders">
-          <h1>Your Orders {!orders.length && "is empty"}</h1>
-          <div>
-            {orders.map((order, i) => {
-              return <Order order={order} key={"order" + i} />;
-            })}
-          </div>
-        </div>
-      )}
-    </>
+    <div className="orders">
+      <h1>Your Orders {!orders.length && "is empty"}</h1>
+      <div>
+        {orders.map((order, i) => {
+          return <Order order={order} key={"order" + i} />;
+        })}
+      </div>
+    </div>
   );
 }
 
