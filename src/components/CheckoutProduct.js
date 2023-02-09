@@ -31,7 +31,9 @@ function CheckoutProduct({ item, hide = false }) {
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>
         <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
-        <p className="checkoutProduct__description">{description}</p>
+        {hide ? null : (
+          <p className="checkoutProduct__description">{description}</p>
+        )}
         <h3>Qty: {amount}</h3>
         <p className="checkoutProduct__price">
           <small>$</small>

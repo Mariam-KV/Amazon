@@ -1,12 +1,28 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "../css/Checkout.css";
 import Subtotal from "../components/Subtotal";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import CheckoutProduct from "../components/CheckoutProduct";
 function Checkout() {
-  let basket = useSelector((state) => state.basket?.basket);
+  let basketLocal = useSelector((state) => state.basket?.basket);
+  let user = useSelector((state) => state.basket?.user);
+  let [basket, setBasket] = useState([]);
 
+  useEffect(() => {
+    if (user.email) {
+      console.log("ma");
+      fetch(
+        `https://fir-214b5-default-rtdb.firebaseio.com/${
+          user?.email.split(".")[0]
+        }.json`
+      )
+        .then((res) => res.json())
+        .then((data) => setBasket(data));
+    }
+  }, [basketLocal, user.emai]);
+
+  console.log(basket);
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -18,10 +34,10 @@ function Checkout() {
         <div className="checkout__title">
           <h2>
             Your Amazon basket
-            {basket.length === 0 ? " is empty" : null}
+            {basket?.length === 0 ? " is empty" : null}
           </h2>
         </div>
-        {basket.map((item, i) => {
+        {basket?.map((item, i) => {
           return <CheckoutProduct item={item} key={i} />;
         })}
       </div>

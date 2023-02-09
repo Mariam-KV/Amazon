@@ -15,14 +15,20 @@ function Login() {
     if (sign) {
       auth
         .createUserWithEmailAndPassword(email, password)
-        .then((data) => history.push("/"))
+        .then((data) => {
+          history.push("/");
+          localStorage.setItem("email", data.email);
+        })
         .catch((error) => alert(error.message));
       email = "";
       password = "";
     } else {
       auth
         .signInWithEmailAndPassword(email, password)
-        .then((data) => history.push("/"))
+        .then((data) => {
+          localStorage.setItem("email", data.email);
+          history.push("/");
+        })
         .catch((error) => alert(error.message));
     }
   };

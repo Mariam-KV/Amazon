@@ -5,7 +5,7 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
@@ -18,7 +18,7 @@ let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
         // logged in

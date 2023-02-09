@@ -14,17 +14,20 @@ function Header() {
   let totalAmount = basket.reduce((acc, item) => item.amount + acc, 0);
   let dispatch = useDispatch();
 
-  let handleAuthentication = () => {
-    if (user?.email) {
-      auth.signOut();
-    } else {
-      auth.onAuthStateChanged((authUser) => {
-        dispatch(
-          basketActions.setUser({ email: authUser?.email, uid: authUser?.uid })
-        );
-      });
-    }
-  };
+ let handleAuthentication = () => {
+   if (user?.email) {
+  
+     auth.signOut();
+   } else {
+     auth.onAuthStateChanged((authUser) => {
+       console.log(authUser.email);
+       localStorage.setItem("email", authUser?.email);
+       dispatch(
+         basketActions.setUser({ email: authUser?.email, uid: authUser?.uid })
+       );
+     });
+   }
+ };
   useEffect(() => {
     if (totalAmount !== 0) {
       setChangeBasket(true);
