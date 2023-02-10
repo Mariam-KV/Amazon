@@ -28,11 +28,13 @@ function Header() {
   useEffect(() => {
     if (totalAmount !== 0) {
       setChangeBasket(true);
-      
     }
-    setTimeout(() => {
+    let timer = setTimeout(() => {
       setChangeBasket(false);
     }, 300);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [totalAmount]);
   return (
     <div className="header">
@@ -56,7 +58,7 @@ function Header() {
             </span>
           </div>
         </Link>
-        <Link to={user?.email ? "/orders" : "/"}>
+        <Link to="/orders">
           <div className="header__option">
             <span className="header__optionLineTwo">Orders</span>
           </div>

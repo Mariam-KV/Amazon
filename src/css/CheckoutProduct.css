@@ -20,6 +20,9 @@
   .checkoutProduct__buttons {
     flex-direction: row !important;
   }
+  .checkoutProduct__description {
+    display: none;
+  }
 }
 .checkoutProduct img {
   width: 200px;
@@ -29,9 +32,7 @@
 .checkoutProduct__info {
   grid-column: 2/5;
 }
-/*.checkoutProduct__description {
-  line-clamp: 3;
-} */
+
 .checkoutProduct__buttons {
   grid-column: 5/6;
   display: flex;
