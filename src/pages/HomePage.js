@@ -41,11 +41,18 @@ function HomePage() {
               />
             );
           })}
-          <img
-            src="https://links.papareact.com/dyz"
-            alt="banner"
-            className="banner"
-          />
+          <a
+            href="https://www.amazon.com/b?ie=UTF8&node=21429425011"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://links.papareact.com/dyz"
+              alt="banner"
+              className="banner"
+            />
+          </a>
+
           {productsAfter?.map((product) => {
             return (
               <Product

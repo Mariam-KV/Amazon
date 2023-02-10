@@ -7,8 +7,8 @@
   padding: 10px;
   background-color: white;
   height: auto;
-  max-width: 400px;
-  min-width: 300px;
+  width: 300px;
+  height: auto;
   z-index: 1;
   transition: 0.6s;
 }
@@ -18,11 +18,14 @@
 }
 .product__rating {
   display: flex;
+  color: #fcc333;
+  position: relative;
+  cursor: pointer;
 }
 
 .product > img {
-  max-height: 200px;
-  max-width: 200px;
+  height: 200px;
+  width: 200px;
 
   object-fit: contain;
 }
@@ -48,7 +51,29 @@
 .product__price {
   margin-top: 5px;
 }
-
 .product__info {
-  margin: 15px;
+  text-align: left;
+  width: 100%;
+  margin: 0 10px;
+}
+
+.product__rating .product__rating-text {
+  visibility: hidden;
+  width: 100px;
+  background-color: white;
+  color: black;
+  text-align: center;
+
+  border: 1px solid black;
+  padding: 3px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  left: 60px;
+  top: 45px;
+}
+
+.product__rating:hover .product__rating-text {
+  visibility: visible;
 }

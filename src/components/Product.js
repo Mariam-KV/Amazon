@@ -1,6 +1,7 @@
 import "../css/Product.css";
 import { basketActions } from "../store";
 import { useDispatch } from "react-redux";
+import ProductRating from "./ProductRating";
 function Product({
   id,
   category,
@@ -12,6 +13,7 @@ function Product({
   amount,
 }) {
   let dispatch = useDispatch();
+  let minRating = 5 - rating;
 
   function addingToBasket() {
     dispatch(
@@ -37,9 +39,7 @@ function Product({
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className="product__rating">
-          <p>{"🌟".repeat(rating)}</p>
-        </div>
+        <ProductRating rating={rating} />
       </div>
 
       <img src={image} alt="" />

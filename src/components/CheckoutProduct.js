@@ -3,7 +3,7 @@ import "../css/CheckoutProduct.css";
 import { useState } from "react";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-
+import ProductRating from "./ProductRating";
 function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, image, price, rating, description, amount } = item;
@@ -30,7 +30,7 @@ function CheckoutProduct({ item, hide = false }) {
 
       <div className="checkoutProduct__info">
         <p className="checkoutProduct__title">{title}</p>
-        <div className="checkoutProduct__rating">{"🌟".repeat(rating)}</div>
+        <ProductRating rating={rating} />
         <p className="checkoutProduct__description">{description}</p>
         <h3>Qty: {amount}</h3>
         <p className="checkoutProduct__price">

@@ -6,3 +6,6 @@
   width: 100%;
   min-height: 400px;
 }
+.banner_anchor {
+  display: block;
+}

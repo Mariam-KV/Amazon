@@ -3,7 +3,7 @@ import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import { Menu, Search } from "@mui/icons-material/";
+import { Menu, Search, Star } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header() {
@@ -70,7 +70,7 @@ function Header() {
               className={changeBasket ? "header__optionBasket-basket" : ""}
             />
           </Link>
-
+          
           <div className="header__basketCount">{totalAmount}</div>
         </div>
       </div>
