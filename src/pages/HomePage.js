@@ -3,16 +3,32 @@ import "../css/Home.css";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
-function HomePage({ category }) {
+function HomePage({ category, onAllCategory }) {
   let [products, setProducts] = useState([]);
   useEffect(() => {
     let FakeStoreAPI = async () => {
-      await fetch("https://fakestoreapi.com/products")
+      await fetch("https://dummyjson.com/products?limit=40")
         .then((res) => res.json())
-        .then((data) => setProducts(data));
+        .then((data) => {
+          setProducts(data.products);
+          let allCategory = [];
+          data.products.map((element) => {
+            if (!allCategory.includes(element.category)) {
+              return allCategory.push(element.category);
+            }
+            return;
+          });
+          onAllCategory(allCategory);
+          // fetch("https://fir-214b5-default-rtdb.firebaseio.com/products.json", {
+          //   method: "POST",
+          //   body: JSON.stringify(data),
+          // });
+        })
+        .catch((r) => console.log(r));
     };
     FakeStoreAPI();
   }, []);
+
   if (category !== "all") {
     products = products.filter((product) => product.category === category);
   }
@@ -35,8 +51,8 @@ function HomePage({ category }) {
                 key={"product" + product.id}
                 category={product.category}
                 description={product.description}
-                image={product.image}
-                rating={Math.round(product.rating.rate)}
+                image={product.images[0]}
+                rating={Math.round(product.rating)}
                 id={product.id}
                 title={product.title}
                 price={product.price}
@@ -62,8 +78,8 @@ function HomePage({ category }) {
                 key={"product" + product.id}
                 category={product.category}
                 description={product.description}
-                image={product.image}
-                rating={Math.round(product.rating.rate)}
+                image={product.images[0]}
+                rating={Math.round(product.rating)}
                 id={product.id}
                 title={product.title}
                 price={product.price}

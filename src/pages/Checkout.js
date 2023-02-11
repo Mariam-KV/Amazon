@@ -1,8 +1,7 @@
 import React from "react";
 import "../css/Checkout.css";
 import Subtotal from "../components/Subtotal";
-import { basketActions } from "../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import CheckoutProduct from "../components/CheckoutProduct";
 function Checkout() {
   let basket = useSelector((state) => state.basket?.basket);

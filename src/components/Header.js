@@ -7,14 +7,13 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
-function Header({ onCategory, show = false }) {
-  const options = [
-    { value: "all", label: "all" },
-    { value: "men's clothing", label: "men's clothing" },
-    { value: "jewelery", label: "jewelery" },
-    { value: "electronics", label: "electronics" },
-    { value: "women's clothing", label: "women's clothing" },
-  ];
+function Header({ onCategory = false, show = false, allOptions }) {
+  console.log(allOptions);
+
+  let options = [{ value: "all", label: "all" }];
+  allOptions.map((option) => {
+    return (options = [...options, { value: option, label: option }]);
+  });
   let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
   const [selectedOption, setSelectedOption] = useState({
@@ -49,24 +48,35 @@ function Header({ onCategory, show = false }) {
   }, [totalAmount]);
 
   useEffect(() => {
-    onCategory(selectedOption);
+    if (onCategory) {
+      onCategory(selectedOption);
+    }
   }, [selectedOption]);
   return (
     <div className="header">
       <div className="header__logo">
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={() =>
+            setSelectedOption({
+              value: "all",
+              label: "all",
+            })
+          }
+        >
           <img
             src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
             alt="logo"
           />
         </Link>
       </div>
+
       {show && (
         <Select
-          defaultValue={selectedOption}
           onChange={setSelectedOption}
           options={options}
           className="header__select"
+          value={selectedOption}
         />
       )}
       <div className="header__nav">

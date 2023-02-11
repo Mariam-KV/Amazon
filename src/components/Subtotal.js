@@ -1,8 +1,7 @@
 import React from "react";
 import "../css/Subtotal.css";
 import CurrencyFormatC from "./CurrencyFormatC";
-import { basketActions } from "../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {
   let basket = useSelector((state) => state.basket?.basket);

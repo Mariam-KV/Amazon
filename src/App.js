@@ -18,6 +18,7 @@ let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
   let [category, setCategory] = useState("all");
+  let [options, setOptions] = useState([]);
   let onCategory = (e) => {
     setCategory(e);
   };
@@ -35,12 +36,16 @@ function App() {
       }
     });
   }, []);
+  let allCategory = (e) => {
+    console.log(e);
+    setOptions(e);
+  };
   return (
     <div className="app">
       <Switch>
         <Route path="/" exact>
-          <Header onCategory={onCategory} show={true} />
-          <HomePage category={category?.value} />
+          <Header onCategory={onCategory} show={true} allOptions={options} />
+          <HomePage category={category?.value} onAllCategory={allCategory} />
         </Route>
         <Route path="/login" exact>
           <Login />
