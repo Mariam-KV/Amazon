@@ -3,19 +3,25 @@ import "../css/Home.css";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
-function HomePage() {
+function HomePage({ category }) {
   let [products, setProducts] = useState([]);
   useEffect(() => {
     let FakeStoreAPI = async () => {
       await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
-        .then((data) => setProducts(data));
+        .then((data) =>
+          category !== "all"
+            ? setProducts(
+                data.filter((product) => product.category === category)
+              )
+            : setProducts(data)
+        );
     };
     FakeStoreAPI();
-  }, []);
+  }, [category]);
   let productsBefore = products.slice(0, 8);
   let productsAfter = products.slice(8);
-
+  console.log(category);
   return (
     <>
       <div className="home">

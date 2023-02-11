@@ -4,12 +4,23 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
 import { Menu, Search, Star } from "@mui/icons-material/";
+import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
-function Header() {
+function Header({ onCategory }) {
+  const options = [
+    { value: "all", label: "all" },
+    { value: "men's clothing", label: "men's clothing" },
+    { value: "jewelery", label: "jewelery" },
+    { value: "electronics", label: "electronics" },
+    { value: "women's clothing", label: "women's clothing" },
+  ];
   let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
-
+  const [selectedOption, setSelectedOption] = useState({
+    value: "all",
+    label: "all",
+  });
   let basket = useSelector((state) => state.basket.basket);
   let totalAmount = basket.reduce((acc, item) => item.amount + acc, 0);
   let dispatch = useDispatch();
@@ -36,6 +47,10 @@ function Header() {
       clearTimeout(timer);
     };
   }, [totalAmount]);
+
+  useEffect(() => {
+    onCategory(selectedOption);
+  }, [selectedOption]);
   return (
     <div className="header">
       <div className="header__logo">
@@ -46,7 +61,11 @@ function Header() {
           />
         </Link>
       </div>
-
+      <Select
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={options}
+      />
       <div className="header__nav">
         <Link to={user?.email ? "/" : "/login"}>
           <div className="header__option" onClick={handleAuthentication}>
@@ -70,7 +89,7 @@ function Header() {
               className={changeBasket ? "header__optionBasket-basket" : ""}
             />
           </Link>
-          
+
           <div className="header__basketCount">{totalAmount}</div>
         </div>
       </div>

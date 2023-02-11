@@ -5,7 +5,7 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
@@ -17,7 +17,11 @@ let promise = loadStripe(publishableKey);
 
 function App() {
   let dispatch = useDispatch();
-
+  let [category, setCategory] = useState(null);
+  let onCategory = (e) => {
+    setCategory(e);
+  };
+  console.log(category);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
@@ -30,21 +34,19 @@ function App() {
         dispatch(basketActions.setUser(null));
       }
     });
-    let FakeStoreAPI = async () => {
-      await fetch(
-        "https://api.rainforestapi.com/request?api_key=73183EE4717648E780DF07A30788330E&type=product"
-      )
-        .then((r) => r.json())
-        .then((data) => console.log(data));
-    };
-    FakeStoreAPI();
+    // let FakeStoreAPI = async () => {
+    //   await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=10")
+    //     .then((r) => r.json())
+    //     .then((data) => console.log(data));
+    // };
+    // FakeStoreAPI();
   }, []);
   return (
     <div className="app">
       <Switch>
         <Route path="/" exact>
-          <Header />
-          <HomePage />
+          <Header onCategory={onCategory} />
+          <HomePage category={category?.value} />
         </Route>
         <Route path="/login" exact>
           <Login />
