@@ -3,7 +3,7 @@ import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store";
 import { useSelector, useDispatch } from "react-redux";
-import { Menu, Search, Star } from "@mui/icons-material/";
+
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
@@ -65,6 +65,7 @@ function Header({ onCategory }) {
         defaultValue={selectedOption}
         onChange={setSelectedOption}
         options={options}
+        className="header__select"
       />
       <div className="header__nav">
         <Link to={user?.email ? "/" : "/login"}>

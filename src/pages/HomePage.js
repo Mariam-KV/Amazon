@@ -21,7 +21,6 @@ function HomePage({ category }) {
   }, [category]);
   let productsBefore = products.slice(0, 8);
   let productsAfter = products.slice(8);
-  console.log(category);
   return (
     <>
       <div className="home">

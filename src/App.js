@@ -17,11 +17,11 @@ let promise = loadStripe(publishableKey);
 
 function App() {
   let dispatch = useDispatch();
-  let [category, setCategory] = useState(null);
+  let [category, setCategory] = useState("all");
   let onCategory = (e) => {
     setCategory(e);
   };
-  console.log(category);
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
@@ -34,12 +34,6 @@ function App() {
         dispatch(basketActions.setUser(null));
       }
     });
-    // let FakeStoreAPI = async () => {
-    //   await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=10")
-    //     .then((r) => r.json())
-    //     .then((data) => console.log(data));
-    // };
-    // FakeStoreAPI();
   }, []);
   return (
     <div className="app">

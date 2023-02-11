@@ -1,20 +1,52 @@
 .header {
   height: auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  justify-items: center;
   align-items: center;
+  grid-template-areas: "header1 header2 header3";
+  grid-template-rows: min-content;
+  grid-template-columns: min-content 3fr 1fr;
   background-color: #131921;
   position: sticky;
   top: 0;
   padding: 10px;
   z-index: 100;
 }
-
+.header__logo {
+  grid-area: header1;
+}
+.header__select {
+  grid-area: header2;
+  min-width: 120px;
+  width: 50%;
+  font-size: 18px;
+  text-align: center;
+}
+.header__nav {
+  grid-area: header3;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 @media (max-width: 800px) {
   .header img {
     width: 70px !important;
     object-fit: contain;
     margin: 0px !important;
+  }
+  .header {
+    grid-template-rows: min-content min-content;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+  .header__select {
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    width: 70%;
+  }
+  .header__nav {
+    grid-column: 2/3;
   }
 }
 .header img {
@@ -38,7 +70,7 @@
   align-items: center;
   color: white;
 }
-.header__optionBasket-basket{
+.header__optionBasket-basket {
   transform: scale(1.4);
   color: red;
 }
@@ -46,13 +78,6 @@
 .header__basketCount {
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.header__nav {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-evenly;
 }
 
 .header__option {
