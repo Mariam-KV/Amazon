@@ -29,10 +29,15 @@
   height: 200px;
   object-fit: contain;
 }
+.checkoutProduct__description {
+  margin: 0;
+}
 .checkoutProduct__info {
   grid-column: 2/5;
 }
-
+.checkoutProduct__title {
+  margin: 0;
+}
 .checkoutProduct__buttons {
   grid-column: 5/6;
   display: flex;

@@ -13,9 +13,9 @@ function Product({
   amount,
 }) {
   let dispatch = useDispatch();
-  let minRating = 5 - rating;
 
-  function addingToBasket() {
+  function addingToBasket(e) {
+   
     dispatch(
       basketActions.addToBasket({
         id,
@@ -32,8 +32,8 @@ function Product({
 
   return (
     <div className="product">
+      <p className="product__category">{category}</p>
       <div className="product__info">
-        <p className="product__info">{category}</p>
         <p className="product__info">{title}</p>
         <p className="product__price">
           <small>$</small>

@@ -29,10 +29,10 @@ function CheckoutProduct({ item, hide = false }) {
       <img className="checkoutProduct__image" src={image} alt="basketItem" />
 
       <div className="checkoutProduct__info">
-        <p className="checkoutProduct__title">{title}</p>
+        <h3 className="checkoutProduct__title">{title}</h3>
         <ProductRating rating={rating} />
         <p className="checkoutProduct__description">{description}</p>
-        <h3>Qty: {amount}</h3>
+        <h3>Quantity: {amount}</h3>
         <p className="checkoutProduct__price">
           <small>$</small>
           <strong>{price}</strong>

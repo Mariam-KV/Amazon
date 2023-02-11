@@ -16,7 +16,9 @@
   color: #1a98ff;
   font-size: 18px;
   font-weight: 700;
-  right: 20px;
+  right: 10px;
+  top: 5px;
+  margin: 0;
 }
 .oder__allItems {
   display: flex;

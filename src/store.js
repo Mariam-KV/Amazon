@@ -10,7 +10,6 @@ let busketSlice = createSlice({
       );
 
       if (newItem[0]?.id) {
-        console.log(newItem[0].amount);
         newItem[0].amount = +newItem[0].amount + 1;
 
         state.basket = [...state.basket];

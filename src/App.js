@@ -30,6 +30,14 @@ function App() {
         dispatch(basketActions.setUser(null));
       }
     });
+    let FakeStoreAPI = async () => {
+      await fetch(
+        "https://api.rainforestapi.com/request?api_key=73183EE4717648E780DF07A30788330E&type=product"
+      )
+        .then((r) => r.json())
+        .then((data) => console.log(data));
+    };
+    FakeStoreAPI();
   }, []);
   return (
     <div className="app">

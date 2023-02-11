@@ -7,19 +7,19 @@ function ProductRating({ rating }) {
         {Array(rating)
           .fill()
           .map((_, i) => (
-            <p>
+            <p key={"Star" + i}>
               <Star />
             </p>
           ))}
         {Array(minRating)
           .fill()
           .map((_, i) => (
-            <p>
+            <p key={"StarBorder" + i}>
               <StarBorder />
             </p>
           ))}
       </>
-      <span class="product__rating-text">{rating} out of 5</span>
+      <span className="product__rating-text">{rating} out of 5 stars</span>
     </div>
   );
 }
