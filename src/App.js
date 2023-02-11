@@ -39,7 +39,7 @@ function App() {
     <div className="app">
       <Switch>
         <Route path="/" exact>
-          <Header onCategory={onCategory} />
+          <Header onCategory={onCategory} show={true} />
           <HomePage category={category?.value} />
         </Route>
         <Route path="/login" exact>

@@ -9,18 +9,16 @@ function HomePage({ category }) {
     let FakeStoreAPI = async () => {
       await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
-        .then((data) =>
-          category !== "all"
-            ? setProducts(
-                data.filter((product) => product.category === category)
-              )
-            : setProducts(data)
-        );
+        .then((data) => setProducts(data));
     };
     FakeStoreAPI();
-  }, [category]);
+  }, []);
+  if (category !== "all") {
+    products = products.filter((product) => product.category === category);
+  }
   let productsBefore = products.slice(0, 8);
   let productsAfter = products.slice(8);
+
   return (
     <>
       <div className="home">

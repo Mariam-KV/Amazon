@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
-function Header({ onCategory }) {
+function Header({ onCategory, show = false }) {
   const options = [
     { value: "all", label: "all" },
     { value: "men's clothing", label: "men's clothing" },
@@ -61,14 +61,16 @@ function Header({ onCategory }) {
           />
         </Link>
       </div>
-      <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
-        className="header__select"
-      />
+      {show && (
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          className="header__select"
+        />
+      )}
       <div className="header__nav">
-        <Link to={user?.email ? "/" : "/login"}>
+        <Link to={user?.email ? "/" : "/login"} className="link">
           <div className="header__option" onClick={handleAuthentication}>
             <span className="header__optionLineOne">
               {user?.email ? user.email : "Guest"}
@@ -78,14 +80,14 @@ function Header({ onCategory }) {
             </span>
           </div>
         </Link>
-        <Link to="/orders">
+        <Link to="/orders" className="link">
           <div className="header__option">
             <span className="header__optionLineTwo">Orders</span>
           </div>
         </Link>
 
         <div className="header__optionBasket">
-          <Link to="/checkout">
+          <Link to="/checkout" className="link">
             <ShoppingBasketIcon
               className={changeBasket ? "header__optionBasket-basket" : ""}
             />

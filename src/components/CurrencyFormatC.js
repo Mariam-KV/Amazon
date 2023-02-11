@@ -11,11 +11,6 @@ function CurrencyFormatC({ title, value, amount }) {
               : `Subtotal (${amount ? amount : 0}) items `}
             :<strong> {value}</strong>
           </p>
-          {title === "payment" ? null : (
-            <small className="subtotal__gift">
-              <input type="checkbox" /> This order contains a gift
-            </small>
-          )}
         </>
       )}
       decimalScale={2}

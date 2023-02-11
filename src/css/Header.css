@@ -15,13 +15,19 @@
 .header__logo {
   grid-area: header1;
 }
+.link {
+  text-decoration: none;
+  color: #2684ff;
+}
 .header__select {
   grid-area: header2;
   min-width: 120px;
   width: 50%;
+  offset: none;
   font-size: 18px;
   text-align: center;
 }
+
 .header__nav {
   grid-area: header3;
   display: flex;
