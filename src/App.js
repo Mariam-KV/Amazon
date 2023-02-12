@@ -36,9 +36,8 @@ function App() {
       }
     });
   }, []);
-  let allCategory = (e) => {
-    console.log(e);
-    setOptions(e);
+  let allCategory = (categories) => {
+    setOptions(categories);
   };
   return (
     <div className="app">

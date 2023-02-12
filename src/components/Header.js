@@ -8,12 +8,12 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header({ onCategory = false, show = false, allOptions }) {
-  console.log(allOptions);
-
   let options = [{ value: "all", label: "all" }];
-  allOptions.map((option) => {
-    return (options = [...options, { value: option, label: option }]);
-  });
+  if (show) {
+    allOptions.map((option) => {
+      return (options = [...options, { value: option, label: option }]);
+    });
+  }
   let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
   const [selectedOption, setSelectedOption] = useState({

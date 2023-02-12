@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import "../css/Home.css";
+
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
+let skip = 20;
 function HomePage({ category, onAllCategory }) {
   let [products, setProducts] = useState([]);
+  let [showProducts, setShowProducts] = useState([]);
   useEffect(() => {
     let FakeStoreAPI = async () => {
-      await fetch("https://dummyjson.com/products?limit=40")
+      await fetch(`https://dummyjson.com/products?limit=100`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);
@@ -33,7 +36,12 @@ function HomePage({ category, onAllCategory }) {
     products = products.filter((product) => product.category === category);
   }
   let productsBefore = products.slice(0, 8);
-  let productsAfter = products.slice(8);
+  let productsAfter = products.slice(8, 20);
+  let More = () => {
+    skip += 10;
+    productsAfter = products.slice(20, skip);
+    setShowProducts(productsAfter);
+  };
 
   return (
     <>
@@ -44,22 +52,49 @@ function HomePage({ category, onAllCategory }) {
       {!products.length ? (
         <LoadingSpinner />
       ) : (
-        <div className="home__row">
-          {productsBefore?.map((product) => {
-            return (
-              <Product
-                key={"product" + product.id}
-                category={product.category}
-                description={product.description}
-                image={product.images[0]}
-                rating={Math.round(product.rating)}
-                id={product.id}
-                title={product.title}
-                price={product.price}
-                amount={0}
-              />
-            );
-          })}
+        <>
+          <div className="home__row">
+            {productsBefore?.map((product) => {
+              return (
+                <Product
+                  key={"product" + product.id}
+                  category={product.category}
+                  description={product.description}
+                  image={product.images[0]}
+                  rating={Math.round(product.rating)}
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  amount={0}
+                />
+              );
+            })}
+
+            {category === "all" && (
+              <>
+                {showProducts?.map((product) => {
+                  return (
+                    <Product
+                      key={"product" + product.id}
+                      category={product.category}
+                      description={product.description}
+                      image={product.images[0]}
+                      rating={Math.round(product.rating)}
+                      id={product.id}
+                      title={product.title}
+                      price={product.price}
+                      amount={0}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </div>
+          {category === "all" && (
+            <button className="button__load" onClick={() => More()}>
+              Load more...
+            </button>
+          )}
           <a
             href="https://www.amazon.com/b?ie=UTF8&node=21429425011"
             target="_blank"
@@ -68,26 +103,10 @@ function HomePage({ category, onAllCategory }) {
             <img
               src="https://links.papareact.com/dyz"
               alt="banner"
-              className="banner"
+              className="banner__bottom"
             />
           </a>
-
-          {productsAfter?.map((product) => {
-            return (
-              <Product
-                key={"product" + product.id}
-                category={product.category}
-                description={product.description}
-                image={product.images[0]}
-                rating={Math.round(product.rating)}
-                id={product.id}
-                title={product.title}
-                price={product.price}
-                amount={0}
-              />
-            );
-          })}
-        </div>
+        </>
       )}
     </>
   );
