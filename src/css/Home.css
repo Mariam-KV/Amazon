@@ -10,7 +10,7 @@
   width: 100%;
   position: relative;
 
-  height: 200px;
+  max-height: 170px;
   object-fit: cover;
 }
 .home__image {
@@ -30,6 +30,20 @@
 }
 .button__load {
   display: block;
-  color: red;
-  margin: 0 auto;
+  color: black;
+  width: max(25%, 200px);
+
+  font-size: 16px;
+  padding: 10px 20px;
+  background: #f0c14b;
+  border: 1px solid;
+  border-color: #a88734 #9c7e31 #846a29;
+  border-radius: 5px;
+  margin: 20px auto;
+  cursor: pointer;
+  transition: all 1s;
+}
+.button__load:hover {
+  background: #e9b123;
+  transform: translateY(3px);
 }

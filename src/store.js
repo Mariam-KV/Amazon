@@ -38,23 +38,11 @@ let busketSlice = createSlice({
     },
   },
 });
-let filterSlice = createSlice({
-  name: "filter",
-  initialState: { value: "all", options: [] },
-  reducers: {
-    
-  },
-});
+
 export let basketActions = busketSlice.actions;
-// export let store = configureStore({
-//   reducer: {
-//     basket: busketSlice.reducer,
-//   },
-// });
 
 export const store = configureStore({
   reducer: {
     basket: busketSlice.reducer,
-    filter: filterSlice.reducer,
   },
 });

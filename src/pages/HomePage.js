@@ -90,7 +90,7 @@ function HomePage({ category, onAllCategory }) {
               </>
             )}
           </div>
-          {category === "all" && (
+          {category === "all" && skip !== 100 && (
             <button className="button__load" onClick={() => More()}>
               Load more...
             </button>
