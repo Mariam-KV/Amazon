@@ -14,8 +14,7 @@ function Product({
 }) {
   let dispatch = useDispatch();
 
-  function addingToBasket(e) {
-   
+  function addingToBasket() {
     dispatch(
       basketActions.addToBasket({
         id,
@@ -44,7 +43,7 @@ function Product({
 
       <img src={image} alt="" />
 
-      <button onClick={addingToBasket}>Add to Basket</button>
+      <button onClick={() => addingToBasket()}>Add to Basket</button>
     </div>
   );
 }

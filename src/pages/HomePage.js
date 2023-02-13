@@ -8,6 +8,7 @@ let skip = 20;
 function HomePage({ category, onAllCategory }) {
   let [products, setProducts] = useState([]);
   let [showProducts, setShowProducts] = useState([]);
+  console.log(skip);
   useEffect(() => {
     let FakeStoreAPI = async () => {
       await fetch(`https://dummyjson.com/products?limit=100`)

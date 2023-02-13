@@ -41,8 +41,8 @@ function CheckoutProduct({ item, hide = false }) {
         ""
       ) : (
         <div className="checkoutProduct__buttons">
-          <button onClick={removeFromBasket}>Remove from Basket</button>
-          <button onClick={addingToBasket}>Add to Basket</button>
+          <button onClick={() => removeFromBasket()}>Remove from Basket</button>
+          <button onClick={() => addingToBasket()}>Add to Basket</button>
         </div>
       )}
     </div>
