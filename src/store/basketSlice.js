@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 let basketSlice = createSlice({
   name: "basket",
-  initialState: { basket: [], user: [] },
+  initialState: { basket: [], user: [], totalAmount: 0, totalPrice: 0 },
   reducers: {
     addToBasket: (state, action) => {
       let newItem = state.basket.filter(
@@ -16,6 +16,14 @@ let basketSlice = createSlice({
         action.payload.amount = 1;
         state.basket = [...state.basket, action.payload];
       }
+      state.totalAmount = state.basket?.reduce(
+        (acc, item) => +item.amount + acc,
+        0
+      );
+      state.totalPrice = state.basket?.reduce(
+        (acc, item) => +item.price * item.amount + acc,
+        0
+      );
     },
     removeFromBasket: (state, action) => {
       let index = state.basket.findIndex((item) => item.id === action.payload);
@@ -26,10 +34,19 @@ let basketSlice = createSlice({
       } else {
         state?.basket.splice(index, 1);
       }
-      //state.basket = [...state?.basket];
+      state.totalAmount = state.basket?.reduce(
+        (acc, item) => +item.amount + acc,
+        0
+      );
+      state.totalPrice = state.basket?.reduce(
+        (acc, item) => +item.price * item.amount + acc,
+        0
+      );
     },
     emptyBasket: (state) => {
       state.basket = [];
+      state.totalAmount = 0;
+      state.totalPrice = 0;
     },
     setUser: (state, action) => {
       state.user = { email: action.payload?.email, uid: action.payload?.uid };

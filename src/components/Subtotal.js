@@ -4,15 +4,10 @@ import CurrencyFormatC from "./CurrencyFormatC";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {
-  let basket = useSelector((state) => state.basket?.basket);
   let user = useSelector((state) => state.basket?.user);
+  let totalPrice = useSelector((state) => state.basket.totalPrice);
+  let totalAmount = useSelector((state) => state.basket.totalAmount);
   let history = useHistory();
-
-  let totalPrice = basket?.reduce(
-    (acc, item) => +item.price * item.amount + acc,
-    0
-  );
-  let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
 
   return (
     <div className="subtotal">

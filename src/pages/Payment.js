@@ -11,6 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 function Payment() {
   let user = useSelector((state) => state.basket.user);
   let basket = useSelector((state) => state.basket.basket);
+  let totalPrice = useSelector((state) => state.basket.totalPrice);
+  let totalAmount = useSelector((state) => state.basket.totalAmount);
   let dispatch = useDispatch();
   let stripe = useStripe();
   let elements = useElements();
@@ -20,11 +22,6 @@ function Payment() {
   let [succeeded, setSucceeded] = useState(false);
   let [clientSecret, setClientSecret] = useState(true);
   let history = useHistory();
-  let totalPrice = basket?.reduce(
-    (acc, item) => +item.price * item.amount + acc,
-    0
-  );
-  let totalAmount = basket?.reduce((acc, item) => +item.amount + acc, 0);
 
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
