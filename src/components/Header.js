@@ -2,31 +2,26 @@ import React, { useState, useEffect } from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store/basketSlice";
+import { filterActions } from "../store/filterSlice";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
+
 let start = 0;
-function Header({ onCategory = false, show = false, allOptions }) {
-  let options = [{ value: "all", label: "all" }];
-  if (show) {
-    allOptions.map((option) => {
-      return (options = [...options, { value: option, label: option }]);
-    });
-  }
+function Header({ show = false }) {
+  let allCategory = useSelector((state) => state.filter.allCategory);
+  let category = useSelector((state) => state.filter.category);
   let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
-  const [selectedOption, setSelectedOption] = useState({
-    value: "all",
-    label: "all",
-  });
   let totalAmount = useSelector((state) => state.basket.totalAmount);
   let dispatch = useDispatch();
-
   let handleAuthentication = () => {
     if (user?.email) {
       auth.signOut();
+      dispatch(basketActions.emptyBasket());
     } else {
       auth.onAuthStateChanged((authUser) => {
         dispatch(
@@ -49,24 +44,10 @@ function Header({ onCategory = false, show = false, allOptions }) {
       };
     }
   }, [totalAmount]);
-
-  useEffect(() => {
-    if (onCategory) {
-      onCategory(selectedOption);
-    }
-  }, [selectedOption]);
   return (
     <div className="header">
       <div className="header__logo">
-        <Link
-          to="/"
-          onClick={() =>
-            setSelectedOption({
-              value: "all",
-              label: "all",
-            })
-          }
-        >
+        <Link to="/" onClick={() => dispatch(filterActions.changeCategory())}>
           <img
             src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
             alt="logo"
@@ -76,10 +57,10 @@ function Header({ onCategory = false, show = false, allOptions }) {
 
       {show && (
         <Select
-          onChange={setSelectedOption}
-          options={options}
+          onChange={(e) => dispatch(filterActions.changeCategory(e.value))}
+          options={allCategory}
           className="header__select"
-          value={selectedOption}
+          value={category}
         />
       )}
       <div className="header__nav">

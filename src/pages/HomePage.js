@@ -1,35 +1,34 @@
 import { useEffect, useState } from "react";
 import "../css/Home.css";
-
+import { filterActions } from "../store/filterSlice";
+import { useSelector, useDispatch } from "react-redux";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
 let skip = 8;
-function HomePage({ category, onAllCategory }) {
+function HomePage() {
   let [products, setProducts] = useState([]);
   let [showProducts, setShowProducts] = useState([]);
+  let dispatch = useDispatch();
+  let category = useSelector((state) => state.filter.category);
   useEffect(() => {
     let FakeStoreAPI = async () => {
       await fetch(`https://dummyjson.com/products?limit=100`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);
-          let allCategory = [];
-          data.products.map((element) => {
-            if (!allCategory.includes(element.category)) {
-              return allCategory.push(element.category);
-            }
-            return;
-          });
-          onAllCategory(allCategory);
+
+          dispatch(filterActions.allCategory(data.products));
         })
         .catch((r) => console.log(r));
     };
     FakeStoreAPI();
   }, []);
 
-  if (category !== "all") {
-    products = products.filter((product) => product.category === category);
+  if (category.value) {
+    products = products.filter(
+      (product) => product.category === category.value
+    );
   }
   let productsBefore = products.slice(0, 8);
 
@@ -38,7 +37,7 @@ function HomePage({ category, onAllCategory }) {
     let productsAfter = products.slice(8, skip);
     setShowProducts(productsAfter);
   };
- 
+
   return (
     <>
       <div className="home">
@@ -66,7 +65,7 @@ function HomePage({ category, onAllCategory }) {
               );
             })}
 
-            {category === "all" && (
+            {category.length === 0 && (
               <>
                 {showProducts?.map((product) => {
                   return (
@@ -86,7 +85,7 @@ function HomePage({ category, onAllCategory }) {
               </>
             )}
           </div>
-          {category === "all" && skip < 100 && (
+          {category.length === 0 && skip < 100 && (
             <button className="button__load" onClick={() => More()}>
               Load more...
             </button>

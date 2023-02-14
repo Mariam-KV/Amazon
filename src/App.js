@@ -17,12 +17,6 @@ let promise = loadStripe(publishableKey);
 
 function App() {
   let dispatch = useDispatch();
-  let [category, setCategory] = useState("all");
-  let [options, setOptions] = useState([]);
-  let onCategory = (e) => {
-    setCategory(e);
-  };
-
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
@@ -36,15 +30,12 @@ function App() {
       }
     });
   }, []);
-  let allCategory = (categories) => {
-    setOptions(categories);
-  };
   return (
     <div className="app">
       <Switch>
         <Route path="/" exact>
-          <Header onCategory={onCategory} show={true} allOptions={options} />
-          <HomePage category={category?.value} onAllCategory={allCategory} />
+          <Header show={true} />
+          <HomePage />
         </Route>
         <Route path="/login" exact>
           <Login />

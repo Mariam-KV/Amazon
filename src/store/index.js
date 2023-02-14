@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { basketReducer } from "./basketSlice";
-//import { filterReducer } from "./filterSlice";
+import { filterReducer } from "./filterSlice";
 import {
   persistStore,
   persistReducer,
@@ -19,7 +19,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   basket: basketReducer,
-  //filter: filterReducer,
+  filter: filterReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
