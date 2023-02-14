@@ -25,7 +25,7 @@ function HomePage() {
     FakeStoreAPI();
   }, []);
 
-  if (category.value) {
+  if (category?.value) {
     products = products.filter(
       (product) => product.category === category.value
     );
@@ -65,7 +65,7 @@ function HomePage() {
               );
             })}
 
-            {category.length === 0 && (
+            {category?.length === 0 && (
               <>
                 {showProducts?.map((product) => {
                   return (
@@ -85,7 +85,7 @@ function HomePage() {
               </>
             )}
           </div>
-          {category.length === 0 && skip < 100 && (
+          {category?.length === 0 && skip < 100 && (
             <button className="button__load" onClick={() => More()}>
               Load more...
             </button>

@@ -83,7 +83,7 @@ function Payment() {
             <h3>Account</h3>
           </div>
           <div className="payment__address">
-            <p>{user?.email}</p>
+            <h3>{user?.email}</h3>
           </div>
         </div>
         <div className="payment__section">
@@ -105,7 +105,8 @@ function Payment() {
           <div className="payment__details">
             <form onSubmit={handleSubmit}>
               {error ? <h4 className="error">{error}</h4> : null}
-              <CardElement onChange={handleChange} />
+              {error ? <h4>Card number - 4242424242424242</h4> : null}
+              <CardElement onChange={handleChange} value={3} />
               <div>
                 <CurrencyFormatC
                   title="payment"

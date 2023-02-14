@@ -21,7 +21,7 @@ function Header({ show = false }) {
   let handleAuthentication = () => {
     if (user?.email) {
       auth.signOut();
-      dispatch(basketActions.emptyBasket());
+      start = 0;
     } else {
       auth.onAuthStateChanged((authUser) => {
         dispatch(

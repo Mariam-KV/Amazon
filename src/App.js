@@ -5,7 +5,7 @@ import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
@@ -14,7 +14,6 @@ import { publishableKey } from "./stripe";
 import { basketActions } from "./store/basketSlice";
 import { useDispatch } from "react-redux";
 let promise = loadStripe(publishableKey);
-
 function App() {
   let dispatch = useDispatch();
   useEffect(() => {
