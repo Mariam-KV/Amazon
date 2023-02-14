@@ -4,11 +4,10 @@ import "../css/Home.css";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
-let skip = 20;
+let skip = 8;
 function HomePage({ category, onAllCategory }) {
   let [products, setProducts] = useState([]);
   let [showProducts, setShowProducts] = useState([]);
-  console.log(skip);
   useEffect(() => {
     let FakeStoreAPI = async () => {
       await fetch(`https://dummyjson.com/products?limit=100`)
@@ -23,10 +22,6 @@ function HomePage({ category, onAllCategory }) {
             return;
           });
           onAllCategory(allCategory);
-          // fetch("https://fir-214b5-default-rtdb.firebaseio.com/products.json", {
-          //   method: "POST",
-          //   body: JSON.stringify(data),
-          // });
         })
         .catch((r) => console.log(r));
     };
@@ -37,13 +32,13 @@ function HomePage({ category, onAllCategory }) {
     products = products.filter((product) => product.category === category);
   }
   let productsBefore = products.slice(0, 8);
-  let productsAfter = products.slice(8, 20);
+
   let More = () => {
-    skip += 10;
-    productsAfter = products.slice(20, skip);
+    skip += 8;
+    let productsAfter = products.slice(8, skip);
     setShowProducts(productsAfter);
   };
-
+ 
   return (
     <>
       <div className="home">
@@ -91,7 +86,7 @@ function HomePage({ category, onAllCategory }) {
               </>
             )}
           </div>
-          {category === "all" && skip !== 100 && (
+          {category === "all" && skip < 100 && (
             <button className="button__load" onClick={() => More()}>
               Load more...
             </button>

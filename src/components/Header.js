@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
+let start = 0;
 function Header({ onCategory = false, show = false, allOptions }) {
   let options = [{ value: "all", label: "all" }];
   if (show) {
@@ -20,8 +21,7 @@ function Header({ onCategory = false, show = false, allOptions }) {
     value: "all",
     label: "all",
   });
-  let basket = useSelector((state) => state.basket.basket);
-  let totalAmount = basket.reduce((acc, item) => item.amount + acc, 0);
+  let totalAmount = useSelector((state) => state.basket.totalAmount);
   let dispatch = useDispatch();
 
   let handleAuthentication = () => {
@@ -36,15 +36,18 @@ function Header({ onCategory = false, show = false, allOptions }) {
     }
   };
   useEffect(() => {
-    if (totalAmount !== 0) {
-      setChangeBasket(true);
+    start++;
+    if (start > 1) {
+      if (totalAmount !== 0) {
+        setChangeBasket(true);
+      }
+      let timer = setTimeout(() => {
+        setChangeBasket(false);
+      }, 300);
+      return () => {
+        clearTimeout(timer);
+      };
     }
-    let timer = setTimeout(() => {
-      setChangeBasket(false);
-    }, 300);
-    return () => {
-      clearTimeout(timer);
-    };
   }, [totalAmount]);
 
   useEffect(() => {
