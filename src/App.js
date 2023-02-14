@@ -11,7 +11,7 @@ import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
-import { basketActions } from "./store";
+import { basketActions } from "./store/basketSlice";
 import { useDispatch } from "react-redux";
 let promise = loadStripe(publishableKey);
 

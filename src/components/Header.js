@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { basketActions } from "../store";
+import { basketActions } from "../store/basketSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 import Select from "react-select";

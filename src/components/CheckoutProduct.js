@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/CheckoutProduct.css";
-import { basketActions } from "../store";
+import { basketActions } from "../store/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 function CheckoutProduct({ item, hide = false }) {

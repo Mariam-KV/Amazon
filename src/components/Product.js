@@ -1,5 +1,5 @@
 import "../css/Product.css";
-import { basketActions } from "../store";
+import { basketActions } from "../store/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 function Product({

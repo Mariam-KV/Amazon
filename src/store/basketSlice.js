@@ -1,6 +1,5 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
-
-let busketSlice = createSlice({
+import { createSlice } from "@reduxjs/toolkit";
+let basketSlice = createSlice({
   name: "basket",
   initialState: { basket: [], user: [] },
   reducers: {
@@ -38,11 +37,5 @@ let busketSlice = createSlice({
     },
   },
 });
-
-export let basketActions = busketSlice.actions;
-
-export const store = configureStore({
-  reducer: {
-    basket: busketSlice.reducer,
-  },
-});
+export let basketActions = basketSlice.actions;
+export let basketReducer = basketSlice.reducer;
