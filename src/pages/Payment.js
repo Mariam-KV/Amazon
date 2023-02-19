@@ -66,7 +66,13 @@ function Payment() {
 
         history.replace("/orders");
       })
-      .catch((err) => setError(true));
+      .catch((err) => {
+        alert(
+          "Something went wrong ! Please try card number -  4242424242424242"
+        );
+        history.replace("/");
+        setError(true);
+      });
   };
   let handleChange = (e) => {
     setDisable(e.empty);
@@ -104,8 +110,9 @@ function Payment() {
           </div>
           <div className="payment__details">
             <form onSubmit={handleSubmit}>
+              <h4>Card number - 4242424242424242</h4>
               {error ? <h4 className="error">{error}</h4> : null}
-              {error ? <h4>Card number - 4242424242424242</h4> : null}
+
               <CardElement onChange={handleChange} value={3} />
               <div>
                 <CurrencyFormatC
@@ -115,7 +122,7 @@ function Payment() {
                 />
               </div>
               <div>
-                <button disabled={disable || processing || succeeded}>
+                <button disabled={disable || processing || succeeded || error}>
                   {processing ? "Processing" : "Buy now"}
                 </button>
               </div>
