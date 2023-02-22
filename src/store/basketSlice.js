@@ -26,22 +26,30 @@ let basketSlice = createSlice({
       );
     },
     removeFromBasket: (state, action) => {
-      let index = state.basket.findIndex((item) => item.id === action.payload);
+      let index;
 
-      let oldItem = state.basket[index];
-      if (oldItem && oldItem.amount > 1) {
-        state.basket[index].amount--;
-      } else {
+      index = state.basket.findIndex((item) => item.id === action.payload.id);
+      if (action.payload.all) {
+        let oldItem = state.basket[index];
         state?.basket.splice(index, 1);
+        state.totalPrice -= oldItem.amount * oldItem.price;
+        state.totalAmount -= oldItem.amount;
+      } else {
+        let oldItem = state.basket[index];
+        if (oldItem && oldItem.amount > 1) {
+          state.basket[index].amount--;
+        } else {
+          state?.basket.splice(index, 1);
+        }
+        state.totalAmount = state.basket?.reduce(
+          (acc, item) => +item.amount + acc,
+          0
+        );
+        state.totalPrice = state.basket?.reduce(
+          (acc, item) => +item.price * item.amount + acc,
+          0
+        );
       }
-      state.totalAmount = state.basket?.reduce(
-        (acc, item) => +item.amount + acc,
-        0
-      );
-      state.totalPrice = state.basket?.reduce(
-        (acc, item) => +item.price * item.amount + acc,
-        0
-      );
     },
     emptyBasket: (state) => {
       state.basket = [];

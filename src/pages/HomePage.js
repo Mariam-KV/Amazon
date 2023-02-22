@@ -37,7 +37,7 @@ function HomePage() {
     let productsAfter = products.slice(8, skip);
     setShowProducts(productsAfter);
   };
-
+ 
   return (
     <>
       <div className="home">
