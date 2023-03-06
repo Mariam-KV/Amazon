@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { basketReducer } from "./basketSlice";
 import { filterReducer } from "./filterSlice";
+import { productDetailsReducer } from "./productSlice";
 import {
   persistStore,
   persistReducer,
@@ -20,6 +21,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   basket: basketReducer,
   filter: filterReducer,
+  productDetails: productDetailsReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../css/Home.css";
 import { filterActions } from "../store/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { productDetailsActions } from "../store/productSlice";
 import Banner from "../components/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -17,14 +18,14 @@ function HomePage() {
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);
-
+          dispatch(productDetailsActions.allProducts(data.products));
           dispatch(filterActions.allCategory(data.products));
         })
         .catch((r) => console.log(r));
     };
     FakeStoreAPI();
   }, []);
-
+  console.log(products);
   if (category?.value) {
     products = products.filter(
       (product) => product.category === category.value
@@ -37,7 +38,7 @@ function HomePage() {
     let productsAfter = products.slice(8, skip);
     setShowProducts(productsAfter);
   };
- 
+
   return (
     <>
       <div className="home">
@@ -55,7 +56,7 @@ function HomePage() {
                   key={"product" + product.id}
                   category={product.category}
                   description={product.description}
-                  image={product.images[0]}
+                  image={product.images}
                   rating={Math.round(product.rating)}
                   id={product.id}
                   title={product.title}
@@ -73,7 +74,7 @@ function HomePage() {
                       key={"product" + product.id}
                       category={product.category}
                       description={product.description}
-                      image={product.images[0]}
+                      image={product.images}
                       rating={Math.round(product.rating)}
                       id={product.id}
                       title={product.title}

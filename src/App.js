@@ -13,6 +13,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
 import { basketActions } from "./store/basketSlice";
 import { useDispatch } from "react-redux";
+import ProductDetails from "./components/ProductDetails";
 let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
@@ -42,6 +43,10 @@ function App() {
         <Route path="/checkout">
           <Header />
           <Checkout />
+        </Route>
+        <Route path="/productDetails">
+          <Header />
+          <ProductDetails />
         </Route>
         <Route path="/orders">
           <Header />

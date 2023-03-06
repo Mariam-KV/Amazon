@@ -17,7 +17,7 @@
 }
 .link {
   text-decoration: none;
-  color: #2684ff;
+  color: white;
 }
 .header__select {
   grid-area: header2;
@@ -78,7 +78,7 @@
 }
 .header__optionBasket-basket {
   transform: scale(1.4);
-  color: red;
+  color: #f0c14b;
 }
 
 .header__basketCount {
