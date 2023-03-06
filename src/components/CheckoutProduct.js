@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, image, price, rating, description, amount } = item;
-
+ 
   function removeFromBasket(all = false) {
     dispatch(basketActions.removeFromBasket({ id, all }));
   }

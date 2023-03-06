@@ -29,7 +29,10 @@
   height: 100%;
   display: flex;
   gap: 3%;
-  align-items: start;
+  align-items: center;
+}
+.productDetails strong {
+  font-size: 20px;
 }
 .productDetails__left {
   flex: 1;
@@ -38,7 +41,7 @@
   margin: 10px;
   flex: 1;
 }
-.productDetails__right > h2 {
+.productDetails h2 {
   margin: 10px 0;
   font-size: 56px;
 }
@@ -52,7 +55,7 @@
   display: flex;
 }
 .productDetails__right-buttons button {
-  flex: 0.7;
+  flex: 0.6;
 }
 .amount {
   flex: 0.3;
@@ -85,4 +88,15 @@
 .productDetails button:hover {
   cursor: pointer;
   background: #e9b123;
+}
+.relatedItems {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.relatedItems__images {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
 }

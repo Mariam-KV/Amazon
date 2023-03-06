@@ -57,7 +57,7 @@ function HomePage() {
                   category={product.category}
                   description={product.description}
                   image={product.images}
-                  rating={Math.round(product.rating)}
+                  rating={product.rating}
                   id={product.id}
                   title={product.title}
                   price={product.price}
@@ -75,7 +75,7 @@ function HomePage() {
                       category={product.category}
                       description={product.description}
                       image={product.images}
-                      rating={Math.round(product.rating)}
+                      rating={product.rating}
                       id={product.id}
                       title={product.title}
                       price={product.price}

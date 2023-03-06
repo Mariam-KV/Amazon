@@ -1,11 +1,8 @@
 import "../css/Product.css";
-import { basketActions } from "../store/basketSlice";
 import { productDetailsActions } from "../store/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductRating from "./ProductRating";
 import { useHistory } from "react-router-dom";
-import { Carousel } from "react-responsive-carousel";
-import { style } from "@mui/system";
 function Product({
   id,
   category,
@@ -17,8 +14,8 @@ function Product({
   amount,
 }) {
   let dispatch = useDispatch();
-
   let history = useHistory();
+  let allProduct = useSelector((state) => state.productDetails.allProduct);
   return (
     <div
       className="product"
@@ -35,6 +32,11 @@ function Product({
             rating,
             amount,
           })
+        );
+        dispatch(
+          productDetailsActions.relatedProducts(
+            allProduct.filter((el) => el.category === category)
+          )
         );
       }}
     >

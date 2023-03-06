@@ -14,6 +14,9 @@ let productDetailsSlice = createSlice({
       console.log(action.payload);
       state.oneProduct = action.payload;
     },
+    relatedProducts: (state, action) => {
+      state.related = [...action.payload];
+    },
   },
 });
 export let productDetailsActions = productDetailsSlice.actions;
