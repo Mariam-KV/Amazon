@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, image, price, rating, description, amount } = item;
- 
+
   function removeFromBasket(all = false) {
     dispatch(basketActions.removeFromBasket({ id, all }));
   }
@@ -41,7 +41,6 @@ function CheckoutProduct({ item, hide = false }) {
           )}
         </h3>
         <ProductRating rating={rating} />
-        <p className="checkoutProduct__description">{description}</p>
 
         <div className="checkoutProduct__priceAmount">
           {hide ? (

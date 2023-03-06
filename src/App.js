@@ -1,7 +1,6 @@
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
-import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
@@ -14,9 +13,13 @@ import { publishableKey } from "./stripe";
 import { basketActions } from "./store/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
+import Sidebar from "./components/Sidebar";
+import { useState } from "react";
+
 let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
+  let [sidebar, setSidebar] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
@@ -30,33 +33,33 @@ function App() {
       }
     });
   }, []);
+
   return (
     <div className="app">
       <Switch>
-        <Route path="/" exact>
-          <Header show={true} />
-          <HomePage />
-        </Route>
         <Route path="/login" exact>
           <Login />
         </Route>
-        <Route path="/checkout">
-          <Header />
-          <Checkout />
-        </Route>
-        <Route path="/productDetails">
-          <Header />
-          <ProductDetails />
-        </Route>
-        <Route path="/orders">
-          <Header />
-          <Orders />
-        </Route>
-        <Route path="/payment">
-          <Header />
-          <Elements stripe={promise}>
-            <Payment />
-          </Elements>
+
+        <Route path="*">
+          <Header show={true} onSideBar={setSidebar} sidebar={sidebar} />
+          {sidebar !== false && (
+            <Sidebar onSideBar={setSidebar} sidebar={sidebar} />
+          )}
+          <Route path="/productDetails">
+            <ProductDetails />
+          </Route>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/orders">
+            <Orders />
+          </Route>
+          <Route path="/payment">
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Route>
         </Route>
       </Switch>
     </div>
