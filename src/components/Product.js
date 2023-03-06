@@ -40,7 +40,6 @@ function Product({
         );
       }}
     >
-      <p className="product__category">{category}</p>
       <div className="product__info">
         <p className="product__info">{title}</p>
         <p className="product__price">

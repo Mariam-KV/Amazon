@@ -19,17 +19,23 @@
   cursor: pointer;
   box-shadow: 10px 20px 20px rgb(189, 189, 189);
 }
+
 .product__rating {
   display: flex;
   color: #fcc333;
   position: relative;
   cursor: pointer;
+  height: 40px;
 }
 
 .product > img {
   max-height: 200px;
   width: 200px;
   object-fit: contain;
+  transition: all 0.7s;
+}
+.product:hover img {
+  transform: scale(1.1);
 }
 .carousel-product .carousel .control-dots .dot {
   background-color: #fcc333;
@@ -47,21 +53,10 @@
   margin: 0 5px;
 }
 
-.product:hover .product__category {
-  display: block;
-}
-
 .product__info > p {
   margin: 5px;
-  font-size: 18px;
-}
-.product__category {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 5px;
-  margin: 0;
-  color: #007185;
+  font-size: 20px;
+  font-weight: 500;
 }
 .product__price {
   margin-top: 5px;

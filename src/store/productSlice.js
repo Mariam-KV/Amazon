@@ -11,7 +11,6 @@ let productDetailsSlice = createSlice({
       state.allProduct = [...action.payload];
     },
     selectOneProduct: (state, action) => {
-      console.log(action.payload);
       state.oneProduct = action.payload;
     },
     relatedProducts: (state, action) => {

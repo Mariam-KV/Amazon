@@ -1,18 +1,17 @@
 import { useState } from "react";
 import "../css/productDetails.css";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { basketActions } from "../store/basketSlice";
 import { productDetailsActions } from "../store/productSlice";
 import { Carousel } from "react-responsive-carousel";
+import ProductRating from "./ProductRating";
 import Amount from "./Amount";
 function ProductDetails() {
-  let { id, category, title, description, image, price, rating, amount } =
+  let { id, category, title, description, image, price, rating } =
     useSelector((state) => state.productDetails.oneProduct);
   let related = useSelector((state) => state.productDetails.related);
   let dispatch = useDispatch();
   let [changedAmount, setAmount] = useState(1);
-  let history = useHistory();
   function addingToBasket() {
     dispatch(
       basketActions.addToBasket({
@@ -31,16 +30,15 @@ function ProductDetails() {
   function onAmount(e) {
     setAmount(e);
   }
-
   return (
     <div className="productDetails">
       <div className="productDetails__left">
         <Carousel
           infiniteLoop
           showStatus={false}
-          showIndicators={document.body.offsetWidth > 800 ? false : true}
+          showIndicators={document.body.offsetWidth > 700 ? false : true}
           showArrows={false}
-          showThumbs={document.body.offsetWidth > 800 ? true : false}
+          showThumbs={document.body.offsetWidth > 700 ? true : false}
           interval={5000}
           className="productDetails__left__carousel"
         >
@@ -59,7 +57,9 @@ function ProductDetails() {
       </div>
       <div className="productDetails__right">
         <div>
+          <ProductRating rating={rating} />
           <h2>{title}</h2>
+
           <strong>$ {price}.00</strong>
           <p className="productDetails__right-description">{description}</p>
           <div className="productDetails__right-buttons">
@@ -71,9 +71,9 @@ function ProductDetails() {
             <button onClick={() => addingToBasket()}>Add to Basket</button>
           </div>
         </div>
-        <div>
-          <h3>Products related to this item</h3>
-          <div className="relatedItems">
+        <div className="related">
+          <p className="related__title">Products related to this item</p>
+          <div className="related__items">
             {related
               .filter((el) => el.id !== id)
               .map((el) => {
@@ -82,7 +82,7 @@ function ProductDetails() {
                     src={el.images[0]}
                     alt="related item "
                     key={el.images[0]}
-                    className="relatedItems__images"
+                    className="related__items-images"
                     onClick={() => {
                       dispatch(
                         productDetailsActions.selectOneProduct({

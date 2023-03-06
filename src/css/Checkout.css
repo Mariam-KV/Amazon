@@ -5,8 +5,7 @@
 }
 .checkout {
   display: flex;
-
-  background-color: white;
+ 
 }
 @media (max-width: 1000px) {
   .checkout {

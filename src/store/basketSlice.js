@@ -4,7 +4,6 @@ let basketSlice = createSlice({
   initialState: { basket: [], user: [], totalAmount: 0, totalPrice: 0 },
   reducers: {
     addToBasket: (state, action) => {
-      console.log(state.basket);
       let newItem = state.basket.filter(
         (item) => item.id === action.payload.id
       );

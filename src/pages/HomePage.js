@@ -21,11 +21,11 @@ function HomePage() {
           dispatch(productDetailsActions.allProducts(data.products));
           dispatch(filterActions.allCategory(data.products));
         })
-        .catch((r) => console.log(r));
+        .catch((r) => alert(r));
     };
     FakeStoreAPI();
   }, []);
-  console.log(products);
+
   if (category?.value) {
     products = products.filter(
       (product) => product.category === category.value
