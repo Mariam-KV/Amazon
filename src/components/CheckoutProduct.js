@@ -22,7 +22,7 @@ function CheckoutProduct({ item, hide = false }) {
         price,
         rating,
         description,
-        amount,
+        amount: 1,
       })
     );
   }

@@ -4,6 +4,10 @@
 .productDetails__left__carousel .carousel .thumb {
   height: 100px;
 }
+
+.productDetails__left__carousel .carousel .slide {
+  margin: auto;
+}
 .productDetails__left__carousel .carousel .thumb > img {
   height: 90%;
   width: 100%;
@@ -12,13 +16,17 @@
   display: flex;
   justify-content: center;
 }
+.productDetails__left__carousel .carousel .control-dots .dot {
+  background: #f0c14b;
+}
 .carousel__image {
-  width: 400px;
-  height: 400px;
+  max-width: 400px;
+  max-height: 400px;
   object-fit: contain;
 }
 
 .productDetails {
+  height: 100%;
   display: flex;
   gap: 3%;
   align-items: start;
@@ -27,12 +35,54 @@
   flex: 1;
 }
 .productDetails__right {
+  margin: 10px;
   flex: 1;
 }
 .productDetails__right > h2 {
+  margin: 10px 0;
   font-size: 56px;
 }
 .productDetails__right-description {
   font-size: 20px;
   color: black;
+}
+.productDetails__right-buttons {
+  margin: 0 10px;
+  gap: 10px;
+  display: flex;
+}
+.productDetails__right-buttons button {
+  flex: 0.7;
+}
+.amount {
+  flex: 0.3;
+}
+@media (max-width: 900px) {
+  .productDetails {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel__image {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+  }
+}
+.productDetails button {
+  min-width: 100px;
+
+  background: #f0c14b;
+  border: 1px solid;
+  padding: 10px;
+  font-size: 18px;
+
+  border-color: #a88734 #9c7e31 #846a29;
+  color: black;
+  transition: 0.6s;
+}
+
+.productDetails button:hover {
+  cursor: pointer;
+  background: #e9b123;
 }

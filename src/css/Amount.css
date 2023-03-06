@@ -1,0 +1,27 @@
+.amount input {
+  max-width: 50px;
+  text-align: center;
+  font-size: 16px;
+}
+.amount input:focus {
+  outline: 1px solid #f0c14b;
+}
+.amount input::-webkit-outer-spin-button,
+.amount input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.amount input[type="number"] {
+  -moz-appearance: textfield;
+}
+.amount {
+  cursor: pointer;
+  height: 42px;
+
+  border: 2px solid #f0c14b;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

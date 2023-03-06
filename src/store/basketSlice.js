@@ -9,11 +9,10 @@ let basketSlice = createSlice({
       );
 
       if (newItem[0]?.id) {
-        newItem[0].amount = +newItem[0].amount + 1;
+        newItem[0].amount = +newItem[0].amount + action.payload.amount;
 
         state.basket = [...state.basket];
       } else {
-        action.payload.amount = 1;
         state.basket = [...state.basket, action.payload];
       }
       state.totalAmount = state.basket?.reduce(
