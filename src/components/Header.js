@@ -8,19 +8,16 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
-
-let start = 0;
 function Header({ show = false }) {
   let allCategory = useSelector((state) => state.filter.allCategory);
   let category = useSelector((state) => state.filter.category);
-  let [changeBasket, setChangeBasket] = useState(false);
   let user = useSelector((state) => state.basket.user);
   let totalAmount = useSelector((state) => state.basket.totalAmount);
+  let changeBasket = useSelector((state) => state.basket.changeBasket);
   let dispatch = useDispatch();
   let handleAuthentication = () => {
     if (user?.email) {
       auth.signOut();
-      start = 0;
     } else {
       auth.onAuthStateChanged((authUser) => {
         dispatch(
@@ -29,20 +26,7 @@ function Header({ show = false }) {
       });
     }
   };
-  useEffect(() => {
-    start++;
-    if (start > 1) {
-      if (totalAmount !== 0) {
-        setChangeBasket(true);
-      }
-      let timer = setTimeout(() => {
-        setChangeBasket(false);
-      }, 300);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [totalAmount]);
+
   return (
     <div className="header">
       <div className="header__logo">

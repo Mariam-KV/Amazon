@@ -7,16 +7,18 @@ import { useDispatch } from "react-redux";
 import { sidebarActions } from "../store/sidebarSlice";
 function Sidebar() {
   let dispatch = useDispatch();
-  
+
   return (
     <div className="sidebar">
-      <p className="sidebar__close">
-        <ArrowForwardIosIcon
-          onClick={() => dispatch(sidebarActions.toggleShow(false))}
-        />
-      </p>
-      <main>
+      <div>
+        <p className="sidebar__close">
+          <ArrowForwardIosIcon
+            onClick={() => dispatch(sidebarActions.toggleShow(false))}
+          />
+        </p>
         <Checkout />
+      </div>
+      <main>
         <div className="sidebar__subtotal">
           <Subtotal />
         </div>

@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 let basketSlice = createSlice({
   name: "basket",
-  initialState: { basket: [], user: [], totalAmount: 0, totalPrice: 0 },
+  initialState: {
+    basket: [],
+    user: [],
+    totalAmount: 0,
+    totalPrice: 0,
+    changeBasket: false,
+  },
   reducers: {
+    changeColor: (state, action) => {
+      state.changeBasket = action.payload;
+    },
     addToBasket: (state, action) => {
       let newItem = state.basket.filter(
         (item) => item.id === action.payload.id

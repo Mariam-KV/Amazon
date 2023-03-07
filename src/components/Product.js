@@ -43,7 +43,7 @@ function Product({
       <div className="product__info">
         <p className="product__info">{title}</p>
         <p className="product__price">
-          <small>$</small>
+          <small>$ </small>
           <strong>{price}</strong>
         </p>
         <ProductRating rating={rating} />

@@ -18,7 +18,6 @@ function Checkout() {
           return <CheckoutProduct item={item} key={i} />;
         })}
       </div>
-     
     </div>
   );
 }

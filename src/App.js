@@ -36,23 +36,17 @@ function App() {
   }, []);
 
   return (
-    <div
-      className="app"
-      onClick={(e) => console.log(e.target.className.includes("sidebar"))}
-    >
+    <div className="app">
       <Switch>
         <Route path="/login" exact>
           <Login />
         </Route>
-
         <Route path="*">
           <OutsideAlerter>{sidebar !== false && <Sidebar />}</OutsideAlerter>
-
           <Route path="/productDetails">
             <Header />
             <ProductDetails />
           </Route>
-
           <Route path="/" exact>
             <Header show={true} />
             <HomePage />

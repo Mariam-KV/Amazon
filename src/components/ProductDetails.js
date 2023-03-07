@@ -7,8 +7,9 @@ import { Carousel } from "react-responsive-carousel";
 import ProductRating from "./ProductRating";
 import Amount from "./Amount";
 function ProductDetails() {
-  let { id, category, title, description, image, price, rating } =
-    useSelector((state) => state.productDetails.oneProduct);
+  let { id, category, title, description, image, price, rating } = useSelector(
+    (state) => state.productDetails.oneProduct
+  );
   let related = useSelector((state) => state.productDetails.related);
   let dispatch = useDispatch();
   let [changedAmount, setAmount] = useState(1);
@@ -26,6 +27,17 @@ function ProductDetails() {
       })
     );
     setAmount(1);
+
+    dispatch(basketActions.changeColor(true));
+    console.log(1);
+    let timer = setTimeout(() => {
+      console.log(2);
+      dispatch(basketActions.changeColor(false));
+    }, 300);
+    // return () => {
+    //   dispatch(basketActions.changeColor(false));
+    //   clearTimeout(timer);
+    // };
   }
   function onAmount(e) {
     setAmount(e);
