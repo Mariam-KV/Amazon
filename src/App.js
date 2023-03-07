@@ -4,23 +4,23 @@ import Login from "./pages/Login";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
 import { basketActions } from "./store/basketSlice";
+import OutsideAlerter from "./components/Outside";
 import { useDispatch } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
 import Sidebar from "./components/Sidebar";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
-  let ref = useRef();
-  let [sidebar, setSidebar] = useState(false);
+  let sidebar = useSelector((item) => item.sidebar.show);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
@@ -34,48 +34,35 @@ function App() {
       }
     });
   }, []);
-  // useEffect(() => {
-  //   const checkIfClickedOutside = (e) => {
-  //     console.log(e.target
-  //       );
-  //     // If the menu is open and the clicked target is not within the menu,
-  //     // then close the menu
-  //     if (
-  //       sidebar &&
-  //       ref.current &&
-  //       !ref.current.contains(e.target) &&
-  //       !e.target.namespaceURI === "http://www.w3.org/2000/svg"
-  //     ) {
-  //       setSidebar(false);
-  //     }
-  //   };
 
-  //   document.addEventListener("click", checkIfClickedOutside);
-  // }, [sidebar]);
-  // console.log(sidebar);
   return (
-    <div className="app">
+    <div
+      className="app"
+      onClick={(e) => console.log(e.target.className.includes("sidebar"))}
+    >
       <Switch>
         <Route path="/login" exact>
           <Login />
         </Route>
 
         <Route path="*">
-          {/* <p ref={ref}>qwrttyjkgjgdsfa</p> */}
-          <Header show={true} onSideBar={setSidebar} sidebar={sidebar} />
-          {sidebar !== false && (
-            <Sidebar onSideBar={setSidebar} sidebar={sidebar} />
-          )}
+          <OutsideAlerter>{sidebar !== false && <Sidebar />}</OutsideAlerter>
+
           <Route path="/productDetails">
+            <Header />
             <ProductDetails />
           </Route>
+
           <Route path="/" exact>
+            <Header show={true} />
             <HomePage />
           </Route>
           <Route path="/orders">
+            <Header />
             <Orders />
           </Route>
           <Route path="/payment">
+            <Header />
             <Elements stripe={promise}>
               <Payment />
             </Elements>

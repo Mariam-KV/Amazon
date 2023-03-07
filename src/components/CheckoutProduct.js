@@ -40,7 +40,12 @@ function CheckoutProduct({ item, hide = false }) {
             </div>
           )}
         </h3>
-
+        {hide && (
+          <>
+            <ProductRating rating={rating} />
+            <p className="checkoutProduct__description">{description}</p>
+          </>
+        )}
         <div className="checkoutProduct__priceAmount">
           {hide ? (
             `Quantity: ${amount}`

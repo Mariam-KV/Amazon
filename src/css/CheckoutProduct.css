@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  max-width: 400px;
   gap: 10px;
   padding: 10px;
   border-bottom: 2px solid #f0c14b;
@@ -47,7 +48,7 @@
   object-fit: contain;
 }
 .checkoutProduct__description {
-  margin: 0;
+  margin: 5px;
 }
 .checkoutProduct__info {
   grid-column: 2/5;

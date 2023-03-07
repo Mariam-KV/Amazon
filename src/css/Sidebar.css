@@ -1,5 +1,6 @@
 .sidebar {
   position: fixed;
+  border-left: 3px solid #f0c14b;
   background-color: #e9eceb;
   right: 0;
   top: 0;
@@ -14,4 +15,10 @@
   text-align: start;
   margin-top: 15px;
   margin-left: 15px;
+}
+.sidebar__subtotal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

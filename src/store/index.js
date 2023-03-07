@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { basketReducer } from "./basketSlice";
 import { filterReducer } from "./filterSlice";
+import { sidebarReducer } from "./sidebarSlice";
 import { productDetailsReducer } from "./productSlice";
 import {
   persistStore,
@@ -17,11 +18,13 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["sidebar"],
 };
 const rootReducer = combineReducers({
   basket: basketReducer,
   filter: filterReducer,
   productDetails: productDetailsReducer,
+  sidebar: sidebarReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -3,13 +3,14 @@ import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store/basketSlice";
 import { filterActions } from "../store/filterSlice";
+import { sidebarActions } from "../store/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 
 let start = 0;
-function Header({ show = false, onSideBar }) {
+function Header({ show = false }) {
   let allCategory = useSelector((state) => state.filter.allCategory);
   let category = useSelector((state) => state.filter.category);
   let [changeBasket, setChangeBasket] = useState(false);
@@ -79,7 +80,10 @@ function Header({ show = false, onSideBar }) {
         </Link>
 
         <div className="header__optionBasket">
-          <div className="link" onClick={() => onSideBar(true)}>
+          <div
+            className="link"
+            onClick={() => dispatch(sidebarActions.toggleShow(true))}
+          >
             <ShoppingBasketIcon
               className={changeBasket ? "header__optionBasket-basket" : ""}
             />

@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/Checkout.css";
-import Subtotal from "../components/Subtotal";
 import { useSelector } from "react-redux";
 import CheckoutProduct from "../components/CheckoutProduct";
 function Checkout() {

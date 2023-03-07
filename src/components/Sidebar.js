@@ -3,11 +3,17 @@ import "../css/Sidebar.css";
 import Checkout from "../pages/Checkout";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Subtotal from "./Subtotal";
-function Sidebar({ onSideBar }) {
+import { useDispatch } from "react-redux";
+import { sidebarActions } from "../store/sidebarSlice";
+function Sidebar() {
+  let dispatch = useDispatch();
+  
   return (
     <div className="sidebar">
       <p className="sidebar__close">
-        <ArrowForwardIosIcon onClick={() => onSideBar(false)} />
+        <ArrowForwardIosIcon
+          onClick={() => dispatch(sidebarActions.toggleShow(false))}
+        />
       </p>
       <main>
         <Checkout />
