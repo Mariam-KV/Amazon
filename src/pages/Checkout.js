@@ -19,9 +19,7 @@ function Checkout() {
           return <CheckoutProduct item={item} key={i} />;
         })}
       </div>
-      <div className="checkout__right">
-        <Subtotal />
-      </div>
+     
     </div>
   );
 }

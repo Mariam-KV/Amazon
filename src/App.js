@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Payment from "./pages/Payment";
 import Orders from "./pages/Orders";
 import "./css/App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
@@ -19,6 +19,7 @@ import { useState } from "react";
 let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
+  let ref = useRef();
   let [sidebar, setSidebar] = useState(false);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -33,7 +34,25 @@ function App() {
       }
     });
   }, []);
+  // useEffect(() => {
+  //   const checkIfClickedOutside = (e) => {
+  //     console.log(e.target
+  //       );
+  //     // If the menu is open and the clicked target is not within the menu,
+  //     // then close the menu
+  //     if (
+  //       sidebar &&
+  //       ref.current &&
+  //       !ref.current.contains(e.target) &&
+  //       !e.target.namespaceURI === "http://www.w3.org/2000/svg"
+  //     ) {
+  //       setSidebar(false);
+  //     }
+  //   };
 
+  //   document.addEventListener("click", checkIfClickedOutside);
+  // }, [sidebar]);
+  // console.log(sidebar);
   return (
     <div className="app">
       <Switch>
@@ -42,6 +61,7 @@ function App() {
         </Route>
 
         <Route path="*">
+          {/* <p ref={ref}>qwrttyjkgjgdsfa</p> */}
           <Header show={true} onSideBar={setSidebar} sidebar={sidebar} />
           {sidebar !== false && (
             <Sidebar onSideBar={setSidebar} sidebar={sidebar} />

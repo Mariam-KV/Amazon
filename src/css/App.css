@@ -5,6 +5,9 @@ body {
   background-color: #e3e6e6;
   overflow-x: hidden;
 }
+body svg {
+  cursor: pointer;
+}
 .app {
   width: 100%;
 }

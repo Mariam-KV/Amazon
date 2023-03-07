@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, image, price, rating, description, amount } = item;
@@ -36,11 +36,10 @@ function CheckoutProduct({ item, hide = false }) {
             ""
           ) : (
             <div className="checkoutProduct__title-icon">
-              <CloseIcon onClick={() => removeFromBasket(true)} />
+              <DeleteIcon onClick={() => removeFromBasket(true)} />
             </div>
           )}
         </h3>
-        <ProductRating rating={rating} />
 
         <div className="checkoutProduct__priceAmount">
           {hide ? (

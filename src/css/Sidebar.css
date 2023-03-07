@@ -1,9 +1,17 @@
 .sidebar {
-  position: absolute;
-  background-color: aqua;
+  position: fixed;
+  background-color: #e9eceb;
+  right: 0;
   top: 0;
   bottom: 0;
-  width: 400px;
+  max-width: 500px;
+  min-width: 300px;
   z-index: 101;
-  
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.sidebar__close {
+  text-align: start;
+  margin-top: 15px;
+  margin-left: 15px;
 }
