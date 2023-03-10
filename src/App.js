@@ -12,10 +12,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
 import { basketActions } from "./store/basketSlice";
 import OutsideAlerter from "./components/Outside";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
 import Sidebar from "./components/Sidebar";
-import { useSelector } from "react-redux";
 
 let promise = loadStripe(publishableKey);
 function App() {
@@ -25,9 +24,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
         // logged in
-        dispatch(
-          basketActions.setUser({ email: authUser.email, uid: authUser.uid })
-        );
+        dispatch(basketActions.setUser({ email: authUser.email, uid: authUser.uid }));
       } else {
         // logged out
         dispatch(basketActions.setUser(null));

@@ -26,12 +26,14 @@
   position: relative;
   cursor: pointer;
   height: 40px;
+  z-index: 33;
 }
 
 .product > img {
   max-height: 200px;
   width: 200px;
   object-fit: contain;
+  margin-top: 10px;
   transition: all 0.7s;
 }
 .product:hover img {

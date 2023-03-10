@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/productDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { basketActions } from "../store/basketSlice";
@@ -11,6 +11,7 @@ function ProductDetails() {
     (state) => state.productDetails.oneProduct
   );
   let related = useSelector((state) => state.productDetails.related);
+  let totalAmount = useSelector((state) => state.basket.totalAmount);
   let dispatch = useDispatch();
   let [changedAmount, setAmount] = useState(1);
   function addingToBasket() {
@@ -26,19 +27,18 @@ function ProductDetails() {
         amount: changedAmount,
       })
     );
-    setAmount(1);
 
+    setAmount(1);
     dispatch(basketActions.changeColor(true));
-    console.log(1);
+  }
+  useEffect(() => {
     let timer = setTimeout(() => {
-      console.log(2);
       dispatch(basketActions.changeColor(false));
     }, 300);
-    // return () => {
-    //   dispatch(basketActions.changeColor(false));
-    //   clearTimeout(timer);
-    // };
-  }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [totalAmount]);
   function onAmount(e) {
     setAmount(e);
   }
@@ -80,7 +80,7 @@ function ProductDetails() {
               changedAmount={changedAmount}
               className="amount"
             />
-            <button onClick={() => addingToBasket()}>Add to Basket</button>
+            <button onClick={() => addingToBasket()}>Add to Cart</button>
           </div>
         </div>
         <div className="related">

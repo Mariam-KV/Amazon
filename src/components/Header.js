@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store/basketSlice";
@@ -50,14 +49,14 @@ function Header({ show = false }) {
         <Link to={user?.email ? "/" : "/login"} className="link">
           <div className="header__option" onClick={handleAuthentication}>
             <span className="header__optionLineOne">
-              {user?.email ? user.email : "Guest"}
+              {user?.email ? user.email.split("@")[0] : "Guest"}
             </span>
             <span className="header__optionLineTwo">
               {!user?.email ? "Sign In" : "Sign out"}
             </span>
           </div>
         </Link>
-        <Link to="/orders" className="link">
+        <Link to={user?.email ? "/orders" : "/login"} className="link">
           <div className="header__option">
             <span className="header__optionLineTwo">Orders</span>
           </div>

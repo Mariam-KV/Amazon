@@ -38,7 +38,7 @@
 .payment__items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 .payment__details > form {
   max-width: 400px;
