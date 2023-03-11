@@ -1,0 +1,16 @@
+.leaveReviews {
+  margin: 10% 20%;
+}
+.leaveReview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leaveReview__left {
+  flex: 0.4;
+}
+.leaveReview__right {
+  border-left: 2px solid red;
+  padding: 10px;
+  flex: 0.6;
+}

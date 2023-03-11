@@ -1,0 +1,41 @@
+.formReview {
+  position: relative;
+  margin: 0 20%;
+  padding: 10px;
+}
+
+.formReview__input {
+  margin-bottom: 0.5rem;
+}
+
+.formReview__input label {
+  font-weight: bold;
+  display: block;
+  font-size: 25px;
+  margin-bottom: 0.5rem;
+}
+
+.formReview__input input,
+.formReview__input textarea {
+  font: inherit;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.formReview__input input:focus,
+.formReview__input textarea:focus {
+  outline: 3px solid #f0c14b;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions button {
+  font-size: 1.25rem;
+}
