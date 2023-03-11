@@ -1,20 +1,22 @@
-import { useState } from "react";
 import "../css/Review.css";
 import FormReview from "./FormReview";
 import LeaveReview from "./LeaveReview";
+import { reviewActions } from "../store/reviewSlice";
+import { useSelector, useDispatch } from "react-redux";
 function Review({ stars, id }) {
-  let [showForm, setShowForm] = useState(false);
+  let show = useSelector((state) => state.review.show);
+  let dispatch = useDispatch();
   return (
     <div className="review">
       <h2 className="review__title">{`${Math.round(stars)} out of 5 stars`}</h2>
       <button
         onClick={() => {
-          setShowForm(!showForm);
+          dispatch(reviewActions.toggleShow(!show));
         }}
       >
-        {!showForm ? "Write" : "Cancel"} a review
+        {!show ? "Write" : "Cancel"} a review
       </button>
-      {showForm && <FormReview id={id} />}
+      {show && <FormReview id={id} />}
       <LeaveReview id={id} />
     </div>
   );

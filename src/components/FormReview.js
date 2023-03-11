@@ -3,41 +3,44 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Prompt } from "react-router-dom";
 import "../css/FormReview.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { reviewActions } from "../store/reviewSlice";
 import moment from "moment";
+
 const FormReview = ({ id }) => {
   let [entered, setEntered] = useState(false);
   let [isValid, setValid] = useState(false);
+
   let [valueRating, setRating] = useState(5);
   let [valueName, setName] = useState("");
+  let [reset, setReset] = useState(false);
   let [valueReview, setReview] = useState("");
   let [valueTitle, setTitle] = useState("");
-  let user = useSelector((state) => state.basket.user);
+  let dispatch = useDispatch();
+
   function submitFormHandler(event) {
     event.preventDefault();
     //user?.email.split("@")[0],
     if (valueName && valueTitle && valueReview && valueRating) {
       console.log(202);
-      fetch(`https://fir-214b5-default-rtdb.firebaseio.com/${id}.json`, {
-        method: "POST",
-        body: JSON.stringify({
+      dispatch(
+        reviewActions.allReviews({
+          id: id,
           time: moment().format("ll"),
           name: valueName,
           title: valueTitle,
           review: valueReview,
           rating: valueRating,
-        }),
-      }).then(() => {
-        setName("");
-        setRating(5);
-        setReview("");
-        setTitle("");
-      });
-    } else {
-      alert(3);
-    }
+        })
+      );
 
-    // props.onAddQuote({ author: valueAuthor, text: valueText });
+      setName("");
+      setRating(5);
+      setReview("");
+      setTitle("");
+      setReset(!reset);
+      dispatch(reviewActions.toggleShow(false));
+    }
   }
 
   let handleClick = () => {

@@ -1,7 +1,9 @@
 .leaveReviews {
   margin: 10% 20%;
+  color: #313638;
 }
 .leaveReview {
+  margin: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +12,18 @@
   flex: 0.4;
 }
 .leaveReview__right {
-  border-left: 2px solid red;
-  padding: 10px;
+  border-left: 2px solid #f0c14b;
+  padding: 10px 30px;
   flex: 0.6;
+}
+.leaveReview__right-title {
+  margin: 0 0 20px;
+  font-size: 46px;
+}
+.leaveReview__right-review,
+.leaveReview__left-time,
+.leaveReview__left-name {
+  font-size: 26px;
+  margin: 5px 0;
+  font-weight: 400;
 }

@@ -1,6 +1,7 @@
 import { Star, StarBorder } from "@mui/icons-material/";
 function ProductRating({ rating }) {
-  rating = Math.round(rating);
+  console.log(rating);
+  rating = 4;
 
   let minRating = 5 - rating;
   return (
