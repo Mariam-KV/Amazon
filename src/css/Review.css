@@ -6,7 +6,8 @@
 }
 .review__title {
   text-align: center;
-  font-size: 54px;
+
+  font-size: max(3.5vw, 40px);
 }
 .review button {
   max-width: 400px;

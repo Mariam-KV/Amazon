@@ -1,29 +1,43 @@
 .leaveReviews {
-  margin: 10% 20%;
+  margin: 30px auto;
   color: #313638;
+  max-width: 1000px;
+  min-width: 300px;
+  padding: 10px;
 }
 .leaveReview {
-  margin: 30px;
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .leaveReview__left {
-  flex: 0.4;
+  overflow: hidden;
+  text-align: center;
+  width: 33.3333%;
+  margin: 10px;
 }
 .leaveReview__right {
+  overflow: hidden;
   border-left: 2px solid #f0c14b;
-  padding: 10px 30px;
-  flex: 0.6;
+  padding-left: 30px;
+  width: 66.6666%;
 }
 .leaveReview__right-title {
   margin: 0 0 20px;
-  font-size: 46px;
+  font-size: 40px;
 }
 .leaveReview__right-review,
 .leaveReview__left-time,
 .leaveReview__left-name {
-  font-size: 26px;
+  font-size: 25px;
   margin: 5px 0;
   font-weight: 400;
+}
+@media (max-width: 800px) {
+  .leaveReview {
+    max-width: 700px;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

@@ -3,14 +3,12 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Prompt } from "react-router-dom";
 import "../css/FormReview.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { reviewActions } from "../store/reviewSlice";
 import moment from "moment";
 
 const FormReview = ({ id }) => {
-  let [entered, setEntered] = useState(false);
   let [isValid, setValid] = useState(false);
-
   let [valueRating, setRating] = useState(5);
   let [valueName, setName] = useState("");
   let [reset, setReset] = useState(false);
@@ -21,8 +19,7 @@ const FormReview = ({ id }) => {
   function submitFormHandler(event) {
     event.preventDefault();
     //user?.email.split("@")[0],
-    if (valueName && valueTitle && valueReview && valueRating) {
-      console.log(202);
+    if (isValid) {
       dispatch(
         reviewActions.allReviews({
           id: id,
@@ -41,14 +38,21 @@ const FormReview = ({ id }) => {
       setReset(!reset);
       dispatch(reviewActions.toggleShow(false));
     }
+    // else {
+    //   alert("Something went wrong! Try again.");
+    // }
   }
+  useEffect(() => {
+    if (
+      valueName.trim().length > 0 &&
+      valueTitle.trim().length > 0 &&
+      valueReview.trim().length > 0 &&
+      valueRating > 0
+    ) {
+      setValid(true);
+    }
+  }, [valueName, valueTitle, valueReview, valueRating]);
 
-  let handleClick = () => {
-    setEntered(false);
-  };
-  let handleFocus = () => {
-    setEntered(true);
-  };
   let handleName = (event) => {
     setName(event.target.value);
   };
@@ -65,18 +69,7 @@ const FormReview = ({ id }) => {
   //   }, [valueAuthor, valueText]);
   return (
     <div>
-      <Prompt when={entered} message="Are you sure?" />
-      <form
-        className="formReview"
-        onSubmit={submitFormHandler}
-        onFocus={handleFocus}
-      >
-        {/* {props.isLoading && (
-          <div className={classes.loading}>
-            <LoadingSpinner />
-          </div>
-        )} */}
-
+      <form className="formReview" onSubmit={submitFormHandler}>
         <div className="formReview__input">
           <label htmlFor="name">Name (displayed publicly)</label>
           <input
@@ -124,9 +117,9 @@ const FormReview = ({ id }) => {
         </div>
 
         <button
-        //   className={isValid ? "btn" : "btn invalid"}
-        //   onClick={handleClick}
-        //   disabled={!isValid}
+          className={isValid ? "" : "invalid"}
+          //   onClick={handleClick}
+          //   disabled={!isValid}
         >
           Submit Review
         </button>

@@ -1,7 +1,7 @@
 .formReview {
-  position: relative;
-  margin: 0 20%;
-  padding: 10px;
+  margin: 50px auto;
+
+  max-width: 700px;
 }
 
 .formReview__input {
@@ -18,7 +18,7 @@
 .formReview__input input,
 .formReview__input textarea {
   font: inherit;
-  padding: 15px;
+  padding: 15px 5px;
   border-radius: 4px;
   background-color: #f0f0f0;
   border: 1px solid #c1d1d1;
@@ -32,10 +32,6 @@
   outline: 3px solid #f0c14b;
 }
 
-.actions {
-  text-align: right;
-}
-
-.actions button {
-  font-size: 1.25rem;
+.invalid:hover {
+  cursor: not-allowed !important;
 }

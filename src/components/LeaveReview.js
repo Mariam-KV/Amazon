@@ -13,6 +13,7 @@ function LeaveReview({ id }) {
             <div key={review.title} className="leaveReview">
               <div className="leaveReview__left">
                 <ProductRating rating={review.rating} />
+
                 <p className="leaveReview__left-time">{review.time}</p>
                 <p className="leaveReview__left-name">{review.name}</p>
               </div>
