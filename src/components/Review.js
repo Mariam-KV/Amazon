@@ -2,6 +2,7 @@ import "../css/Review.css";
 import FormReview from "./FormReview";
 import LeaveReview from "./LeaveReview";
 import { useEffect } from "react";
+import OutsideAlerter from "./Outside";
 import { reviewActions } from "../store/reviewSlice";
 import { useSelector, useDispatch } from "react-redux";
 function Review({ stars, id }) {
@@ -21,7 +22,9 @@ function Review({ stars, id }) {
         {!show ? "Write" : "Cancel"} a review
       </button>
       {show && <FormReview id={id} />}
-      <LeaveReview id={id} />
+      <OutsideAlerter reviews={true}>
+        <LeaveReview id={id} />
+      </OutsideAlerter>
     </div>
   );
 }

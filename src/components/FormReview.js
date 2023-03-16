@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import { Prompt } from "react-router-dom";
 import "../css/FormReview.css";
 import { useDispatch } from "react-redux";
 import { reviewActions } from "../store/reviewSlice";
@@ -18,7 +17,6 @@ const FormReview = ({ id }) => {
 
   function submitFormHandler(event) {
     event.preventDefault();
-    //user?.email.split("@")[0],
     if (isValid) {
       dispatch(
         reviewActions.allReviews({
@@ -38,9 +36,6 @@ const FormReview = ({ id }) => {
       setReset(!reset);
       dispatch(reviewActions.toggleShow(false));
     }
-    // else {
-    //   alert("Something went wrong! Try again.");
-    // }
   }
   useEffect(() => {
     if (
@@ -62,11 +57,7 @@ const FormReview = ({ id }) => {
   let handleTitle = (event) => {
     setTitle(event.target.value);
   };
-  //   useEffect(() => {
-  //     if (valueAuthor.trim().length > 0 && valueText.trim().length > 0) {
-  //       setValid(true);
-  //     }
-  //   }, [valueAuthor, valueText]);
+  
   return (
     <div>
       <form className="formReview" onSubmit={submitFormHandler}>
@@ -118,8 +109,6 @@ const FormReview = ({ id }) => {
 
         <button
           className={isValid ? "" : "invalid"}
-          //   onClick={handleClick}
-          //   disabled={!isValid}
         >
           Submit Review
         </button>

@@ -1,7 +1,8 @@
 .review {
+  position: relative;
   display: flex;
   justify-content: center;
-  margin: 50px 30px;
+
   flex-direction: column;
 }
 .review__title {
