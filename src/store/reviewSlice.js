@@ -1,31 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../FireBaseApp";
 let reviewSlice = createSlice({
   name: "review",
   initialState: {
     show: false,
-
-    leaveReviews: [],
+    leaveReview: [],
   },
   reducers: {
     toggleShow: (state, action) => {
       state.show = action.payload;
     },
     allReviews: (state, action) => {
-      state.leaveReviews = [...state.leaveReviews, action.payload];
-      setDoc(doc(db, "reviews", "review"), {
-        ...state.leaveReviews,
+      state.leaveReview = [...state.leaveReview, action.payload];
+      fetch("https://fir-214b5-default-rtdb.firebaseio.com/reviews.json", {
+        method: "POST",
+        body: JSON.stringify(action.payload),
       });
-      db.collection("reviews")
-        .doc("review")
-        .get()
-        .then((doc) => {
-          state.leaveReviews = Object.values(doc.data());
-        })
-        .catch((error) => {
-          console.log("Error getting document:", error);
-        });
     },
   },
 });

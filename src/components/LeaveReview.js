@@ -1,9 +1,16 @@
 import ProductRating from "./ProductRating";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import "../css/LeaveReviews.css";
 function LeaveReview({ id }) {
-  let { leaveReviews } = useSelector((state) => state.review);
-
+  let [leaveReviews, setReviews] = useState([]);
+  let { leaveReview } = useSelector((state) => state.review);
+  useEffect(() => {
+    fetch("https://fir-214b5-default-rtdb.firebaseio.com/reviews.json")
+      .then((res) => res.json())
+      .then((data) => data && setReviews(Object.values(data)))
+      .catch((err) => console.log(err));
+  }, [leaveReview]);
   return (
     <div className="leaveReviews">
       {leaveReviews.length !== 0 &&

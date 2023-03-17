@@ -22,7 +22,7 @@
 
 .product__rating {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   color: #fcc333;
   position: relative;
   cursor: pointer;

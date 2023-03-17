@@ -2,11 +2,13 @@ import "../css/Review.css";
 import FormReview from "./FormReview";
 import LeaveReview from "./LeaveReview";
 import { useEffect } from "react";
-import OutsideAlerter from "./Outside";
 import { reviewActions } from "../store/reviewSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 function Review({ stars, id }) {
   let show = useSelector((state) => state.review.show);
+  let user = useSelector((state) => state.basket.user);
+  let history = useHistory();
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(reviewActions.toggleShow(false));
@@ -16,15 +18,19 @@ function Review({ stars, id }) {
       <h2 className="review__title">{`${Math.round(stars)} out of 5 stars`}</h2>
       <button
         onClick={() => {
-          dispatch(reviewActions.toggleShow(!show));
+          if (user.email) {
+            dispatch(reviewActions.toggleShow(!show));
+          } else {
+            history.push("/login");
+          }
         }}
       >
         {!show ? "Write" : "Cancel"} a review
       </button>
       {show && <FormReview id={id} />}
-      <OutsideAlerter reviews={true}>
+     
         <LeaveReview id={id} />
-      </OutsideAlerter>
+  
     </div>
   );
 }

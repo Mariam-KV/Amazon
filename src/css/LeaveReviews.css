@@ -5,6 +5,9 @@
   min-width: 70%;
   padding: 10px;
 }
+.leaveReview .product__rating {
+  justify-content: center;
+}
 .leaveReview {
   height: 100%;
 
@@ -39,7 +42,7 @@
 .leaveReview__right-review {
   font-size: 25px;
 }
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .leaveReview {
     flex-direction: column;
     justify-content: start;
@@ -54,7 +57,7 @@
     text-align: left;
     width: 100%;
   }
-  .product__rating {
+  .leaveReview .product__rating {
     justify-content: left;
   }
 }

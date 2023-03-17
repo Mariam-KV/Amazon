@@ -19,7 +19,7 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["sidebar"],
+  blacklist: ["sidebar", "review"],
 };
 const rootReducer = combineReducers({
   basket: basketReducer,
