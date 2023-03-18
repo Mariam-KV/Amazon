@@ -5,6 +5,7 @@
   background-color: white;
   position: relative;
 }
+
 .order__data {
   color: #1a98ff;
   font-size: 18px;
@@ -30,6 +31,9 @@
 .order__total {
   font-weight: 500;
   text-align: center;
+}
+.order .checkoutProduct {
+  border: none;
 }
 @media (max-width: 800px) {
   .order {

@@ -25,25 +25,11 @@
   flex-wrap: wrap;
   margin: -70px 0 0;
   z-index: 1;
-
   justify-content: center;
 }
-.button__load {
-  display: block;
-  color: black;
-  width: max(15%, 150px);
 
-  font-size: 16px;
-  padding: 10px 20px;
-  background: #f0c14b;
-  border: 1px solid;
-  border-color: #a88734 #9c7e31 #846a29;
+.home__pagination nav {
+  margin: 0 auto;
+  padding: 20px 5px;
+}
 
-  margin: 20px auto;
-  cursor: pointer;
-  transition: all 1s;
-}
-.button__load:hover {
-  background: #e9b123;
-  transform: translateY(3px);
-}

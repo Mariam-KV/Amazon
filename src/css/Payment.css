@@ -1,7 +1,9 @@
 .payment {
   background-color: white;
 }
-
+.payment .checkoutProduct {
+  border: none;
+}
 .payment__container > h1 {
   text-align: center;
   padding: 10px;
