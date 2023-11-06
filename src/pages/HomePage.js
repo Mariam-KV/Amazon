@@ -12,7 +12,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
+      light: "#f0c14b",
       main: "#f0c14b",
+      dark: "#f0c14b",
     },
   },
 });
@@ -95,7 +97,6 @@ function HomePage() {
                   onChange={(event, page) => (category.value ? "" : More(page))}
                 />
               </Stack>
-              s
             </ThemeProvider>
           )}
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { basketActions } from "../store/basketSlice";
 import { productDetailsActions } from "../store/productSlice";
 import { Carousel } from "react-responsive-carousel";
+import { sidebarActions } from "../store/sidebarSlice";
 import ProductRating from "./ProductRating";
 import Amount from "./Amount";
 import Review from "./Review";
@@ -43,6 +44,7 @@ function ProductDetails() {
   function onAmount(e) {
     setAmount(e);
   }
+
   return (
     <>
       <div className="productDetails">
@@ -82,7 +84,16 @@ function ProductDetails() {
                 changedAmount={changedAmount}
                 className="amount"
               />
-              <button onClick={() => addingToBasket()}>Add to Cart</button>
+              <button
+                onClick={() => {
+                  addingToBasket();
+                  let t = setTimeout(() => {
+                    dispatch(sidebarActions.toggleShow(true));
+                  }, 700);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
           <div className="related">

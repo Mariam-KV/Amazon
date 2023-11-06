@@ -95,3 +95,8 @@
 .sidebar {
   right: 0;
 }
+.css-t3ipsp-control {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}

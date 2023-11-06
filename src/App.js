@@ -15,7 +15,7 @@ import OutsideAlerter from "./components/Outside";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
 import Sidebar from "./components/Sidebar";
-
+import Overlay from "./components/Overlay";
 let promise = loadStripe(publishableKey);
 function App() {
   let dispatch = useDispatch();
@@ -24,7 +24,9 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {
         // logged in
-        dispatch(basketActions.setUser({ email: authUser.email, uid: authUser.uid }));
+        dispatch(
+          basketActions.setUser({ email: authUser.email, uid: authUser.uid })
+        );
       } else {
         // logged out
         dispatch(basketActions.setUser(null));
@@ -40,24 +42,26 @@ function App() {
         </Route>
         <Route path="*">
           <OutsideAlerter>{sidebar !== false && <Sidebar />}</OutsideAlerter>
-          <Route path="/productDetails">
-            <Header />
-            <ProductDetails />
-          </Route>
-          <Route path="/" exact>
-            <Header show={true} />
-            <HomePage />
-          </Route>
-          <Route path="/orders">
-            <Header />
-            <Orders />
-          </Route>
-          <Route path="/payment">
-            <Header />
-            <Elements stripe={promise}>
-              <Payment />
-            </Elements>
-          </Route>
+          <Overlay show={sidebar}>
+            <Route path="/productDetails">
+              <Header />
+              <ProductDetails />
+            </Route>
+            <Route path="/" exact>
+              <Header show={true} />
+              <HomePage />
+            </Route>
+            <Route path="/orders">
+              <Header />
+              <Orders />
+            </Route>
+            <Route path="/payment">
+              <Header />
+              <Elements stripe={promise}>
+                <Payment />
+              </Elements>
+            </Route>
+          </Overlay>
         </Route>
       </Switch>
     </div>
