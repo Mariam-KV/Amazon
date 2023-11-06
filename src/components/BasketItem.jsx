@@ -1,6 +1,6 @@
 import "../css/BasketItem.css";
 import { useState } from "react";
-import { basketActions } from "../store";
+import { basketActions } from "../store/slices";
 import { useDispatch } from "react-redux";
 function BasketItem({ item, hide }) {
   //let basket = useSelector((state) => state.basket);

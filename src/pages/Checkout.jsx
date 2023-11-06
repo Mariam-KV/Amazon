@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Checkout.css";
 import { useSelector, useDispatch } from "react-redux";
-import { basketActions } from "../store/basketSlice";
+import { basketActions } from "../store/slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 function Checkout() {

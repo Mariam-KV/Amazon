@@ -1,20 +1,19 @@
 import ProductRating from "./ProductRating";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { gettingReviews } from "../store/thunks/reviewThunk";
 import "../css/LeaveReviews.css";
 function LeaveReview({ id }) {
-  let [leaveReviews, setReviews] = useState([]);
-  let { leaveReview } = useSelector((state) => state.review);
+  let dispatch = useDispatch();
+  let { leaveReview, submit } = useSelector((state) => state.review);
   useEffect(() => {
-    fetch("https://fir-214b5-default-rtdb.firebaseio.com/reviews.json")
-      .then((res) => res.json())
-      .then((data) => data && setReviews(Object.values(data)))
-      .catch((err) => console.log(err));
-  }, [leaveReview]);
+    dispatch(gettingReviews());
+  }, [dispatch, submit]);
+
   return (
     <div className="leaveReviews">
-      {leaveReviews.length !== 0 &&
-        leaveReviews
+      {leaveReview.length !== 0 &&
+        Object.values(leaveReview)
           ?.filter((el) => el.id === id)
           ?.map((review) => {
             return (

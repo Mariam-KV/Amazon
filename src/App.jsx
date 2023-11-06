@@ -10,7 +10,7 @@ import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
-import { basketActions } from "./store/basketSlice";
+import { basketActions } from "./store/slices/basketSlice";
 import OutsideAlerter from "./components/Outside";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "./components/ProductDetails";

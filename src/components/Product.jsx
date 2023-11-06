@@ -1,5 +1,5 @@
 import "../css/Product.css";
-import { productDetailsActions } from "../store/productSlice";
+import { productDetailsActions } from "../store/slices/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductRating from "./ProductRating";
 import { useHistory } from "react-router-dom";

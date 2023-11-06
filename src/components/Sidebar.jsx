@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import Subtotal from "./Subtotal";
 import { useDispatch } from "react-redux";
-import { sidebarActions } from "../store/sidebarSlice";
+import { sidebarActions } from "../store/slices/sidebarSlice";
 function Sidebar() {
   let dispatch = useDispatch();
 

@@ -4,17 +4,17 @@ let reviewSlice = createSlice({
   initialState: {
     show: false,
     leaveReview: [],
+    submit: false,
   },
   reducers: {
     toggleShow: (state, action) => {
       state.show = action.payload;
     },
     allReviews: (state, action) => {
-      state.leaveReview = [...state.leaveReview, action.payload];
-      fetch("https://fir-214b5-default-rtdb.firebaseio.com/reviews.json", {
-        method: "POST",
-        body: JSON.stringify(action.payload),
-      });
+      if (action.payload) state.leaveReview = action.payload;
+    },
+    submitForm: (state) => {
+      state.submit = !state.submit;
     },
   },
 });

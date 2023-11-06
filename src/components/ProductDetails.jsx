@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "../css/productDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { basketActions } from "../store/basketSlice";
-import { productDetailsActions } from "../store/productSlice";
+import { basketActions } from "../store/slices/basketSlice";
+import { productDetailsActions } from "../store/slices/productSlice";
 import { Carousel } from "react-responsive-carousel";
-import { sidebarActions } from "../store/sidebarSlice";
+import { sidebarActions } from "../store/slices/sidebarSlice";
 import ProductRating from "./ProductRating";
-import Amount from "./Amount";
+import Amount from "./amount/Amount";
 import Review from "./Review";
 function ProductDetails() {
   let { id, category, title, description, image, price, rating } = useSelector(

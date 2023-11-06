@@ -1,7 +1,7 @@
 import React from "react";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import "../css/Amount.css";
+import "./Amount.css";
 function Amount({ onAmount, changedAmount }) {
   return (
     <div className="amount">

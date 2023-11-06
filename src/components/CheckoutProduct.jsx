@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/CheckoutProduct.css";
-import { basketActions } from "../store/basketSlice";
+import { basketActions } from "../store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 import RemoveIcon from "@mui/icons-material/Remove";

@@ -1,18 +1,18 @@
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { basketActions } from "../store/basketSlice";
-import { filterActions } from "../store/filterSlice";
-import { sidebarActions } from "../store/sidebarSlice";
+import { basketActions } from "../store/slices/basketSlice";
+import { filterActions } from "../store/slices/filterSlice";
+import { sidebarActions } from "../store/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header({ show = false }) {
-  let allCategory = useSelector((state) => state.filter.allCategory);
-  let category = useSelector((state) => state.filter.category);
-  let user = useSelector((state) => state.basket.user);
-  let totalAmount = useSelector((state) => state.basket.totalAmount);
-  let changeBasket = useSelector((state) => state.basket.changeBasket);
+  let { allCategory, category } = useSelector((state) => state.filter);
+  let { user, totalAmount, changeBasket } = useSelector(
+    (state) => state.basket
+  );
+
   let dispatch = useDispatch();
   let handleAuthentication = () => {
     if (user?.email) {

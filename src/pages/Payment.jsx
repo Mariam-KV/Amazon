@@ -6,7 +6,7 @@ import CurrencyFormatC from "../components/CurrencyFormatC";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "../axios";
 import { db } from "../FireBaseApp";
-import { basketActions } from "../store/basketSlice";
+import { basketActions } from "../store/slices/basketSlice";
 import { useSelector, useDispatch } from "react-redux";
 function Payment() {
   let user = useSelector((state) => state.basket.user);

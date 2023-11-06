@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Subtotal.css";
 import CurrencyFormatC from "./CurrencyFormatC";
-import { sidebarActions } from "../store/sidebarSlice";
+import { sidebarActions } from "../store/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {

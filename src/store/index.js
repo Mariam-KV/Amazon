@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { basketReducer } from "./basketSlice";
-import { filterReducer } from "./filterSlice";
-import { sidebarReducer } from "./sidebarSlice";
-import { reviewReducer } from "./reviewSlice";
-import { productDetailsReducer } from "./productSlice";
+import { basketReducer } from "./slices/basketSlice";
+import { filterReducer } from "./slices/filterSlice";
+import { sidebarReducer } from "./slices/sidebarSlice";
+import { reviewReducer } from "./slices/reviewSlice";
+import { productDetailsReducer } from "./slices/productSlice";
 import {
   persistStore,
   persistReducer,

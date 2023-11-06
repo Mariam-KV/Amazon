@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/Home.css";
-import { filterActions } from "../store/filterSlice";
+import { filterActions } from "../store/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { productDetailsActions } from "../store/productSlice";
 import Banner from "../components/banner/Banner";

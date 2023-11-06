@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import "../css/FormReview.css";
-import { useDispatch } from "react-redux";
-import { reviewActions } from "../store/reviewSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { postingReviews } from "../store/thunks/reviewThunk";
+import { reviewActions } from "../store/slices/reviewSlice";
 import moment from "moment";
 
 const FormReview = ({ id }) => {
@@ -14,12 +15,13 @@ const FormReview = ({ id }) => {
   let [valueReview, setReview] = useState("");
   let [valueTitle, setTitle] = useState("");
   let dispatch = useDispatch();
-
+  
   function submitFormHandler(event) {
     event.preventDefault();
     if (isValid) {
+      dispatch(reviewActions.submitForm());
       dispatch(
-        reviewActions.allReviews({
+        postingReviews({
           id: id,
           time: moment().format("ll"),
           name: valueName,
@@ -57,7 +59,7 @@ const FormReview = ({ id }) => {
   let handleTitle = (event) => {
     setTitle(event.target.value);
   };
-  
+
   return (
     <div>
       <form className="formReview" onSubmit={submitFormHandler}>
@@ -107,11 +109,7 @@ const FormReview = ({ id }) => {
           ></textarea>
         </div>
 
-        <button
-          className={isValid ? "" : "invalid"}
-        >
-          Submit Review
-        </button>
+        <button className={isValid ? "" : "invalid"}>Submit Review</button>
       </form>
     </div>
   );
