@@ -3,7 +3,7 @@ import "../css/Home.css";
 import { filterActions } from "../store/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { productDetailsActions } from "../store/productSlice";
-import Banner from "../components/Banner";
+import Banner from "../components/banner/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Pagination from "@mui/material/Pagination";

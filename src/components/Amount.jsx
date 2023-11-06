@@ -7,9 +7,7 @@ function Amount({ onAmount, changedAmount }) {
     <div className="amount">
       <RemoveIcon
         onClick={() => {
-          if (changedAmount >= 2) {
-            onAmount(changedAmount - 1);
-          }
+          if (changedAmount >= 2) onAmount(changedAmount - 1);
         }}
       />
       {
@@ -19,17 +17,12 @@ function Amount({ onAmount, changedAmount }) {
           className="amount__input"
           value={changedAmount}
           onChange={(e) => {
-            if (+e.target.value > 0) {
-              onAmount(+e.target.value);
-            }
+            let value = +e.target.value;
+            if (value > 0) onAmount(value);
           }}
         />
       }
-      <AddIcon
-        onClick={() => {
-          onAmount(changedAmount + 1);
-        }}
-      />
+      <AddIcon onClick={() => onAmount(changedAmount + 1)} />
     </div>
   );
 }

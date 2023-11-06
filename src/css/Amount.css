@@ -11,11 +11,6 @@
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* Firefox */
-.amount input[type="number"] {
-  -moz-appearance: textfield;
-}
 .amount {
   cursor: pointer;
   height: 42px;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/Banner.css";
+import "./Banner.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 function Banner() {

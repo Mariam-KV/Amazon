@@ -41,9 +41,6 @@ function ProductDetails() {
       clearTimeout(timer);
     };
   }, [totalAmount]);
-  function onAmount(e) {
-    setAmount(e);
-  }
 
   return (
     <>
@@ -80,7 +77,7 @@ function ProductDetails() {
             <p className="productDetails__right-description">{description}</p>
             <div className="productDetails__right-buttons">
               <Amount
-                onAmount={onAmount}
+                onAmount={(e) => setAmount(e)}
                 changedAmount={changedAmount}
                 className="amount"
               />
