@@ -7,7 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import { sidebarActions } from "../store/slices/sidebarSlice";
 import ProductRating from "./ProductRating";
 import Amount from "./amount/Amount";
-import Review from "./Review";
+import Review from "./review/Review";
 function ProductDetails() {
   let { id, category, title, description, image, price, rating } = useSelector(
     (state) => state.productDetails.oneProduct

@@ -1,8 +1,8 @@
-import ProductRating from "./ProductRating";
+import ProductRating from "../ProductRating";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { gettingReviews } from "../store/thunks/reviewThunk";
-import "../css/LeaveReviews.css";
+import { gettingReviews } from "../../store/thunks/reviewThunk";
+import "./LeaveReviews.css";
 function LeaveReview({ id }) {
   let dispatch = useDispatch();
   let { leaveReview, submit } = useSelector((state) => state.review);
@@ -26,7 +26,7 @@ function LeaveReview({ id }) {
                 </div>
                 <div className="leaveReview__right">
                   <h3 className="leaveReview__right-title">{review.title}</h3>
-                  <p className="leaveReview__right-review"> {review.review}</p>
+                  <p className="leaveReview__right-review"> {review.comment}</p>
                 </div>
               </div>
             );

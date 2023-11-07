@@ -2,8 +2,10 @@
   margin: 30px auto;
   color: #313638;
   max-width: 1000px;
-  min-width: 70%;
+  min-width: 500px;
   padding: 10px;
+  overflow: hidden;
+  text-align: center;
 }
 .leaveReview .product__rating {
   justify-content: center;
@@ -46,16 +48,15 @@
   .leaveReview {
     flex-direction: column;
     justify-content: start;
-    width: 100%;
   }
   .leaveReview__right {
     border-left: none;
-    width: 100%;
+
     padding-left: 0;
   }
   .leaveReview__left {
     text-align: left;
-    width: 100%;
+
   }
   .leaveReview .product__rating {
     justify-content: left;

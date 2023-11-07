@@ -1,8 +1,8 @@
-import "../css/Review.css";
-import FormReview from "./FormReview";
-import LeaveReview from "./LeaveReview";
+import "./Review.css";
+import FormReview from "../formReview/FormReview";
+import LeaveReview from "../leaveReview/LeaveReview";
 import { useEffect } from "react";
-import { reviewActions } from "../store/slices/reviewSlice";
+import { reviewActions } from "../../store/slices/reviewSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 

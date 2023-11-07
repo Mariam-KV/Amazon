@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../css/Home.css";
 import { filterActions } from "../store/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { productDetailsActions } from "../store/productSlice";
+import { productDetailsActions } from "../store/slices/productSlice";
 import Banner from "../components/banner/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
