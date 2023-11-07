@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { basketReducer } from "./slices/basketSlice";
-import { filterReducer } from "./slices/filterSlice";
 import { sidebarReducer } from "./slices/sidebarSlice";
+import { stripeReducer } from "./slices/stripeSlice";
 import { reviewReducer } from "./slices/reviewSlice";
 import { productDetailsReducer } from "./slices/productSlice";
 import {
@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
   basket: basketReducer,
   productDetails: productDetailsReducer,
   sidebar: sidebarReducer,
+  stripe: stripeReducer,
   review: reviewReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);

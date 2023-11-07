@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "../css/productDetails.css";
 import { useSelector, useDispatch } from "react-redux";
-import { basketActions } from "../store/slices/basketSlice";
+import { basketActions } from "../redux/slices/basketSlice";
 import RelatedProducts from "./RelatedProducts";
-import { Carousel } from "react-responsive-carousel";
-import { sidebarActions } from "../store/slices/sidebarSlice";
+import ProductCarousel from "./ProductCarousel";
+import { sidebarActions } from "../redux/slices/sidebarSlice";
 import ProductRating from "./ProductRating";
 import Amount from "./amount/Amount";
 import Review from "./review/Review";
@@ -18,6 +18,7 @@ function ProductDetails() {
   let dispatch = useDispatch();
   let [changedAmount, setAmount] = useState(1);
   function addingToBasket() {
+    console.log(34);
     dispatch(
       basketActions.addToBasket({
         id,
@@ -45,51 +46,27 @@ function ProductDetails() {
   return (
     <>
       <div className="productDetails">
-        <div className="productDetails__left">
-          <Carousel
-            infiniteLoop
-            showStatus={false}
-            showIndicators={document.body.offsetWidth > 700 ? false : true}
-            showArrows={false}
-            showThumbs={document.body.offsetWidth > 700 ? true : false}
-            interval={5000}
-            className="productDetails__left__carousel"
-          >
-            {images.map((img) => {
-              return (
-                <img
-                  src={img}
-                  key={img}
-                  alt="carousel__image"
-                  loading="lazy"
-                  className="carousel__image"
-                />
-              );
-            })}
-          </Carousel>
-        </div>
+        <ProductCarousel images={images} />
         <div className="productDetails__right">
-          <div>
-            <ProductRating rating={rating} />
-            <h2>{title}</h2>
+          <ProductRating rating={rating} />
+          <h2>{title}</h2>
 
-            <strong>$ {price}.00</strong>
-            <p className="productDetails__right-description">{description}</p>
-            <div className="productDetails__right-buttons">
-              <Amount
-                onAmount={(e) => setAmount(e)}
-                changedAmount={changedAmount}
-                className="amount"
-              />
-              <button
-                onClick={() => {
-                  addingToBasket();
-                  dispatch(sidebarActions.toggleShow(true));
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
+          <strong>$ {price}.00</strong>
+          <p className="productDetails__right-description">{description}</p>
+          <div className="productDetails__right-buttons">
+            <Amount
+              onAmount={(e) => setAmount(e)}
+              changedAmount={changedAmount}
+              className="amount"
+            />
+            <button
+              onClick={() => {
+                addingToBasket();
+                dispatch(sidebarActions.toggleShow(true));
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
           <div className="related">
             <p className="related__title">Products related to this item</p>

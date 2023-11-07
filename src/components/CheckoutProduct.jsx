@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/CheckoutProduct.css";
-import { basketActions } from "../store/slices/basketSlice";
+import { basketActions } from "../redux/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -9,7 +9,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function CheckoutProduct({ item, hide = false }) {
   let dispatch = useDispatch();
   let { id, title, images, price, rating, description, amount } = item;
-
+ 
   function removeFromBasket(all = false) {
     dispatch(basketActions.removeFromBasket({ id, all }));
   }

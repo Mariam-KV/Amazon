@@ -5,8 +5,8 @@ import "./FormReview.css";
 import moment from "moment";
 import { Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { postingReviews } from "../../store/thunks/reviewThunk";
-import { reviewActions } from "../../store/slices/reviewSlice";
+import { postingReviews } from "../../redux/thunks/reviewThunk";
+import { reviewActions } from "../../redux/slices/reviewSlice";
 const FormReview = ({ id }) => {
   let [isValid, setValid] = useState(false);
   let dispatch = useDispatch();

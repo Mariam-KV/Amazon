@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { sidebarActions } from "../store/slices/sidebarSlice";
+import { sidebarActions } from "../redux/slices/sidebarSlice";
 /**
  * Hook that alerts clicks outside of the passed ref
  */

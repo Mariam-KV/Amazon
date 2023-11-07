@@ -17,7 +17,7 @@ let productDetailsSlice = createSlice({
       state.oneProduct = state.allProduct.filter(
         (product) => product.id === action.payload
       );
-      console.log(state.oneProduct);
+
     },
     relatedProducts: (state, action) => {
       state.related = state.allProduct.filter(

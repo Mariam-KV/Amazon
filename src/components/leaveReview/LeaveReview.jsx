@@ -1,7 +1,7 @@
 import ProductRating from "../ProductRating";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { gettingReviews } from "../../store/thunks/reviewThunk";
+import { gettingReviews } from "../../redux/thunks/reviewThunk";
 import "./LeaveReviews.css";
 function LeaveReview({ id }) {
   let dispatch = useDispatch();

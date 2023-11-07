@@ -1,31 +1,33 @@
 import { useState, useEffect } from "react";
 import "../css/Payment.css";
 import CheckoutProduct from "../components/CheckoutProduct";
-import { Link, useHistory } from "react-router-dom";
 import CurrencyFormatC from "../components/CurrencyFormatC";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useHistory } from "react-router-dom";
 import axios from "../axios";
-import { db } from "../FireBaseApp";
-import { basketActions } from "../store/slices/basketSlice";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { getClientSecretThunk } from "../redux/thunks/getClientSecretThunk";
+
+import { paymentThunk } from "../redux/thunks/paymentThunk";
 import { useSelector, useDispatch } from "react-redux";
 function Payment() {
-  let user = useSelector((state) => state.basket.user);
-  let basket = useSelector((state) => state.basket.basket);
-  let totalPrice = useSelector((state) => state.basket.totalPrice);
-  let totalAmount = useSelector((state) => state.basket.totalAmount);
+  let { user, basket, totalPrice, totalAmount } = useSelector(
+    (state) => state.basket
+  );
+  let [clientSecret, setClientSecret] = useState(true);
+  let { status, error, secret } = useSelector((state) => state.stripe);
+  console.log(status, "status");
   let dispatch = useDispatch();
   let stripe = useStripe();
   let elements = useElements();
-  let [error, setError] = useState(null);
-  let [disable, setDisable] = useState(true);
-  let [processing, setProcessing] = useState("");
-  let [succeeded, setSucceeded] = useState(false);
-  let [clientSecret, setClientSecret] = useState(true);
   let history = useHistory();
-
+  let [disable, setDisable] = useState(true);
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
     if (totalAmount) {
+      // console.log(23);
+
+      // dispatch(getClientSecretThunk({ totalPrice }));
+      // console.log(secret);
       let getClientSecret = async () => {
         let response = await axios({
           method: "post",
@@ -36,47 +38,25 @@ function Payment() {
       };
       getClientSecret();
     }
-  }, [totalAmount, totalPrice]);
+  }, [dispatch, totalAmount, totalPrice]);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    setProcessing(true);
-    //WOW
-    await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: { card: elements.getElement(CardElement) },
+    dispatch(
+      paymentThunk({
+        stripe,
+        elements,
+        CardElement,
+        clientSecret,
+        user,
+        basket,
+        history,
       })
-      .then(({ paymentIntent }) => {
-        //paymentIntent === payment confirmation
-        //when we complete the payment
-        db.collection("users")
-          .doc(user?.uid)
-          .collection("orders")
-          .doc(paymentIntent.id)
-          .set({
-            basket,
-            amount: paymentIntent.amount,
-            created: paymentIntent.created,
-          });
-
-        setSucceeded(true);
-        setProcessing(false);
-        setError(false);
-        dispatch(basketActions.emptyBasket());
-
-        history.replace("/orders");
-      })
-      .catch((err) => {
-        alert(
-          "Something went wrong ! Please try card number -  4242424242424242"
-        );
-        history.replace("/");
-        setError(true);
-      });
+    );
   };
   let handleChange = (e) => {
     setDisable(e.empty);
-    setError(e.error?.message);
+    // setError(e.error?.message);
   };
   return (
     <div className="payment">
@@ -111,7 +91,9 @@ function Payment() {
           <div className="payment__details">
             <form onSubmit={handleSubmit}>
               <h4>Card number - 4242424242424242</h4>
-              {error ? <h4 className="error">{error}</h4> : null}
+              {status === "rejected" ? (
+                <h4 className="error">{error}</h4>
+              ) : null}
 
               <CardElement onChange={handleChange} value={3} />
               <div>
@@ -122,8 +104,8 @@ function Payment() {
                 />
               </div>
               <div>
-                <button disabled={disable || processing || succeeded || error}>
-                  {processing ? "Processing" : "Buy now"}
+                <button>
+                  {status === "loading" ? "Processing" : "Buy now"}
                 </button>
               </div>
             </form>
@@ -133,5 +115,7 @@ function Payment() {
     </div>
   );
 }
-
+{
+  /* <button disabled={disable || processing || succeeded || error}></button> */
+}
 export default Payment;

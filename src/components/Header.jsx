@@ -1,8 +1,8 @@
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { basketActions } from "../store/slices/basketSlice";
-import { productDetailsActions } from "../store/slices/productSlice";
-import { sidebarActions } from "../store/slices/sidebarSlice";
+import { basketActions } from "../redux/slices/basketSlice";
+import { productDetailsActions } from "../redux/slices/productSlice";
+import { sidebarActions } from "../redux/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";

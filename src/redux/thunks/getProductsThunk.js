@@ -1,4 +1,4 @@
-import { productDetailsActions } from "../store/slices/productSlice";
+import { productDetailsActions } from "../slices/productSlice";
 export const getProductsThunk = (data) => async (dispatch) => {
   await fetch(`https://dummyjson.com/products?limit=100`)
     .then((res) => res.json())

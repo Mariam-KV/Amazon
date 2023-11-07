@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import "../css/Home.css";
-import { filterActions } from "../store/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { productDetailsActions } from "../store/slices/productSlice";
-import { getProductsThunk } from "./getProductsThunk.js";
+import { productDetailsActions } from "../redux/slices/productSlice";
+import { getProductsThunk } from "../redux/thunks/getProductsThunk.js";
 import Banner from "../components/banner/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -55,7 +54,6 @@ function HomePage() {
         <>
           <div className="home__row">
             {filterProducts?.map((product) => (
-              
               <Product data={product} key={"product" + product.id} />
             ))}
           </div>
@@ -89,23 +87,3 @@ function HomePage() {
 }
 
 export default HomePage;
-//  let FakeStoreAPI = async () => {
-//       await fetch(`https://dummyjson.com/products?limit=100`)
-//         .then((res) => res.json())
-//         .then((data) => {
-//           setProducts(data.products);
-//           category.value
-//             ? setShowProducts(
-//                 data.products.filter(
-//                   (product) => product.category === category.value
-//                 )
-//               )
-//             : setShowProducts(data.products.slice(0, 8));
-
-//           dispatch(productDetailsActions.allProducts(data.products));
-//           dispatch(productDetailsActions.allCategory(data.products));
-//         })
-//         .catch((r) => alert(r));
-//     };
-
-//     FakeStoreAPI();
