@@ -3,6 +3,7 @@ import "../css/Home.css";
 import { filterActions } from "../store/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { productDetailsActions } from "../store/slices/productSlice";
+import { getProductsThunk } from "./getProductsThunk.js";
 import Banner from "../components/banner/Banner";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -23,35 +24,16 @@ function HomePage() {
   let [products, setProducts] = useState([]);
   let [showProducts, setShowProducts] = useState([]);
   let dispatch = useDispatch();
-  let category = useSelector((state) => state.filter.category);
+  let { category, filterProducts } = useSelector(
+    (state) => state.productDetails
+  );
   useEffect(() => {
-    let FakeStoreAPI = async () => {
-      await fetch(`https://dummyjson.com/products?limit=100`)
-        .then((res) => res.json())
-        .then((data) => {
-          setProducts(data.products);
-          category.value
-            ? setShowProducts(
-                data.products.filter(
-                  (product) => product.category === category.value
-                )
-              )
-            : setShowProducts(data.products.slice(0, 8));
-
-          dispatch(productDetailsActions.allProducts(data.products));
-          dispatch(filterActions.allCategory(data.products));
-        })
-        .catch((r) => alert(r));
-    };
-
-    FakeStoreAPI();
+    dispatch(getProductsThunk());
   }, []);
 
   useEffect(() => {
     if (category.value) {
-      setShowProducts(
-        products.filter((product) => product.category === category.value)
-      );
+      dispatch(productDetailsActions.filterProducts(category.value));
     } else {
       setShowProducts(products.slice(0, 8));
     }
@@ -67,26 +49,15 @@ function HomePage() {
         <Banner />
       </div>
 
-      {!products.length ? (
+      {!filterProducts.length ? (
         <LoadingSpinner />
       ) : (
         <>
           <div className="home__row">
-            {showProducts?.map((product) => {
-              return (
-                <Product
-                  key={"product" + product.id}
-                  category={product.category}
-                  description={product.description}
-                  image={product.images}
-                  rating={product.rating}
-                  id={product.id}
-                  title={product.title}
-                  price={product.price}
-                  amount={0}
-                />
-              );
-            })}
+            {filterProducts?.map((product) => (
+              
+              <Product data={product} key={"product" + product.id} />
+            ))}
           </div>
           {category?.length === 0 && (
             <ThemeProvider theme={theme}>
@@ -118,3 +89,23 @@ function HomePage() {
 }
 
 export default HomePage;
+//  let FakeStoreAPI = async () => {
+//       await fetch(`https://dummyjson.com/products?limit=100`)
+//         .then((res) => res.json())
+//         .then((data) => {
+//           setProducts(data.products);
+//           category.value
+//             ? setShowProducts(
+//                 data.products.filter(
+//                   (product) => product.category === category.value
+//                 )
+//               )
+//             : setShowProducts(data.products.slice(0, 8));
+
+//           dispatch(productDetailsActions.allProducts(data.products));
+//           dispatch(productDetailsActions.allCategory(data.products));
+//         })
+//         .catch((r) => alert(r));
+//     };
+
+//     FakeStoreAPI();

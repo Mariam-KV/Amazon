@@ -23,7 +23,6 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   basket: basketReducer,
-  filter: filterReducer,
   productDetails: productDetailsReducer,
   sidebar: sidebarReducer,
   review: reviewReducer,

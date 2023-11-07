@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import "../css/productDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { basketActions } from "../store/slices/basketSlice";
-import { productDetailsActions } from "../store/slices/productSlice";
+import RelatedProducts from "./RelatedProducts";
 import { Carousel } from "react-responsive-carousel";
 import { sidebarActions } from "../store/slices/sidebarSlice";
 import ProductRating from "./ProductRating";
 import Amount from "./amount/Amount";
 import Review from "./review/Review";
 function ProductDetails() {
-  let { id, category, title, description, image, price, rating } = useSelector(
-    (state) => state.productDetails.oneProduct
+  let { id, category, title, description, images, price, rating } = useSelector(
+    (state) => state.productDetails.oneProduct[0]
   );
+
   let related = useSelector((state) => state.productDetails.related);
   let totalAmount = useSelector((state) => state.basket.totalAmount);
   let dispatch = useDispatch();
@@ -23,13 +24,12 @@ function ProductDetails() {
         category,
         description,
         title,
-        image: image[0],
+        images: images[0],
         price,
         rating,
         amount: changedAmount,
       })
     );
-
     setAmount(1);
     dispatch(basketActions.changeColor(true));
   }
@@ -40,7 +40,7 @@ function ProductDetails() {
     return () => {
       clearTimeout(timer);
     };
-  }, [totalAmount]);
+  }, [dispatch, totalAmount]);
 
   return (
     <>
@@ -55,7 +55,7 @@ function ProductDetails() {
             interval={5000}
             className="productDetails__left__carousel"
           >
-            {image.map((img) => {
+            {images.map((img) => {
               return (
                 <img
                   src={img}
@@ -84,9 +84,7 @@ function ProductDetails() {
               <button
                 onClick={() => {
                   addingToBasket();
-                  let t = setTimeout(() => {
-                    dispatch(sidebarActions.toggleShow(true));
-                  }, 700);
+                  dispatch(sidebarActions.toggleShow(true));
                 }}
               >
                 Add to Cart
@@ -98,30 +96,9 @@ function ProductDetails() {
             <div className="related__items">
               {related
                 .filter((el) => el.id !== id)
-                .map((el) => {
-                  return (
-                    <img
-                      src={el.images[0]}
-                      alt="related item "
-                      key={el.images[0]}
-                      className="related__items-images"
-                      onClick={() => {
-                        dispatch(
-                          productDetailsActions.selectOneProduct({
-                            id: el.id,
-                            category: el.category,
-                            title: el.title,
-                            description: el.description,
-                            image: el.images,
-                            price: el.price,
-                            rating: el.rating,
-                            amount: el.amount,
-                          })
-                        );
-                      }}
-                    />
-                  );
-                })}
+                .map((el) => (
+                  <RelatedProducts data={el} />
+                ))}
             </div>
           </div>
         </div>

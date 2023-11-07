@@ -1,14 +1,14 @@
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { basketActions } from "../store/slices/basketSlice";
-import { filterActions } from "../store/slices/filterSlice";
+import { productDetailsActions } from "../store/slices/productSlice";
 import { sidebarActions } from "../store/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header({ show = false }) {
-  let { allCategory, category } = useSelector((state) => state.filter);
+  let { allCategory, category } = useSelector((state) => state.productDetails);
   let { user, totalAmount, changeBasket } = useSelector(
     (state) => state.basket
   );
@@ -29,7 +29,10 @@ function Header({ show = false }) {
   return (
     <div className="header">
       <div className="header__logo">
-        <Link to="/" onClick={() => dispatch(filterActions.changeCategory())}>
+        <Link
+          to="/"
+          onClick={() => dispatch(productDetailsActions.changeCategory())}
+        >
           <img
             src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
             alt="logo"
@@ -39,7 +42,9 @@ function Header({ show = false }) {
 
       {show && (
         <Select
-          onChange={(e) => dispatch(filterActions.changeCategory(e.value))}
+          onChange={(e) =>
+            dispatch(productDetailsActions.changeCategory(e.value))
+          }
           options={allCategory}
           className="header__select"
           value={category}
