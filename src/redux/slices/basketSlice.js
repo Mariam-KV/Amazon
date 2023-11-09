@@ -1,4 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+function countTotal(arr, type) {
+  if (type === "price") {
+    return arr?.reduce((acc, item) => +item.price * item.amount + acc, 0);
+  }
+  if (type === "amount") {
+    return arr?.reduce((acc, item) => +item.amount + acc, 0);
+  }
+}
+
 let basketSlice = createSlice({
   name: "basket",
   initialState: {
@@ -13,50 +22,37 @@ let basketSlice = createSlice({
       state.changeBasket = action.payload;
     },
     addToBasket: (state, action) => {
+      //an item that was added
       let newItem = state.basket.filter(
         (item) => item.id === action.payload.id
       );
 
+      // checking if we have this itema already in basket
       if (newItem[0]?.id) {
-        newItem[0].amount = +newItem[0].amount + action.payload.amount;
-
-        state.basket = [...state.basket];
+        newItem[0].amount += action.payload.amount;
       } else {
         state.basket = [...state.basket, action.payload];
       }
-      state.totalAmount = state.basket?.reduce(
-        (acc, item) => +item.amount + acc,
-        0
-      );
-      state.totalPrice = state.basket?.reduce(
-        (acc, item) => +item.price * item.amount + acc,
-        0
-      );
+      state.totalAmount = countTotal(state.basket, "amount");
+      state.totalPrice = countTotal(state.basket, "price");
     },
     removeFromBasket: (state, action) => {
-      let index;
-
-      index = state.basket.findIndex((item) => item.id === action.payload.id);
+      let index = state.basket.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      let oldItem = state.basket[index];
       if (action.payload.all) {
-        let oldItem = state.basket[index];
         state?.basket.splice(index, 1);
         state.totalPrice -= oldItem.amount * oldItem.price;
         state.totalAmount -= oldItem.amount;
       } else {
-        let oldItem = state.basket[index];
         if (oldItem && oldItem.amount > 1) {
           state.basket[index].amount--;
         } else {
           state?.basket.splice(index, 1);
         }
-        state.totalAmount = state.basket?.reduce(
-          (acc, item) => +item.amount + acc,
-          0
-        );
-        state.totalPrice = state.basket?.reduce(
-          (acc, item) => +item.price * item.amount + acc,
-          0
-        );
+        state.totalAmount = countTotal(state.basket, "amount");
+        state.totalPrice = countTotal(state.basket, "price");
       }
     },
     emptyBasket: (state) => {

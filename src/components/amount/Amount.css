@@ -11,6 +11,9 @@
   -webkit-appearance: none;
   margin: 0;
 }
+.amount input[type="number"] {
+  -moz-appearance: textfield;
+}
 .amount {
   cursor: pointer;
   height: 42px;

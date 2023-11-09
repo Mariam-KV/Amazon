@@ -1,13 +1,11 @@
 import "../css/BasketItem.css";
 import { useState } from "react";
-import { basketActions } from "../store";
+import { basketActions } from "../redux/slices";
 import { useDispatch } from "react-redux";
 function BasketItem({ item, hide }) {
-  //let basket = useSelector((state) => state.basket);
-
-  let dispatch = useDispatch();
-  let { id, title, image, price, rating, description } = item;
-  let [hideButton, setHideButton] = useState(false);
+  const dispatch = useDispatch();
+  const { id, title, images, price, rating, description } = item;
+  const [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
     dispatch(basketActions.removeFromBasket(id));
   }
@@ -17,7 +15,7 @@ function BasketItem({ item, hide }) {
 
   return (
     <div className="basketItem">
-      <img className="basketItem__image" src={image} alt="basketItem" />
+      <img className="basketItem__image" src={images[0]} alt="basketItem" />
 
       <div className="basketItem__info">
         <p className="basketItem__title">{title}</p>

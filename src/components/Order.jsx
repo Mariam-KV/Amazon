@@ -1,15 +1,17 @@
 import React from "react";
 import "../css/Order.css";
-import CheckoutProduct from "../components/CheckoutProduct";
+import CheckoutProduct from "./CheckoutProduct";
 import moment from "moment";
 import CurrencyFormatC from "./CurrencyFormatC";
 function Order({ order }) {
-  let timestamp = order.data.created;
+  const timestamp = order.data.created;
 
   return (
     <div className="order">
       <h2>Order</h2>
-      <p className="order__data">{moment.unix(timestamp).format("MMMM Do YYYY, h:mma")}</p>
+      <p className="order__data">
+        {moment.unix(timestamp).format("MMMM Do YYYY, h:mma")}
+      </p>
       <p className="order__id">
         <small>{order.id}</small>
       </p>

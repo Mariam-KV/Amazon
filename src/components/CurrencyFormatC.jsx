@@ -14,7 +14,7 @@ function CurrencyFormatC({ title, value, amount }) {
         </>
       )}
       decimalScale={2}
-      value={value} // Part of the homework
+      value={value}
       displayType={"text"}
       thousandSeparator={true}
       prefix={"$"}

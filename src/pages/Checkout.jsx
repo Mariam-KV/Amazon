@@ -1,13 +1,13 @@
 import React from "react";
 import "../css/Checkout.css";
 import { useSelector, useDispatch } from "react-redux";
-import { basketActions } from "../store/basketSlice";
+import { basketActions } from "../redux/slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 function Checkout() {
-  let basket = useSelector((state) => state.basket?.basket);
-  let totalAmount = useSelector((state) => state.basket?.totalAmount);
-  let dispatch = useDispatch();
+  const basket = useSelector((state) => state.basket?.basket);
+  const totalAmount = useSelector((state) => state.basket?.totalAmount);
+  const dispatch = useDispatch();
   return (
     <div className="checkout">
       <div className="checkout__left">

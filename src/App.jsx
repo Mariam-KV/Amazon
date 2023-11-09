@@ -10,16 +10,16 @@ import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKey } from "./stripe";
-import { basketActions } from "./store/basketSlice";
+import { basketActions } from "./redux/slices/basketSlice";
 import OutsideAlerter from "./components/Outside";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
 import Sidebar from "./components/Sidebar";
 import Overlay from "./components/Overlay";
-let promise = loadStripe(publishableKey);
+const promise = loadStripe(publishableKey);
 function App() {
-  let dispatch = useDispatch();
-  let sidebar = useSelector((item) => item.sidebar.show);
+  const dispatch = useDispatch();
+  const sidebar = useSelector((item) => item.sidebar.show);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser?.email) {

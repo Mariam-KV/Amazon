@@ -1,40 +1,26 @@
 import React from "react";
 import "../css/CheckoutProduct.css";
-import { basketActions } from "../store/basketSlice";
+import { basketActions } from "../redux/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import ProductRating from "./ProductRating";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 function CheckoutProduct({ item, hide = false }) {
-  let dispatch = useDispatch();
-  let { id, title, image, price, rating, description, amount } = item;
+  const dispatch = useDispatch();
+  const { id, title, images, price, rating, description, amount } = item;
 
   function removeFromBasket(all = false) {
     dispatch(basketActions.removeFromBasket({ id, all }));
   }
-  function addingToBasket() {
-    dispatch(
-      basketActions.addToBasket({
-        id,
-        title,
-        image,
-        price,
-        rating,
-        description,
-        amount: 1,
-      })
-    );
-  }
+
   return (
     <div className="checkoutProduct">
-      <img className="checkoutProduct__image" src={image} alt="basketItem" />
+      <img className="checkoutProduct__image" src={images} alt="basketItem" />
       <div className="checkoutProduct__info">
         <h3 className="checkoutProduct__title">
           {title}
-          {hide ? (
-            ""
-          ) : (
+          {!hide && (
             <div className="checkoutProduct__title-icon">
               <DeleteIcon onClick={() => removeFromBasket(true)} />
             </div>
@@ -54,7 +40,11 @@ function CheckoutProduct({ item, hide = false }) {
               <div className="checkoutProduct__amount">
                 <RemoveIcon onClick={() => removeFromBasket()} />
                 {amount}
-                <AddIcon onClick={() => addingToBasket()} />
+                <AddIcon
+                  onClick={() =>
+                    dispatch(basketActions.addToBasket({ ...item, amount: 1 }))
+                  }
+                />
               </div>
               <p className="checkoutProduct__price-one">${price}</p>
             </>

@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { basketReducer } from "./basketSlice";
-import { filterReducer } from "./filterSlice";
-import { sidebarReducer } from "./sidebarSlice";
-import { reviewReducer } from "./reviewSlice";
-import { productDetailsReducer } from "./productSlice";
+import { basketReducer } from "./slices/basketSlice";
+import { sidebarReducer } from "./slices/sidebarSlice";
+import { stripeReducer } from "./slices/stripeSlice";
+import { reviewReducer } from "./slices/reviewSlice";
+import { productDetailsReducer } from "./slices/productSlice";
 import {
   persistStore,
   persistReducer,
@@ -23,9 +23,9 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   basket: basketReducer,
-  filter: filterReducer,
   productDetails: productDetailsReducer,
   sidebar: sidebarReducer,
+  stripe: stripeReducer,
   review: reviewReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);

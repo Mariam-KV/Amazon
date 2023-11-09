@@ -1,20 +1,22 @@
 import "../css/Header.css";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { basketActions } from "../store/basketSlice";
-import { filterActions } from "../store/filterSlice";
-import { sidebarActions } from "../store/sidebarSlice";
+import { basketActions } from "../redux/slices/basketSlice";
+import { productDetailsActions } from "../redux/slices/productSlice";
+import { sidebarActions } from "../redux/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header({ show = false }) {
-  let allCategory = useSelector((state) => state.filter.allCategory);
-  let category = useSelector((state) => state.filter.category);
-  let user = useSelector((state) => state.basket.user);
-  let totalAmount = useSelector((state) => state.basket.totalAmount);
-  let changeBasket = useSelector((state) => state.basket.changeBasket);
-  let dispatch = useDispatch();
-  let handleAuthentication = () => {
+  const { allCategory, category } = useSelector(
+    (state) => state.productDetails
+  );
+  const { user, totalAmount, changeBasket } = useSelector(
+    (state) => state.basket
+  );
+
+  const dispatch = useDispatch();
+  const handleAuthentication = () => {
     if (user?.email) {
       auth.signOut();
     } else {
@@ -29,7 +31,13 @@ function Header({ show = false }) {
   return (
     <div className="header">
       <div className="header__logo">
-        <Link to="/" onClick={() => dispatch(filterActions.changeCategory())}>
+        <Link
+          to="/"
+          onClick={() => {
+            dispatch(productDetailsActions.changeCategory("All"));
+        
+          }}
+        >
           <img
             src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
             alt="logo"
@@ -39,7 +47,9 @@ function Header({ show = false }) {
 
       {show && (
         <Select
-          onChange={(e) => dispatch(filterActions.changeCategory(e.value))}
+          onChange={(e) =>
+            dispatch(productDetailsActions.changeCategory(e.value))
+          }
           options={allCategory}
           className="header__select"
           value={category}

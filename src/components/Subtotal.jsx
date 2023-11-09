@@ -1,15 +1,15 @@
 import React from "react";
 import "../css/Subtotal.css";
 import CurrencyFormatC from "./CurrencyFormatC";
-import { sidebarActions } from "../store/sidebarSlice";
+import { sidebarActions } from "../redux/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {
-  let user = useSelector((state) => state.basket?.user);
-  let totalPrice = useSelector((state) => state.basket.totalPrice);
-  let totalAmount = useSelector((state) => state.basket.totalAmount);
-  let history = useHistory();
-  let dispatch = useDispatch();
+  const user = useSelector((state) => state.basket?.user);
+  const { totalPrice, totalAmount } = useSelector((state) => state.basket);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <div className="subtotal">
       <CurrencyFormatC
@@ -18,7 +18,7 @@ export default function Subtotal() {
         amount={totalAmount}
       />
       <button
-        disabled={totalAmount === 0}
+      
         onClick={() => {
           if (user?.email) {
             history.push("/payment");
