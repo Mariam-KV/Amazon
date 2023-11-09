@@ -6,10 +6,10 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 import Order from "../components/Order";
 function Orders() {
-  let user = useSelector((state) => state.basket.user);
-  let dispatch = useDispatch();
-  let [orders, setOrders] = useState([]);
-  let [doc, setDoc] = useState(false);
+  const user = useSelector((state) => state.basket.user);
+  const dispatch = useDispatch();
+  const [orders, setOrders] = useState([]);
+  const [doc, setDoc] = useState(false);
   useEffect(() => {
     if (user) {
       dispatch(getOrdersThunk(user, setOrders, setDoc));

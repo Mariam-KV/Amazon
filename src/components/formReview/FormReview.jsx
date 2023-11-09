@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import { postingReviews } from "../../redux/thunks/reviewThunk";
 import { reviewActions } from "../../redux/slices/reviewSlice";
 const FormReview = ({ id }) => {
-  let [isValid, setValid] = useState(false);
-  let dispatch = useDispatch();
+  const [isValid, setValid] = useState(false);
+  const dispatch = useDispatch();
   function validation({ name, title, comment, rating }) {
     if (
       name.trim().length > 0 &&

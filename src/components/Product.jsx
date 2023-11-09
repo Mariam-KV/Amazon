@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 function Product({
   data: { id, category, title, description, images, price, rating, amount },
 }) {
-  let dispatch = useDispatch();
-  let history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <div
       className="product"

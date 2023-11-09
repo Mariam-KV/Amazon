@@ -8,13 +8,15 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import { auth } from "../FireBaseApp";
 function Header({ show = false }) {
-  let { allCategory, category } = useSelector((state) => state.productDetails);
-  let { user, totalAmount, changeBasket } = useSelector(
+  const { allCategory, category } = useSelector(
+    (state) => state.productDetails
+  );
+  const { user, totalAmount, changeBasket } = useSelector(
     (state) => state.basket
   );
 
-  let dispatch = useDispatch();
-  let handleAuthentication = () => {
+  const dispatch = useDispatch();
+  const handleAuthentication = () => {
     if (user?.email) {
       auth.signOut();
     } else {

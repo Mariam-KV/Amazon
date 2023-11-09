@@ -5,31 +5,25 @@ import CurrencyFormatC from "../components/CurrencyFormatC";
 import { useHistory } from "react-router-dom";
 import axios from "../axios";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { getClientSecretThunk } from "../redux/thunks/getClientSecretThunk";
-
 import { paymentThunk } from "../redux/thunks/paymentThunk";
 import { useSelector, useDispatch } from "react-redux";
 function Payment() {
-  let { user, basket, totalPrice, totalAmount } = useSelector(
+  const { user, basket, totalPrice, totalAmount } = useSelector(
     (state) => state.basket
   );
-  let [clientSecret, setClientSecret] = useState(true);
-  let { status, error, secret } = useSelector((state) => state.stripe);
-  console.log(status, "status");
-  let dispatch = useDispatch();
-  let stripe = useStripe();
-  let elements = useElements();
-  let history = useHistory();
-  let [disable, setDisable] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+  const { status } = useSelector((state) => state.stripe);
+  const [disable, setDisable] = useState(true);
+  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const stripe = useStripe();
+  const elements = useElements();
+  const history = useHistory();
   useEffect(() => {
     //generate the special stripe secret which allows us to charge  a customer
     if (totalAmount) {
-      // console.log(23);
-
-      // dispatch(getClientSecretThunk({ totalPrice }));
-      // console.log(secret);
-      let getClientSecret = async () => {
-        let response = await axios({
+      const getClientSecret = async () => {
+        const response = await axios({
           method: "post",
           url: `/payments/create/?total=${totalPrice * 100}`,
         });
@@ -40,7 +34,7 @@ function Payment() {
     }
   }, [dispatch, totalAmount, totalPrice]);
 
-  let handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(
       paymentThunk({
@@ -50,14 +44,12 @@ function Payment() {
         clientSecret,
         user,
         basket,
-        history,
       })
     );
+    status === "fulfilled" && history.replace("/orders");
+    status === "rejected" && history.replace("/");
   };
-  let handleChange = (e) => {
-    setDisable(e.empty);
-    // setError(e.error?.message);
-  };
+
   return (
     <div className="payment">
       <div className="payment__container">
@@ -91,11 +83,17 @@ function Payment() {
           <div className="payment__details">
             <form onSubmit={handleSubmit}>
               <h4>Card number - 4242424242424242</h4>
-              {status === "rejected" ? (
-                <h4 className="error">{error}</h4>
-              ) : null}
+              {error ? <h4 className="error">{error}</h4> : null}
 
-              <CardElement onChange={handleChange} value={3} />
+              <CardElement
+                onChange={(e) => {
+                  //setting errors for invalid data before submitting
+
+                  setError(e.error?.message);
+                  setDisable(!e.complete);
+                }}
+                value={3}
+              />
               <div>
                 <CurrencyFormatC
                   title="payment"
@@ -104,7 +102,7 @@ function Payment() {
                 />
               </div>
               <div>
-                <button>
+                <button disabled={disable || status === "loading"}>
                   {status === "loading" ? "Processing" : "Buy now"}
                 </button>
               </div>
@@ -115,7 +113,5 @@ function Payment() {
     </div>
   );
 }
-{
-  /* <button disabled={disable || processing || succeeded || error}></button> */
-}
+
 export default Payment;

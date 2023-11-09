@@ -3,9 +3,9 @@ import { useState } from "react";
 import { basketActions } from "../redux/slices";
 import { useDispatch } from "react-redux";
 function BasketItem({ item, hide }) {
-  let dispatch = useDispatch();
-  let { id, title, images, price, rating, description } = item;
-  let [hideButton, setHideButton] = useState(false);
+  const dispatch = useDispatch();
+  const { id, title, images, price, rating, description } = item;
+  const [hideButton, setHideButton] = useState(false);
   function removeFromBasket() {
     dispatch(basketActions.removeFromBasket(id));
   }

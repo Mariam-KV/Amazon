@@ -7,10 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 function Review({ stars, id }) {
-  let show = useSelector((state) => state.review.show);
-  let user = useSelector((state) => state.basket.user);
-  let history = useHistory();
-  let dispatch = useDispatch();
+  const show = useSelector((state) => state.review.show);
+  const user = useSelector((state) => state.basket.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(reviewActions.toggleShow(false));
   }, [dispatch]);

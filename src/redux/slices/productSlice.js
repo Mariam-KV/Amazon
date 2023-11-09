@@ -7,7 +7,7 @@ let productDetailsSlice = createSlice({
     oneProduct: [],
     category: [],
     allCategory: [],
-    filterProducts: [],
+    showProducts: [],
   },
   reducers: {
     allProducts: (state, action) => {
@@ -17,7 +17,6 @@ let productDetailsSlice = createSlice({
       state.oneProduct = state.allProduct.filter(
         (product) => product.id === action.payload
       );
-
     },
     relatedProducts: (state, action) => {
       state.related = state.allProduct.filter(
@@ -25,9 +24,14 @@ let productDetailsSlice = createSlice({
       );
     },
     filterProducts: (state, action) => {
-      state.filterProducts = state.allProduct.filter(
+      state.showProducts = state.allProduct.filter(
         (product) => product.category === action.payload
       );
+    },
+    showProducts: (state, action) => {
+      const page = action.payload;
+      const start = (page - 1) * 8;
+      state.showProducts = state.allProduct.slice(start, start + 8);
     },
     changeCategory: (state, action) => {
       if (action.payload) {
@@ -49,7 +53,7 @@ let productDetailsSlice = createSlice({
         }
         return newallCategory;
       });
-      // state.allCategory = [...state.category, ...newallCategory];
+
       state.allCategory = [...newallCategory];
     },
   },

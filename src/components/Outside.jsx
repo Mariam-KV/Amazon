@@ -5,7 +5,7 @@ import { sidebarActions } from "../redux/slices/sidebarSlice";
  * Hook that alerts clicks outside of the passed ref
  */
 function useOutsideAlerter(ref) {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     /**
      * Alert if clicked on outside of element

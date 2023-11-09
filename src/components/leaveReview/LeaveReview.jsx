@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { gettingReviews } from "../../redux/thunks/reviewThunk";
 import "./LeaveReviews.css";
 function LeaveReview({ id }) {
-  let dispatch = useDispatch();
-  let { leaveReview, submit } = useSelector((state) => state.review);
+  const dispatch = useDispatch();
+  const { leaveReview, submit } = useSelector((state) => state.review);
   useEffect(() => {
     dispatch(gettingReviews());
   }, [dispatch, submit]);

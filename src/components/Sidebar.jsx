@@ -7,7 +7,7 @@ import Subtotal from "./Subtotal";
 import { useDispatch } from "react-redux";
 import { sidebarActions } from "../redux/slices/sidebarSlice";
 function Sidebar() {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div className="sidebar">

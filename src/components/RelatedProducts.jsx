@@ -2,7 +2,7 @@ import React from "react";
 import { productDetailsActions } from "../redux/slices/productSlice";
 import { useDispatch } from "react-redux";
 function RelatedProducts({ data: { images, id } }) {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <img
       src={images[0]}

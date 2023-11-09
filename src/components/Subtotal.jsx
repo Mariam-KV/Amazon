@@ -5,11 +5,11 @@ import { sidebarActions } from "../redux/slices/sidebarSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 export default function Subtotal() {
-  let user = useSelector((state) => state.basket?.user);
-  let { totalPrice, totalAmount } = useSelector((state) => state.basket);
+  const user = useSelector((state) => state.basket?.user);
+  const { totalPrice, totalAmount } = useSelector((state) => state.basket);
 
-  let history = useHistory();
-  let dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <div className="subtotal">
       <CurrencyFormatC

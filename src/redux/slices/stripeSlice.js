@@ -2,13 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { paymentThunk } from "../thunks/paymentThunk";
 let stripeSlice = createSlice({
   name: "stripe",
-  initialState: { status: "", error: "", secret: "" },
-  reducers: {
-    defineSecret: (state, action) => {
-      console.log(action.payload, 3456);
-      state.secret = action.payload;
-    },
-  },
+  initialState: { status: "" },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(paymentThunk.pending, (state, action) => {

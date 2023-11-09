@@ -7,9 +7,9 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 function CheckoutProduct({ item, hide = false }) {
-  let dispatch = useDispatch();
-  let { id, title, images, price, rating, description, amount } = item;
- 
+  const dispatch = useDispatch();
+  const { id, title, images, price, rating, description, amount } = item;
+
   function removeFromBasket(all = false) {
     dispatch(basketActions.removeFromBasket({ id, all }));
   }

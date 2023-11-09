@@ -4,8 +4,8 @@ import CheckoutProduct from "./CheckoutProduct";
 import moment from "moment";
 import CurrencyFormatC from "./CurrencyFormatC";
 function Order({ order }) {
-  let timestamp = order.data.created;
-  console.log(order.data.basket, 345678);
+  const timestamp = order.data.created;
+
   return (
     <div className="order">
       <h2>Order</h2>

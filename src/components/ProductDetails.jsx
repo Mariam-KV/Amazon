@@ -9,16 +9,14 @@ import ProductRating from "./ProductRating";
 import Amount from "./amount/Amount";
 import Review from "./review/Review";
 function ProductDetails() {
-  let { id, category, title, description, images, price, rating } = useSelector(
-    (state) => state.productDetails.oneProduct[0]
-  );
+  const { id, category, title, description, images, price, rating } =
+    useSelector((state) => state.productDetails.oneProduct[0]);
 
-  let related = useSelector((state) => state.productDetails.related);
-  let totalAmount = useSelector((state) => state.basket.totalAmount);
-  let dispatch = useDispatch();
-  let [changedAmount, setAmount] = useState(1);
+  const related = useSelector((state) => state.productDetails.related);
+  const totalAmount = useSelector((state) => state.basket.totalAmount);
+  const dispatch = useDispatch();
+  const [changedAmount, setAmount] = useState(1);
   function addingToBasket() {
-    console.log(34);
     dispatch(
       basketActions.addToBasket({
         id,
@@ -35,7 +33,7 @@ function ProductDetails() {
     dispatch(basketActions.changeColor(true));
   }
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       dispatch(basketActions.changeColor(false));
     }, 300);
     return () => {
@@ -74,7 +72,7 @@ function ProductDetails() {
               {related
                 .filter((el) => el.id !== id)
                 .map((el) => (
-                  <RelatedProducts data={el} />
+                  <RelatedProducts data={el} key={el.id} />
                 ))}
             </div>
           </div>
