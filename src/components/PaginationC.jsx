@@ -22,9 +22,9 @@ function PaginationC() {
           <Pagination
             count={13}
             color="primary"
-            onChange={(event, page) =>
-              dispatch(productDetailsActions.showProducts(page))
-            }
+            onChange={(event, page) => {
+              dispatch(productDetailsActions.showProducts(page));
+            }}
           />
         </Stack>
       </ThemeProvider>

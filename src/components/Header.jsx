@@ -33,7 +33,10 @@ function Header({ show = false }) {
       <div className="header__logo">
         <Link
           to="/"
-          onClick={() => dispatch(productDetailsActions.changeCategory())}
+          onClick={() => {
+            dispatch(productDetailsActions.changeCategory("All"));
+        
+          }}
         >
           <img
             src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"

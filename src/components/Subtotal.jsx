@@ -18,7 +18,7 @@ export default function Subtotal() {
         amount={totalAmount}
       />
       <button
-        disabled={totalAmount === 0}
+      
         onClick={() => {
           if (user?.email) {
             history.push("/payment");

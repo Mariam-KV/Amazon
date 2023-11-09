@@ -5,7 +5,7 @@ let productDetailsSlice = createSlice({
     allProduct: [],
     related: [],
     oneProduct: [],
-    category: [],
+    category: { value: "All", label: "All" },
     allCategory: [],
     showProducts: [],
   },
@@ -36,12 +36,10 @@ let productDetailsSlice = createSlice({
     changeCategory: (state, action) => {
       if (action.payload) {
         state.category = { value: action.payload, label: action.payload };
-      } else {
-        state.category = [];
       }
     },
     allCategory: (state, action) => {
-      let newallCategory = [];
+      let newallCategory = [{ value: "All", label: "All" }];
       let all = [];
       action.payload.map((element) => {
         if (!all.includes(element.category)) {

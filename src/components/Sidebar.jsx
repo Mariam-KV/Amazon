@@ -4,11 +4,11 @@ import Checkout from "../pages/Checkout";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import Subtotal from "./Subtotal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sidebarActions } from "../redux/slices/sidebarSlice";
 function Sidebar() {
   const dispatch = useDispatch();
-
+  const { totalAmount } = useSelector((state) => state.basket);
   return (
     <div className="sidebar">
       <div>
@@ -19,11 +19,7 @@ function Sidebar() {
         </p>
         <Checkout />
       </div>
-      <main>
-        <div className="sidebar__subtotal">
-          <Subtotal />
-        </div>
-      </main>
+      {totalAmount ? <Subtotal /> : ""}
     </div>
   );
 }

@@ -17,12 +17,12 @@ function HomePage() {
     dispatch(getProductsThunk());
   }, [dispatch]);
   useEffect(() => {
-    if (category.value) {
-      dispatch(productDetailsActions.filterProducts(category.value));
-    } else {
+    if (category?.value === "All") {
       dispatch(productDetailsActions.showProducts(1));
+    } else if (category?.value) {
+      dispatch(productDetailsActions.filterProducts(category.value));
     }
-  }, [dispatch, category.value]);
+  }, [dispatch, category?.value]);
   return (
     <>
       <div className="home">
@@ -38,7 +38,7 @@ function HomePage() {
               <Product data={product} key={"product" + product.id} />
             ))}
           </div>
-          {category?.length === 0 && <PaginationC />}
+          {category?.value === "All" && <PaginationC />}
           <a
             href="https://www.amazon.com/b?ie=UTF8&node=21429425011"
             target="_blank"
