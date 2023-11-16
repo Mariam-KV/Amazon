@@ -3,28 +3,29 @@ import "../css/Orders.css";
 import { getOrdersThunk } from "../redux/thunks/getOrdersThunk";
 import { useSelector, useDispatch } from "react-redux";
 import LoadingSpinner from "../components/LoadingSpinner";
-
+import { orderActions } from "../redux/slices/orderSlice";
 import Order from "../components/Order";
 function Orders() {
   const user = useSelector((state) => state.basket.user);
+  const { orders } = useSelector((state) => state.order);
+
   const dispatch = useDispatch();
-  const [orders, setOrders] = useState([]);
-  const [doc, setDoc] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (user) {
-      dispatch(getOrdersThunk(user, setOrders, setDoc));
+      dispatch(getOrdersThunk(user, setLoading));
     } else {
-      setOrders([]);
+      dispatch(orderActions([]));
     }
   }, [dispatch, user]);
 
   return (
     <>
-      {!doc ? (
+      {loading ? (
         <LoadingSpinner />
       ) : (
         <div className="orders">
-          <h1>Your Orders {!orders.length && "is empty"}</h1>
+          <h1>Your Orders {!orders.length && !loading && "is empty"}</h1>
           <div>
             {orders.map((order, i) => {
               return <Order order={order} key={"order" + i} />;

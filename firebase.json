@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "build",
+    "projectId": "fir-214b5",
     "ignore": [
       "firebase.json",
       "**/.*",
