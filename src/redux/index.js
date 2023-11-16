@@ -4,6 +4,7 @@ import { sidebarReducer } from "./slices/sidebarSlice";
 import { stripeReducer } from "./slices/stripeSlice";
 import { reviewReducer } from "./slices/reviewSlice";
 import { productDetailsReducer } from "./slices/productSlice";
+import { orderReducer } from "./slices/orderSlice";
 import {
   persistStore,
   persistReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   sidebar: sidebarReducer,
   stripe: stripeReducer,
   review: reviewReducer,
+  order: orderReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

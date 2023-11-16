@@ -8,7 +8,7 @@ export const paymentThunk = createAsyncThunk(
     { stripe, elements, CardElement, clientSecret, user, basket },
     { dispatch }
   ) => {
-    //WOW
+
     try {
       const stripeResponse = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
