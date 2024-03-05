@@ -1,5 +1,5 @@
 import { db } from "../../FireBaseApp";
-import { orderActions } from "../slices/orderSlice";
+import { addOrder } from "../slices/orderSlice";
 export const getOrdersThunk = (user, setLoading) => (dispatch) => {
   db.collection("users")
     .doc(user?.uid)
@@ -7,8 +7,9 @@ export const getOrdersThunk = (user, setLoading) => (dispatch) => {
     .orderBy("created", "desc")
     .onSnapshot((snapshot) => {
       //realtime response
+
       dispatch(
-        orderActions.addOrder(
+        addOrder(
           snapshot.docs.map((doc) => ({
             id: doc.id,
             data: doc.data(),
