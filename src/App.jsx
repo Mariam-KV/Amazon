@@ -9,14 +9,15 @@ import { Route, Switch } from "react-router-dom";
 import { auth } from "./FireBaseApp";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { publishableKey } from "./stripe";
 import { basketActions } from "./redux/slices/basketSlice";
 import OutsideAlerter from "./components/Outside";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "./components/ProductDetails";
 import Sidebar from "./components/Sidebar";
 import Overlay from "./components/Overlay";
-const promise = loadStripe(publishableKey);
+const promise = loadStripe(
+  "pk_test_51OpXNhGcnGZJIt9roAkMSkJosv0Q5wPWJuOsUEEW6YMEtT2T8chqclPqbrbm6PLzqxGzozKQjJ9aPnMm12iDouYk00L3N3qVV9"
+);
 function App() {
   const dispatch = useDispatch();
   const sidebar = useSelector((item) => item.sidebar.show);

@@ -1,4 +1,0 @@
-export let publishableKey =
-  "pk_test_51OpXNhGcnGZJIt9roAkMSkJosv0Q5wPWJuOsUEEW6YMEtT2T8chqclPqbrbm6PLzqxGzozKQjJ9aPnMm12iDouYk00L3N3qVV9";
-export let secretKey =
-  "sk_test_51OpXNhGcnGZJIt9rvQfsNcDUjOi3aST7tPXZGeXNpY9nNCO6PQjv0n6BTCfznFIlKQPbv1C8PLna4iazKnJ7morO00TdirfF6B";

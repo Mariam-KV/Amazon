@@ -23,13 +23,12 @@ function Payment() {
     //generate the special stripe secret which allows us to charge  a customer
     if (totalAmount) {
       const getClientSecret = async () => {
-    
         const response = await axios({
           method: "post",
           url: `/payments/create/?total=${totalPrice * 100}`,
         });
         //from backend (functions)
-       
+
         setClientSecret(response.data.clientSecret);
       };
       getClientSecret();
@@ -48,8 +47,10 @@ function Payment() {
         basket,
       })
     );
-    status === "fulfilled" && history.replace("/orders");
-    status === "rejected" && history.replace("/");
+    if (status === "fulfilled") history.replace("/orders");
+    else {
+      history.replace("/");
+    }
   };
 
   return (
