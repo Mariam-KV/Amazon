@@ -26,7 +26,8 @@ function Orders() {
       ) : (
         <div className="orders">
           <h1>
-            Your Orders {!orders && !orders.length && !loading && "is empty"}
+            Your Orders{" "}
+            {!orders || (orders.length === 0 && !loading && "is empty")}
           </h1>
           <div>
             {orders.map((order, i) => {

@@ -14,22 +14,26 @@ function HomePage() {
     (state) => state.productDetails
   );
   useEffect(() => {
-    dispatch(getProductsThunk());
+    const fetchData = async () => {
+      await dispatch(getProductsThunk());
+
+      if (category?.value === "All") {
+        dispatch(productDetailsActions.showProducts(1));
+      } else if (category?.value) {
+        dispatch(productDetailsActions.filterProducts(category.value));
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
-  useEffect(() => {
-    if (category?.value === "All") {
-      dispatch(productDetailsActions.showProducts(1));
-    } else if (category?.value) {
-      dispatch(productDetailsActions.filterProducts(category.value));
-    }
-  }, [dispatch, category?.value]);
+
   return (
     <>
       <div className="home">
         <Banner />
       </div>
 
-      {!showProducts ? (
+      {showProducts?.length === 0 || !showProducts ? (
         <LoadingSpinner />
       ) : (
         <>
