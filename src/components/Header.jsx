@@ -46,8 +46,11 @@ function Header({ show = false }) {
 
       {show && (
         <Select
-          onChange={(e) =>
+          onChange={(e) =>{
+
             dispatch(productDetailsActions.changeCategory(e.value))
+          }
+          
           }
           options={allCategory}
           className="header__select"

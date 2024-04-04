@@ -20,12 +20,12 @@ function HomePage() {
       if (category?.value === "All") {
         dispatch(productDetailsActions.showProducts(1));
       } else if (category?.value) {
-        dispatch(productDetailsActions.filterProducts(category.value));
+        await dispatch(productDetailsActions.filterProducts(category.value));
       }
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch,category]);
 
   return (
     <>
